@@ -1,33 +1,16 @@
 <template>
   <section class="container">
     <div>
-      <app-logo/>
-      <h1 class="title">
-        event-u
-      </h1>
-      <h2 class="subtitle">
-        Nuxteventufrontend
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
+      <menu-bar/>
     </div>
   </section>
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
-
+import MenuBar from '@/components/sections/MenuBar.vue'
 export default {
   components: {
-    AppLogo
+    MenuBar
   }
 }
 </script>
@@ -42,11 +25,11 @@ export default {
 }
 
 .title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
+  font-family: "Futura";
   display: block;
   font-weight: 300;
   font-size: 100px;
-  color: #35495e;
+  color: #000000;
   letter-spacing: 1px;
 }
 

@@ -1,37 +1,54 @@
 <template>
-  <div class='page-enter-active navbar'>
-      <h1>
-          Spots
-      </h1>
+  <div class='page-enter-active navbar d-flex justify-content-between'>
+    <app-logo
+        class='logo-menu col-4'
+    /> 
+    <div class="section-title  col-4">
+        <h1>
+         Mis eventos
+        </h1>
+    </div>
+    <div class="icons-navbar col-2">
+        <i class="fas fa-search"></i>
+        <i class="far fa-bell"></i>
+        <i class="fas fa-cog"></i>
+    </div>
   </div>
 </template>
 
 <script>
+import AppLogo from '../AppLogo.vue'
 export default {
+    name: 'MenuBar',
+    components:{
+        AppLogo
+    }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .navbar{
-    background-color: #FFFF00;
+    background-color: $alpha;
+    padding:1% 0%;
+    border-radius:0px 0px 16px 16px;
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.27);
 }
-
-.page-enter-active{
-    animation: comein .5s ease-in ;
+.section-title{
+    text-align:center;
 }
-
-@keyframes comein {
-    20%{
-        opacity: .3;
-        padding:30%;
-    }
-    50%{
-        opacity: .7;
-        padding:20%;
-    }
-    100%{
-        opacity: 1;
-        padding:10%;
-    }
-    }
+.logo-menu{
+    max-width: 15%;
+}
+.icons-navbar{
+    text-align:right;
+}
+.icons-navbar >*{
+    padding-right: 13%;
+    font-size: 1.5em;
+}
+h1{
+     @extend .h1-font;
+     font-size:2.3em;
+     color:#333333;
+}
 </style>

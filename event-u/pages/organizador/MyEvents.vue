@@ -65,16 +65,11 @@ export default {
                 needs:['Cocacola','asdasdas']
                 },
             ],
-            loading: true,
             eventId:'',
             needsObjects:[],
             example:[]
         }
     },
-//     async mounted () {
-//         this.events.append() = await api.getEvent()
-//          this.loading = false
-//   },
   methods:{
        seeEvent(e){
         this.$emit('eventId', {

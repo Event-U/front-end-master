@@ -77,13 +77,13 @@ export default {
 h5{
     @extend .h2-font;
     color:white;
-    font-size: 4em;
+    font-size: 3.3em;
 }
 
 p{
     color:#B8B8B8;
     @extend .h4-font;
-    font-size:1.5em;
+    font-size:1em;
 
 }
 
@@ -102,5 +102,8 @@ p{
 .list-services-content img{
 box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
 border-radius: 34px 20px 0px;
+height:300px;
+overflow: hidden;
+object-fit: cover;
 }
 </style>

@@ -1,10 +1,15 @@
-// import Vue from 'vue'
-// import Vuex from 'vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-// Vue.use(Vuex)
+Vue.use(Vuex)
 
-// export const store = new Vuex.Store({
-//     state: {
-//         key: value
-//     }
-// })
+export const store = new Vuex.Store({
+    state: {
+        activeEvent: '',
+    },
+    mutations: {
+        actualEvent(state, payload) {
+            state.activeEvent = payload._id
+        }
+    }
+})

@@ -102,6 +102,7 @@ h5{
 
 .list-services-content{
     margin-top:3%;
+    transition:ease-out .8s;
 }
 
 .list-services-content .card-text {
@@ -111,9 +112,9 @@ h5{
 }
 
 .list-services-content .card:hover {
-    border: solid #ffff00 3px;
-    box-shadow: 0px 0px 25px #0000009e;
-    transition: ease-in 0.3s;
+    border: solid #FFFF00 .5px;
+    box-shadow: 0px 0px 30px #FFFF00;
+    transition:ease-in .5s;
 }
 
 .list-services {

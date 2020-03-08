@@ -1,6 +1,6 @@
 const state = {
-    activeEvent: '',
-    activeNeed: ''
+    activeEvent: {},
+    activeNeed: '',
 }
 
 // getters

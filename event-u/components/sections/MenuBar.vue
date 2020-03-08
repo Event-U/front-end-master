@@ -6,7 +6,7 @@
     <div class="section-title  col-4">
         <h1
         >
-         {{getActivePage}}
+         {{activePage}}
         </h1>
     </div>
     <div class="icons-navbar col-2">
@@ -18,22 +18,23 @@
 </template>
 
 <script>
+import {mapState, mapMutations} from 'vuex'
 import AppLogo from '../AppLogo.vue'
 export default {
     name: 'MenuBar',
     components:{
-        AppLogo
+        AppLogo,
+        mapState
     },
     data(){
         return{
             // name:getActivePage(),
         }
     },
-   computed: {
-    getActivePage() {
-    return this.$store.getters.getActivePage
-  }
-}
+    computed: mapState([
+        'activePage'
+        ])
+    ,
 }
 </script>
 

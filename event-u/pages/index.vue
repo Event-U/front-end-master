@@ -6,11 +6,10 @@
 
 <script>
 export default {
-name:'',
- computed: {
-     setActivePage() {
-      return this.$store.commit('change', '')
-    }}
+  name:'Inicio',
+  mounted () {
+    this.$store.commit('change', '¡Comencemos!')
+  }
 }
 </script>
 

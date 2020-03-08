@@ -21,9 +21,10 @@
 <script>
 import api from '@/lib/api'
 import EventCard from '@/components/ui/EventCard.vue'
+import {mapMutations} from 'vuex'
 
 export default {
-  name: 'MyEvents',
+  name: 'Mis Eventos',
   components: {
         EventCard,
     },
@@ -65,22 +66,8 @@ export default {
             
         }
     },    
-    computed: {
-     setActivePage() {
-      return this.$store.commit('change', 'Mis eventos')
-    }
-  },
-  methods:{
-       seeEvent(e){
-        this.$emit('eventId', {
-            _id:e._id,
-            needs: this.needs,
-            description:e.description,
-            date:e.date,
-            name: e.name,
-            needsObjects: e.needsObjects
-        })
-      }
+    mounted () {
+       this.$store.commit('change', this.name)
   }
 }
 </script>

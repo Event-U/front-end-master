@@ -1,13 +1,13 @@
 import Vuex from 'vuex'
+import events from './modules/events'
+
 const createStore = () => {
     return new Vuex.Store({
-        state: () => ({
+        modules: {
+            events: events,
+        },
+        state: {
             activePage: '',
-        }),
-        getters: {
-            getActivePage: state => {
-                return state.activePage
-            }
         },
         mutations: {
             change: (state, name) => {

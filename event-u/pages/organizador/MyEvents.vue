@@ -16,7 +16,6 @@
                 </div>
             </div>
     </div>
-
 </template>
 
 <script>
@@ -29,13 +28,11 @@ export default {
         EventCard,
     },
     props:{
-        _id:{
-            type:Array,
-            required: false
-        }
+
     },
     data() {
         return{
+            name:'Mis Eventos',
             events:[
                 {
                 name:'Carne Asada',
@@ -65,11 +62,14 @@ export default {
                 needs:['Cocacola','asdasdas']
                 },
             ],
-            eventId:'',
-            needsObjects:[],
-            example:[]
+            
         }
-    },
+    },    
+    computed: {
+     setActivePage() {
+      return this.$store.commit('change', 'Mis eventos')
+    }
+  },
   methods:{
        seeEvent(e){
         this.$emit('eventId', {

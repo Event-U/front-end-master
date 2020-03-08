@@ -4,8 +4,9 @@
         class='logo-menu col-4'
     /> 
     <div class="section-title  col-4">
-        <h1>
-         Mis eventos
+        <h1
+        >
+         {{getActivePage}}
         </h1>
     </div>
     <div class="icons-navbar col-2">
@@ -22,7 +23,17 @@ export default {
     name: 'MenuBar',
     components:{
         AppLogo
-    }
+    },
+    data(){
+        return{
+            // name:getActivePage(),
+        }
+    },
+   computed: {
+    getActivePage() {
+    return this.$store.getters.getActivePage
+  }
+}
 }
 </script>
 

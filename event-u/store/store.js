@@ -1,15 +1,19 @@
-import Vue from 'vue'
 import Vuex from 'vuex'
-import events from './modules/events'
-import notifications from './modules/notifications'
-import basics from './modules/basics'
-
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-    modules: {
-        events,
-        notifications,
-        basics
-    }
-})
+const createStore = () => {
+    return new Vuex.Store({
+        state: () => ({
+            activePage: '',
+        }),
+        getters: {
+            getActivePage: state => {
+                return state.activePage
+            }
+        },
+        mutations: {
+            change: (state, name) => {
+                state.activePage = name
+            },
+        }
+    })
+}
+export default createStore

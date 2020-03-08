@@ -6,7 +6,11 @@
 
 <script>
 export default {
-name:'Index'
+name:'',
+ computed: {
+     setActivePage() {
+      return this.$store.commit('change', '')
+    }}
 }
 </script>
 

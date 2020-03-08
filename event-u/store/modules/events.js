@@ -15,9 +15,10 @@ const actions = {
 
 // mutations
 const mutations = {
-
+    change: (state, name) => {
+        state.activeEvent = name
+    }
 }
-
 export default {
     namespaced: true,
     state,

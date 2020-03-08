@@ -7,12 +7,10 @@
                     v-for="(event,i) in events"
                     :key="i"
                 >
-                    <a>
                         <event-card
                             v-bind="event"
-                            @clic="seeEvent"
+
                         />
-                    </a>
                 </div>
             </div>
     </div>
@@ -24,7 +22,7 @@ import EventCard from '@/components/ui/EventCard.vue'
 import {mapMutations} from 'vuex'
 
 export default {
-  name: 'Mis Eventos',
+  name: 'MisEventos',
   components: {
         EventCard,
     },
@@ -45,7 +43,7 @@ export default {
                 needs:['Cocacola','asdasdas']
                 },
                 {
-                name:'Carne Asada',
+                name:'Unas chelitas',
                 description:'Carne asada para las personas que quieran comer un poco de carnishhhh',
                 date:'20 De Marzo del 2020',
                 addresses:'stringDefault',
@@ -54,7 +52,7 @@ export default {
                 needs:['Cocacola','asdasdas']
                 },
                 {
-                name:'Carne Asada',
+                name:'Chingo de cheve',
                 description:'Carne asada para las personas que quieran comer un poco de carnishhhh',
                 date:'20 De Marzo del 2020',
                 addresses:'stringDefault',

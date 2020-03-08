@@ -1,8 +1,10 @@
 <template>
     <div 
         class="card text-white"
-        @click.prevent="onClick"
+        @click="seeEvent"
     >
+    <nuxt-link
+        to="/organizador/EventNeeds">
         <img
             class="card-img" 
             src='@/assets/img/barman.jpg'
@@ -13,12 +15,12 @@
             <p class="card-text">{{ description }}</p>
             <h3 class="service-date">{{ date }}</h3>
         </div>
-    </div>
+    </nuxt-link>
+</div>
 </template>
 
 <script>
 import api from '@/lib/api'
-
 const stringDefault = {
   type: String,
   required: true,
@@ -42,29 +44,19 @@ export default {
     },
     needs:Array
   },
-  data(){
-      return {
-          needsObjects:[],
-          
-      }
-  },
-  methods:{
-      onClick(){  
-          this.needs.forEach ( async need => {
-            const newNeed = await api.getNeedById(need)
-            this.needsObjects.push(newNeed)
+    methods:{
+      seeEvent(){
+          this.$store.commit('event/change', {
+              name:this.name,
+              description:this.description,
+              date:this.date,
+              addresses:this.addresses,
+              image:this.image,
+              _id:this._id
           })
-       
-    this.$emit('clic', {
-            _id:this._id,
-            needs:this.needs,
-            description:this.description,
-            date:this.date,
-            name: this.name,
-            needsObjects:this.needsObjects,
-        })
       }
-  }
+    }
+  
 }
 </script>
 

@@ -106,8 +106,7 @@ export default {
     },
     computed: mapState({
         activeEvent:state=> state.event.activeEvent
-    })
-    ,
+    }),
     mounted () {
        this.$store.commit('change',this.name)
   },

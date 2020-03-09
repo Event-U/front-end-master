@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="title">
+      <div class="title mt-3">
         <h4>
             {{activeNeed.service.name}}
         </h4>
@@ -80,6 +80,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title{
+    text-align:center;
+    h4{
+        @extend .h2-font;
+        font-size:1.5em;
+    }
+    h6{
+        @extend .h4-font;
+        font-size:1em;
+    }
+}
 .quotation-container:nth-of-type(2n){
     border-left:1px solid #CCCCCC;
 }

@@ -1,5 +1,5 @@
 <template>
-<div class="card">
+<div class="card" @click="setActiveNeed">
     <div class="need-icon">
         <i class="fas fa-angle-right"></i>
     </div>
@@ -13,7 +13,7 @@
                 No tienes cotizaciones
         </a>
         <nuxt-link 
-            to="/" 
+            to="/organizador/QuotationNeeds" 
             class="cta-needs"
             v-if="quotation.length!==0"
             > 
@@ -36,7 +36,16 @@ export default {
         description:stringDefault,
         service:Object,
         quotation:Array
-  },
+  }, methods:{
+      setActiveNeed(){
+          this.$store.commit('event/changeNeed', {
+              _id:this._id,
+              description:this.description,
+              service:this.service,
+              quotation:this.quotation
+          })
+      }
+    }
 }
 </script>
 
@@ -63,8 +72,7 @@ export default {
 .card-body{
     padding:0;
 }
-i
-{background-color: #ffff00;
+i{background-color: #ffff00;
     padding: 40% 80%;
     border-radius: 50%;
     }

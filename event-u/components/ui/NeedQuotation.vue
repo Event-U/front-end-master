@@ -1,0 +1,108 @@
+<template>
+  <div class="card b-none" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4 image-bg" :style="styles">
+        <h6>{{date}}</h6>
+    </div>
+    <div class="col-md-7">
+      <div class="card-body">
+        <h5 class="card-title">{{provider.businessName}}</h5>
+        <p class="card-text">{{description}}</p>
+        <h5 class="card-text"><small class="text-muted">${{price}}</small></h5>
+      </div>
+    </div>
+    <div class="col-md-1 justify-content-center align-self-center">
+        <div class="quotation-actions quotation-actions d-flex flex-column justify-content-around text-center">
+            <i class="fas fa-star save"></i>
+            <i class="fas fa-check aware"></i>
+            <i class="fas fa-times delete"></i>
+        </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<script>
+export default {
+    name:'NeedQuotation',
+    props:{
+        _id:String,
+        provider:Object,
+        price:Number,
+        image:String,
+        state:Number,
+        date:String,
+        description:String,
+    },
+    computed: {
+        styles() {
+            return {
+                'background-image': `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59.37%, #000000 100%), url(${this.image})`,
+                'background-repeat': 'no-repeat',
+                'background-size': 'cover',
+            }
+        }
+    }
+}
+</script>
+
+<style lang='scss' scoped>
+p{
+    @extend .body-font;
+}
+h5{
+    @extend .h4-font;
+    font-size:1.3em;
+}
+.image-bg{
+    display: flex;
+    flex-flow: column-reverse;
+    box-shadow: 2px 2px 21px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    h6{
+        color:#B8B8B8,
+    }
+}
+.card{
+    border:none;
+}
+.quotation-actions{
+    transition:.3s ease-out;
+    border: 1px solid $alpha-100;
+    box-shadow: 2px 2px 21px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    height: 100px;
+    width:100%;
+    font-weight: 800;
+    font-size:1.5em;
+    .save{
+        color:$alpha;
+         transition:.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+    .aware{
+        color:$complementary;
+         transition:.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+    .delete{
+        color:$danger;
+         transition:.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+    .save:hover{
+        font-size:1.6em;
+         transition:.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+    .aware:hover{
+        font-size:1.6em;
+         transition:.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+    .delete:hover{
+        font-size:1.6em;
+         transition:.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+}
+.quotation-actions:hover{
+     border: 2px solid $alpha-100;
+    box-shadow: 2px 2px 21px rgba(0, 0, 0, 0.741);
+    transition:.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+</style>

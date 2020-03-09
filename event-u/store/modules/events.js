@@ -1,6 +1,6 @@
 const state = {
     activeEvent: {},
-    activeNeed: '',
+    activeNeed: {},
 }
 
 // getters
@@ -17,7 +17,10 @@ const actions = {
 const mutations = {
     change: (state, name) => {
         state.activeEvent = name
-    }
+    },
+    changeNeed: (state, payload) => {
+        state.activeNeed = payload
+    },
 }
 export default {
     namespaced: true,

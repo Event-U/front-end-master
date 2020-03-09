@@ -148,7 +148,7 @@ export default {
 }
 .btn:hover{
     @extend .btn-eventu;
-    transition:.5s cubic-bezier(0.77, 0, 0.175, 1);
+    transition:.7s cubic-bezier(0.77, 0, 0.175, 1);
 }
 .need-container:nth-of-type(2n){
     border-left:1px solid #CCCCCC;

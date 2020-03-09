@@ -48,6 +48,7 @@ export default {
 .inactive:hover::after{
     content:':(';
     transition:1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    color:$danger;
 }
 .cta-needs{
     color:$complementary;

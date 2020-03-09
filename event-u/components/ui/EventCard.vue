@@ -1,7 +1,7 @@
 <template>
     <div 
         class="card text-white"
-        @click="seeEvent"
+        @click="setActiveEvent"
     >
     <nuxt-link
         to="/organizador/EventNeeds">
@@ -29,10 +29,6 @@ const stringDefault = {
 export default {
   name: 'EventCard',
   props: {
-    display:{
-        type: Boolean,
-        required:false
-    },
     name:stringDefault,
     description:stringDefault,
     date:stringDefault,
@@ -45,7 +41,7 @@ export default {
     needs:Array
   },
     methods:{
-      seeEvent(){
+      setActiveEvent(){
           this.$store.commit('event/change', {
               name:this.name,
               description:this.description,

@@ -9,7 +9,6 @@
                 >
                         <event-card
                             v-bind="event"
-
                         />
                 </div>
             </div>
@@ -22,7 +21,7 @@ import EventCard from '@/components/ui/EventCard.vue'
 import {mapMutations} from 'vuex'
 
 export default {
-  name: 'MisEventos',
+  name: 'MyEvents',
   components: {
         EventCard,
     },

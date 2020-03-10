@@ -1,0 +1,81 @@
+<template>
+    <tr>
+        <th scope="row">{{event.name}}</th>
+        <td>{{need.service.name}}</td>
+        <td>{{provider.businessName}}</td>
+        <td>${{price}}mxn</td>
+        <td>
+            <button type="button" @click="ariaHidden=false" class="btn" data-toggle="modal" :data-target="`#exampleModal`+_id">
+                Ver cotización
+            </button>
+            <div class="modal fade" :id="`exampleModal`+_id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" :aria-hidden="ariaHidden">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <need-quotation
+                        :_id="_id"
+                        :provider="provider"
+                        :price="price"
+                        :image="images"
+                        :state="state"
+                        :date="date"
+                        :description="description"
+                    />
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar cotización</button>
+                </div>
+                </div>
+                </div>
+                </div>
+        </td>   
+        <td class="state-icon">
+            <i v-if="state===3" class="fas fa-star"></i>
+        </td>
+    </tr>
+</template>
+
+<script>
+import NeedQuotation from '@/components/ui/NeedQuotation.vue'
+
+const stringDefault={
+    required:true,
+    type:String
+}
+export default {
+name:'QuotationListRow',
+components:{
+    NeedQuotation
+},
+    props:{
+        _id:stringDefault,
+        provider:Object,
+        price:Number,
+        description:String,
+        images:String,
+        need:Object,
+        state:Number,
+        event:Object,
+        date:String,
+    },
+    data(){
+        return{
+            ariaHiden:true,
+        }
+    }
+}
+</script>
+
+<style lang='scss' scoped>
+.modal-content{
+border-radius:8px;
+border:none;
+transition:.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+.state-icon{
+    color:$complementary;
+    font-size:1.5em;
+}
+button{
+    background-color:$complementary;
+    color:white;
+}
+</style>

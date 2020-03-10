@@ -65,6 +65,15 @@ components:{
 </script>
 
 <style lang='scss' scoped>
+tr:hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.166);
+    border-radius:8px!important;
+    transition: .3s cubic-bezier(0.23, 1, 0.320, 1);
+    border:1px solid #CCCCCC;
+}
+tr{
+    transition:.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
 .modal-content{
 border-radius:8px;
 border:none;

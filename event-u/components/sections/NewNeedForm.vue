@@ -57,6 +57,7 @@
 
 <script>
 import OptionInput from '@/components/ui/forms/OptionInput.vue'
+import api from '@/lib/api.js'
 export default {
     name:'NewNeedForm',
     components:{
@@ -87,12 +88,21 @@ export default {
         }
     },
     methods:{
-        onSubmit(){
+        async onSubmit(){
+        //  const needId= await api.createNeed({
+        //     category:this.categoryId,
+        //     service:this.serviceId,
+        //     description:this.description
+        // })
+        this.$store.commit('event/setNewNeeds', {
+            //   needId:needId._id
+            _id:'123444'
+          })
           this.$emit('newNeed', {
                 categoryId:this.categoryId,
                 serviceId:this.serviceId,
                 description:this.description,
-                _id:'asdasdasas'
+                _id:'asdasdasas',
             })
             this.categoryId=''
             this.serviceId=''

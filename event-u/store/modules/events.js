@@ -1,6 +1,14 @@
 const state = {
     activeEvent: {},
     activeNeed: {},
+    newEventObject: {
+        name: '',
+        description: '',
+        date: '',
+        addreses: '',
+        image: '',
+        needs: []
+    }
 }
 
 // getters
@@ -21,6 +29,15 @@ const mutations = {
     changeNeed: (state, payload) => {
         state.activeNeed = payload
     },
+    setNewBasics: (state, { name, description }) => {
+        state.newEventObject['name'] = name
+        state.newEventObject['description'] = description
+    },
+    setNewSpecific: (state, { date, addreses, image }) => {
+        state.newEventObject['date'] = date
+        state.newEventObject['addreses'] = addreses
+        state.newEventObject['image'] = image
+    }
 }
 export default {
     namespaced: true,

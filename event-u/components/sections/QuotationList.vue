@@ -1,5 +1,5 @@
 <template>
-  <table class="table">
+<table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Evento</th>
@@ -105,6 +105,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+tbody{
+  @extend .h4-font;
+}
+th{
+  @extend .h2-font;
+}
 thead{
   background-color:#3333!important;
   border-radius:8px!important;

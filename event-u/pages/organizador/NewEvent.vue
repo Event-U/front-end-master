@@ -4,11 +4,24 @@
           <h1 class="animated bounce">
               ¡Éste es tu nuevo evento!
           </h1>
-          <event-card
-          class="event-card"
-            v-bind="eventObject"
-            style="max-width:50%; justify-content:center"
-          />
+          <div class="col-md-5 justify-content-center">
+            <event-card
+            class="event-card"
+                v-bind="eventObject"
+                style="max-width:70%; justify-content:center"
+            />
+          </div>
+      </div>
+      <div class="needs-preview row m-0 mt-3" v-if="currentStepNumber===3">
+          <div
+            v-for="(need, i) in eventObject.needs"
+           class="col-md-3"
+           :key='i'>
+            <event-need
+                v-bind='need'
+            />
+          </div>
+          
       </div>
       <div class="dynamic-form" v-if="formInProgress">
         <keep-alive>
@@ -57,7 +70,7 @@
           </button>
           <button 
             v-if='currentStepNumber>=4 && formInProgress'
-            class="btn btn-iconed animated infinite wobble"
+            class="btn btn-iconed animated wobble"
             @click="submitEvent"
             >
               Subir evento
@@ -81,6 +94,7 @@ import NewNeedForm from '@/components/sections/NewNeedForm.vue'
 import EventBasicInfo from '@/components/ui/forms/EventBasicInfo.vue'
 import EventSpecificInfo from '@/components/ui/forms/EventSpecificInfo.vue'
 import EventCard from '@/components/ui/EventCard.vue'
+import EventNeed from '@/components/ui/EventNeed.vue'
 
 export default {
 name:'NewEvent',
@@ -88,7 +102,8 @@ components:{
     NewNeedForm,
     EventBasicInfo,
     EventSpecificInfo,
-    EventCard
+    EventCard,
+    EventNeed
 },
 data(){
     return{
@@ -145,7 +160,14 @@ data(){
         },
         addNewNeed(e){
             this.canGoNext=true
-            this.eventObject.needs.push(e._id)
+            this.eventObject.needs.push({
+                _id:e._id,
+                category:e.categoryId,
+                description:e.description,
+                service:{
+                    name:e.serviceId},
+                quotation:[]
+            })
         },
         editEvent(){
             this.currentStepNumber=0

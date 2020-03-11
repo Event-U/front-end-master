@@ -35,7 +35,7 @@ export default {
     name:stringDefault,
     description:stringDefault,
     date:stringDefault,
-    addresses:stringDefault,
+    addreses:stringDefault,
     image:stringDefault,
     _id:{
         type:String,
@@ -49,7 +49,7 @@ export default {
               name:this.name,
               description:this.description,
               date:this.date,
-              addresses:this.addresses,
+              addreses:this.addresses,
               image:this.image,
               _id:this._id
           })

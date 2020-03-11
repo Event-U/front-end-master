@@ -8,17 +8,17 @@
         <p class="card-text">{{description}}</p>
         <a  
             class="inactive"
-            v-if="quotation.length===0"
-            > 
+            v-if="quotation.length===0 && this.$route.path==='/organizador/EventNeeds'"
+        > 
                 No tienes cotizaciones
         </a>
         <div class="cta animated fadeInUp delay-1s">
             <nuxt-link 
                 to="/organizador/QuotationNeeds" 
                 class="cta-needs animated tada"
-                v-if="quotation.length!==0"
+                v-if="quotation.length!==0 && this.$route.path==='/organizador/EventNeeds'"
                 > 
-                    Ver Necesidades
+                    Ver cotizaciones
             </nuxt-link>
         </div>
     </div>

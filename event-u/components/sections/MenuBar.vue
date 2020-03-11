@@ -3,8 +3,9 @@
     <app-logo
         class='logo-menu col-4'
     /> 
-    <div class="section-title  col-4">
+    <div class="section-title col-4">
         <h1
+        class="animated bounce"
         >
          {{activePage}}
         </h1>
@@ -55,12 +56,12 @@ export default {
     text-align:right;
 }
 .icons-navbar >*{
-    padding-right: 13%;
+    padding-right: 10%;
     font-size: 1.5em;
 }
 h1{
      @extend .h1-font;
-     font-size:2.3em;
+     font-size:1.7em;
      color:#333333;
 }
 </style>

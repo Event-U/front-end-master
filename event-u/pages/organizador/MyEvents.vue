@@ -36,7 +36,7 @@ export default {
                 name:'Carne Asada',
                 description:'Carne asada para las personas que quieran comer un poco de carnishhhh',
                 date:'20 De Marzo del 2020',
-                addresses:'stringDefault',
+                addreses:'stringDefault',
                 image:'https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/2017/12/22223742/Events-1200x630.jpg',
                 _id:'asdasdas',
                 needs:['Cocacola','asdasdas']
@@ -45,7 +45,7 @@ export default {
                 name:'Unas chelitas',
                 description:'Carne asada para las personas que quieran comer un poco de carnishhhh',
                 date:'20 De Marzo del 2020',
-                addresses:'stringDefault',
+                addreses:'stringDefault',
                 image:'https://49sld323cs9n1nf0on1vs798-wpengine.netdna-ssl.com/wp-content/uploads/2015/05/homepage_EMS_CenterPhoto.jpg',
                 _id:'asdasdas',
                 needs:['Cocacola','asdasdas']
@@ -54,7 +54,7 @@ export default {
                 name:'Chingo de cheve',
                 description:'Carne asada para las personas que quieran comer un poco de carnishhhh',
                 date:'20 De Marzo del 2020',
-                addresses:'stringDefault',
+                addreses:'stringDefault',
                 image:'https://res.cloudinary.com/eventboost/image/upload/w_auto,f_auto,q_auto:eco/v1482160079/website/homeSlider/slider2-resize.jpg',
                 _id:'asdasdas',
                 needs:['Cocacola','asdasdas']

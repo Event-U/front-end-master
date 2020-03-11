@@ -3,13 +3,13 @@
         <div 
             class="row">
             <div 
-                class="col-md-6" 
+                class="col-md-6 animated fadeIn" 
                 v-for="(event,i) in events"
                 :key="i"
             >
                 <nuxt-link
-                    to="/organizador/EventNeeds"
-                >
+                        to="/proveedor/EventQuotations"
+                    >
                     <event-card
                         v-bind="event"
                     />
@@ -34,7 +34,7 @@ export default {
     },
     data() {
         return{
-            name:'Mis Eventos',
+            name:'Eventos disponibles',
             events:[
                 {
                 name:'Carne Asada',

@@ -1,9 +1,8 @@
 <template>
 <div class="main-nav">
       <ul class="nav fadeInLeft animated">
-       
         <li>
-            <nuxt-link to='/'>
+            <nuxt-link to='/proveedor/events'>
                 <i class="fas fa-clipboard-check"></i>
                 Proveedores
             </nuxt-link>

@@ -2,12 +2,12 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Evento</th>
-      <th scope="col">Necesidad</th>
-      <th scope="col">Proveedor</th>
-      <th scope="col">Precio</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
+      <th scope="col">{{this.$route==='orgnizador/allQuotations' ? 'Evento' : 'Categoría'}}</th>
+      <th scope="col">{{this.$route==='orgnizador/allQuotations' ? 'Necesidad' : 'Servicio'}}</th>
+      <th scope="col">{{this.$route==='orgnizador/allQuotations' ? 'Proveedor' : 'Descripción'}}</th>
+      <th scope="col">{{this.$route==='orgnizador/allQuotations' ? 'Precio' : 'Estado'}}</th>
+      <th v-if="this.$route==='orgnizador/allQuotations'" scope="col"></th>
+      <th v-if="this.$route==='orgnizador/allQuotations'" scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -44,7 +44,8 @@ export default {
               _id:'need_id',
               description:'Necesito una mesa tipo billar',
               service:{
-                name:'Mesas de Billar'
+                name:'Mesas de Billar',
+                category:'Inmobiliario'
               }
             },
             state:1,
@@ -65,7 +66,8 @@ export default {
               _id:'need_id',
               description:'Necesito una mesa tipo billar',
               service:{
-                name:'Mesas de Billar'
+                name:'Mesas de Billar',
+                category:'Inmobiliario'
               },
             },
               date:'25 de abril',
@@ -88,7 +90,8 @@ export default {
               _id:'need_id',
               description:'Necesito una mesa tipo billar',
               service:{
-                name:'Algo diferente'
+                name:'Algo diferente',
+                category:'Inmobiliario'
               }
             },
             state:3,

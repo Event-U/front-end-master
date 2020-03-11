@@ -6,20 +6,38 @@
     <div class="card-body">
         <h5 class="card-title">{{service.name}}</h5>
         <p class="card-text">{{description}}</p>
-        <a  
-            class="inactive"
-            v-if="quotation.length===0 && this.$route.path==='/organizador/EventNeeds'"
-        > 
-                No tienes cotizaciones
-        </a>
-        <div class="cta animated fadeInUp delay-1s">
-            <nuxt-link 
-                to="/organizador/QuotationNeeds" 
-                class="cta-needs animated tada"
-                v-if="quotation.length!==0 && this.$route.path==='/organizador/EventNeeds'"
-                > 
-                    Ver cotizaciones
-            </nuxt-link>
+        <div class="cta-organizadores" v-if="this.$route.path==='/organizador/EventNeeds'">
+            <a  
+                class="inactive"
+                v-if="quotation.length===0"
+            > 
+                    No tienes cotizaciones
+            </a>
+            <div class="cta animated fadeInUp delay-1s">
+                <nuxt-link 
+                    to="/organizador/QuotationNeeds" 
+                    class="cta-needs animated tada"
+                    v-if="quotation.length!==0"
+                    > 
+                        Ver cotizaciones
+                </nuxt-link>
+            </div>
+        </div>
+        <div 
+            class="cta-proveedores"
+            v-else
+        >
+            <a  
+                v-if="quotation.length===0"
+            > 
+                Enviar cotización
+            </a>
+            <a  
+                class="inactive"
+                v-if="quotation.length!==0"
+            > 
+                    Abrir cotización
+            </a>
         </div>
     </div>
 </div>

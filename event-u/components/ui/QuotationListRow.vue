@@ -1,34 +1,55 @@
 <template>
     <tr>
-        <th scope="row">{{event.name}}</th>
-        <td>{{need.service.name}}</td>
-        <td>{{provider.businessName}}</td>
-        <td>${{price}}mxn</td>
+        <th scope="row">{{this.$route==='orgnizador/allQuotations' ? event.name : need.service.category}}</th>
         <td>
-            <button type="button" @click="ariaHidden=false" class="btn" data-toggle="modal" :data-target="`#exampleModal`+_id">
+            {{ need.service.name}}
+        </td>
+        <td>{{this.$route==='orgnizador/allQuotations' ? provider.businessName : need.description}}</td>
+        <td
+            v-if="this.$route==='orgnizador/allQuotations'"
+        >${{price}}mxn</td>
+        <td
+            v-if="this.$route==='orgnizador/allQuotations'"
+        >
+            <button 
+                type="button" 
+                @click="ariaHidden=false" 
+                class="btn" 
+                data-toggle="modal" 
+                :data-target="`#exampleModal`+_id"
+            >
                 Ver cotización
             </button>
             <div class="modal fade" :id="`exampleModal`+_id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" :aria-hidden="ariaHidden">
                 <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <need-quotation
-                        :_id="_id"
-                        :provider="provider"
-                        :price="price"
-                        :image="images"
-                        :state="state"
-                        :date="date"
-                        :description="description"
-                    />
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar cotización</button>
+                    <div class="modal-content">
+                        <need-quotation
+                            :_id="_id"
+                            :provider="provider"
+                            :price="price"
+                            :image="images"
+                            :state="state"
+                            :date="date"
+                            :description="description"
+                        />
+                        <div class="modal-footer">
+                         <button 
+                            type="button" 
+                            class="btn btn-secondary" 
+                            data-dismiss="modal"
+                         >
+                            Cerrar cotización
+                        </button>
+                        </div>
+                    </div>
                 </div>
-                </div>
-                </div>
-                </div>
+            </div>
         </td>   
         <td class="state-icon">
-            <i v-if="state===3" class="fas fa-star"></i>
+            <i v-if="state===3 && this.$route==='orgnizador/allQuotations'" class="fas fa-star"></i>
+            <button v-if="state===3 && this.$route!=='orgnizador/allQuotations'" type="button" class="btn btn-primary" :data-target="`#exampleModal`+_id" data-toggle="modal" >Aceptada</button>
+            <button v-if="state=== 2 && this.$route!=='orgnizador/allQuotations'" type="button" class="btn btn-secondary" disabled>Pendiente</button>
+            <button v-if="state===1 && this.$route!=='orgnizador/allQuotations'" type="button" class="btn btn-danger" disabled>Denegada</button>
         </td>
     </tr>
 </template>

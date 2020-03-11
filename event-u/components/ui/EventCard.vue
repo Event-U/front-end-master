@@ -3,8 +3,6 @@
         class="card text-white animated fadeIn"
         @click="setActiveEvent"
     >
-    <nuxt-link
-        to="/organizador/EventNeeds">
         <img
             class="card-img" 
             :src='image'
@@ -17,7 +15,6 @@
                 <h3 class="service-date">{{ date }}</h3>
             </div>
         </div>
-    </nuxt-link>
 </div>
 </template>
 

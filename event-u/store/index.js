@@ -8,10 +8,14 @@ const createStore = () => {
         },
         state: {
             activePage: '',
+            lastPage: ''
         },
         mutations: {
             change: (state, name) => {
                 state.activePage = name
+            },
+            changeLastPage: (state, name) => {
+                state.lastPage = name
             },
         }
     })

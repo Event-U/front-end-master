@@ -1,7 +1,19 @@
 <template>
   <div>
-      <keep-alive>
+      <div class="event-preview mt-3" v-if="currentStepNumber>=4 && formInProgress">
+          <h1 class="animated bounce">
+              ¡Éste es tu nuevo evento!
+          </h1>
+          <event-card
+          class="event-card"
+            v-bind="eventObject"
+            style="max-width:50%; justify-content:center"
+          />
+      </div>
+      <div class="dynamic-form" v-if="formInProgress">
+        <keep-alive>
         <component 
+            class="my-element"
             v-show="asyncState!=='pending'"
             ref='currentStep'
             :is="steps[currentStepNumber-1]" 
@@ -9,42 +21,56 @@
             @update="update"
             @newNeed="addNewNeed"
         />
-      </keep-alive>
+        </keep-alive>
+      </div>
       <div class="progress-bar">
           <div
             :style="`width: ${progress}%`"
           />
       </div>
-      <div class="buttons">
+      <div class="buttons hover-interaction mt-3">
           <button 
-            class="btn btn-outlined"
+            class="btn btn-iconed btn-outlined"
             v-if='currentStepNumber>1 && currentStepNumber<=3'
             @click="lastQuestion"
           >
-              Back
+
+            <i class="fas fa-long-arrow-alt-left"></i>
+              Atrás
           </button>
           <button 
           :disabled="!canGoNext"
           v-if='currentStepNumber<=3'
-            class="btn"
+            class="btn btn-iconed animated"
             @click="nextQuestion"
             >
-              Next
+              Siguiente
+            <i class="fas fa-long-arrow-alt-right"></i>
           </button>
             <button 
-            v-if='currentStepNumber>=4'
-            class="btn"
-            @click="editEvent"
+            v-if='currentStepNumber>=4 && formInProgress'
+            class="btn btn-iconed"
+            @click="lastQuestion"
             >
               Editar evento
+              <i class="fas fa-edit"></i>
           </button>
           <button 
-          v-if='currentStepNumber>=4||currentStepNumber===0'
-            class="btn"
+            v-if='currentStepNumber>=4 && formInProgress'
+            class="btn btn-iconed animated infinite wobble"
             @click="submitEvent"
             >
-              Crear nuevo evento
+              Subir evento
+              <i class="fas fa-hand-point-up"></i>
           </button>
+      </div>
+    <div v-if="this.asyncState==='pending' && !formInProgress " class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+     <span class="sr-only">Loading...</span>
+    </div>
+      <div class="animated tada" v-if="this.asyncState==='success'&& !formInProgress">
+          <h1>
+              ¡Genial, creaste tu evento!
+          </h1>
       </div>
   </div>
 </template>
@@ -83,8 +109,7 @@ data(){
         steps:[
             'EventBasicInfo',
             'EventSpecificInfo',
-            'NewNeedForm',
-            'EventCard'
+            'NewNeedForm'
         ]
         }
     },
@@ -94,6 +119,15 @@ data(){
     computed:{
         progress(){
             return this.currentStepNumber/this.length*100
+        },
+        currentStep(){
+            return this.steps[this.currentStepNumber-1]
+        },
+        isLastStep(){
+            return this.currentStepNumber===this.length
+        },
+        formInProgress(){
+            return this.currentStepNumber<= this.length
         }
     },
     methods:{
@@ -117,6 +151,7 @@ data(){
             this.currentStepNumber=0
         },
         submitEvent(){
+            this.currentStepNumber++
             this.asyncState='pending'
             setTimeout(()=>{
                 this.asyncState='success'
@@ -126,6 +161,72 @@ data(){
 }
 </script>
 
-<style>
+<style lang='scss' scoped>
+.event-preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1{
+    @extend .h2-font;
+    font-weight: 500;
+    text-align:center;
+}
+.event-card{
+.event-card-content{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(0deg, #000000bf, transparent);
+    justify-content: flex-end;
+}
+h5{
+    @extend .h2-font;
+    color:white;
+    font-size: 3.3em;
+}
 
+p{
+    color:#B8B8B8;
+    @extend .h4-font;
+    font-size:1em;
+}
+
+.list-services-content .card {
+    border-radius: 34px 20px 0px;
+    border: none;
+    margin-bottom: 20px;
+    transition: 1s ease-out;
+    height: auto;
+}
+
+.service-date {
+    font-size: 1em;
+    @extend .h4-font;
+    color:white;
+}
+.list-services-content img{
+box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+border-radius: 34px 20px 0px;
+height:300px;
+overflow: hidden;
+object-fit: cover;
+}
+}
+.hover-interaction{
+    display:flex;
+    justify-content: space-around;
+    @extend .btn-hover-interaction;
+    .btn:hover{
+        box-shadow: 0px 0px 10px #3333;
+        font-size:1.25em;
+        transition: .5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .btn{
+        @extend .btn-eventu;
+        @extend .h4-font;
+        box-shadow: 0px 0px 10px #ffff0078;
+        font-size:1.2em;
+        transition: .5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="title mt-3">
+      <div class="title mt-3 animated fadeInUp">
         <h4>
             {{activeNeed.service.name}}
         </h4>
@@ -10,7 +10,7 @@
       </div>
       <div class="row needs-row mt-3">
         <div
-            class="col-sm-4 mt-3 quotation-container"
+            class="col-sm-4 mt-3 quotation-container animated fadeInDown"
             v-for="(quotation,i) in quotations"
             :key="i"
         >
@@ -91,20 +91,21 @@ export default {
         font-size:1em;
     }
 }
-.quotation-container:nth-of-type(2n){
-    border-left:1px solid #CCCCCC;
+.quotation-container:nth-of-type(n){
+    border-left:.5px solid #CCCCCC;
 }
 .quotation-container{
-border-bottom:1px solid #CCCCCC;
+border-bottom:.1px solid #CCCCCC;
 transition:.3s ease-out;
 padding-bottom:10px!important;
 padding-left:5px;
 padding-top:10px;
 }
 .quotation-container:hover{
-    transition:.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition:.3s ease-in;
     border-radius: 12px;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+    border:1px solid #CCCCCC;
 }
 .row{
     margin:0;

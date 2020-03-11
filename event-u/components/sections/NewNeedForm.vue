@@ -1,9 +1,11 @@
 <template>
 <form class='mt-3'>
-    <h3 class="mb-3">Agregar necesidad</h3>
+    <div class="title animated fadeInDown">
+        <h3 class="mb-3">Nueva necesidad</h3>
+    </div>
   <div class="row">
     <div class="input-group mb-3 col">
-        <div class="input-group-prepend">
+        <div class="input-group-prepend animated fadeInDown">
         <label class="input-group-text" for="inputGroupSelect01">Categoría</label>
         </div>
         <select
@@ -20,7 +22,7 @@
         </select>
     </div>
     <div class="input-group mb-3 col">
-        <div class="input-group-prepend">
+        <div class="input-group-prepend animated fadeInDown">
         <label class="input-group-text" for="inputGroupSelect01">Servicio</label>
         </div>
         <select v-model="serviceId" class="custom-select" id="inputGroupSelect01">
@@ -33,7 +35,7 @@
         </select>
     </div>
   </div>
-  <div class="input-group">
+  <div class="input-group animated fadeInUp">
   <div class="input-group-prepend">
     <span class="input-group-text">
         Descripción de tu necesidad
@@ -45,6 +47,7 @@
     v-model="description"
   ></textarea>
 </div>
+    <div class="hover-interaction animated bounce delay-3s">
         <button
         class="btn btn-iconed mt-3" 
         role="button"
@@ -52,6 +55,7 @@
         >
             <i class="fas fa-angle-right"></i> <span class="spn">Agregar necesidad</span>
     </button>
+    </div>
 </form>
 </template>
 
@@ -113,13 +117,20 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.hover-interaction{
+    @extend .btn-hover-interaction;
+    text-align: center;
+
+}
 h3{
     @extend .h2-font;
-    font-weight: 100;
-    font-size: 1.5em;
+    font-weight: 200;
+    font-size: 2em;
+    text-align:center;
 }
 button{
     @extend .btn-eventu;
+    align-self:center;
 }
 form{
     align-items:center;
@@ -133,4 +144,5 @@ form{
     // boder: .2px solid #333333;
     border-radius:8px;
 }
+
 </style>

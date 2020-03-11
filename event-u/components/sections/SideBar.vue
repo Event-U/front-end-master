@@ -1,6 +1,6 @@
 <template>
 <div class="main-nav">
-      <ul class="nav">
+      <ul class="nav fadeInLeft animated">
        
         <li>
             <nuxt-link to='/'>

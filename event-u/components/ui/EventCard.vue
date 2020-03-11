@@ -1,19 +1,21 @@
 <template>
     <div 
-        class="card text-white"
+        class="card text-white animated fadeIn"
         @click="setActiveEvent"
     >
     <nuxt-link
         to="/organizador/EventNeeds">
         <img
             class="card-img" 
-            src='@/assets/img/barman.jpg'
+            :src='image'
             alt="..."
         >    
         <div class="card-img-overlay event-card-content" >
-            <h5 class="card-title list-services border-0">{{ name }}</h5>
-            <p class="card-text">{{ description }}</p>
-            <h3 class="service-date">{{ date }}</h3>
+            <div class="transition animated fadeInDown delay-1s">
+                <h5 class="card-title list-services border-0">{{ name }}</h5>
+                <p class="card-text">{{ description }}</p>
+                <h3 class="service-date">{{ date }}</h3>
+            </div>
         </div>
     </nuxt-link>
 </div>
@@ -21,6 +23,7 @@
 
 <script>
 import api from '@/lib/api'
+
 const stringDefault = {
   type: String,
   required: true,
@@ -56,10 +59,11 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .event-card-content{
     display: flex;
     flex-direction: column;
+    background: linear-gradient(0deg, #000000bf, transparent);
     justify-content: flex-end;
 }
 h5{
@@ -72,7 +76,6 @@ p{
     color:#B8B8B8;
     @extend .h4-font;
     font-size:1em;
-
 }
 
 .list-services-content .card {
@@ -84,8 +87,9 @@ p{
 }
 
 .service-date {
-    font-size: 1.3em;
+    font-size: 1em;
     @extend .h4-font;
+    color:white;
 }
 .list-services-content img{
 box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);

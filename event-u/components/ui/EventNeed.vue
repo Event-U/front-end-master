@@ -1,6 +1,6 @@
 <template>
 <div class="card" @click="setActiveNeed">
-    <div class="need-icon">
+    <div class="need-icon animated fadeInLeft">
         <i class="fas fa-angle-right"></i>
     </div>
     <div class="card-body">
@@ -12,13 +12,15 @@
             > 
                 No tienes cotizaciones
         </a>
-        <nuxt-link 
-            to="/organizador/QuotationNeeds" 
-            class="cta-needs"
-            v-if="quotation.length!==0"
-            > 
-                Ver Necesidades
-        </nuxt-link>
+        <div class="cta animated fadeInUp delay-1s">
+            <nuxt-link 
+                to="/organizador/QuotationNeeds" 
+                class="cta-needs animated tada"
+                v-if="quotation.length!==0"
+                > 
+                    Ver Necesidades
+            </nuxt-link>
+        </div>
     </div>
 </div>
 </template>

@@ -1,21 +1,21 @@
 <template>
-  <div class="card b-none" style="max-width: 540px;">
+  <div class="card b-none animated fadeInUp" style="max-width: 540px;">
   <div class="row no-gutters">
-    <div class="col-md-4 image-bg" :style="styles">
-        <h6>{{date}}</h6>
+    <div class="col-md-4 image-bg ml-3" :style="styles">
+        <h6 class="text-center">${{price}}</h6>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-6">
       <div class="card-body">
         <h5 class="card-title">{{provider.businessName}}</h5>
         <p class="card-text">{{description}}</p>
-        <h5 class="card-text"><small class="text-muted">${{price}}</small></h5>
+        <h5 class="card-text"><small class="text-muted">{{date}}</small></h5>
       </div>
     </div>
-    <div class="col-md-1 justify-content-center align-self-center">
-        <div class="quotation-actions quotation-actions d-flex flex-column justify-content-around text-center">
-            <i class="fas fa-star save"></i>
-            <i class="fas fa-check aware"></i>
-            <i class="fas fa-times delete"></i>
+    <div class="col-md-1 justify-content-center align-self-center animated fadeInRight delay-1s" data-toggle="tooltip" data-placement="right" title="Guardar cotización">
+        <div class=" quotation-actions d-flex flex-column justify-content-around text-center" >
+            <i class="fas fa-star save" data-toggle="tooltip" data-placement="right" title="Guardar cotización"></i>
+            <i class="fas fa-check aware" data-toggle="tooltip" data-placement="right" title="Adjudicar cotización"></i>
+            <i class="fas fa-times delete" data-toggle="tooltip" data-placement="right" title="Deshechar cotización"></i>
         </div>
     </div>
   </div>
@@ -60,7 +60,9 @@ h5{
     box-shadow: 2px 2px 21px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     h6{
-        color:#B8B8B8,
+        color:#B8B8B8;
+        text-align:left;
+        font-size:1.2em;
     }
 }
 .card{
@@ -102,7 +104,7 @@ h5{
 }
 .quotation-actions:hover{
      border: 2px solid $alpha-100;
-    box-shadow: 2px 2px 21px rgba(0, 0, 0, 0.741);
+    box-shadow: 2px 2px 21px rgba(0, 0, 0, 0.372);
     transition:.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 </style>

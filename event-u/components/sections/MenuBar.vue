@@ -1,5 +1,5 @@
 <template>
-  <div class='page-enter-active navbar d-flex justify-content-between'>
+  <div class='page-enter-active navbar d-flex justify-content-between animated fadeInDown'>
     <app-logo
         class='logo-menu col-4'
     /> 

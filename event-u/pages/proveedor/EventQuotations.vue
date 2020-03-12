@@ -1,8 +1,8 @@
 <template>
 <div>
-    <div class="title ">
+    <div class="title mt-3">
         <h1>
-         {{activeEvent.name}} 
+            {{activeEvent.name}} 
         </h1>
         <h4>
             {{activeEvent.description}}

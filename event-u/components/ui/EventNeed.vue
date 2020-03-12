@@ -1,41 +1,44 @@
 <template>
 <div class="card" @click="setActiveNeed">
     <div class="need-icon animated fadeInLeft">
-        <i class="fas fa-angle-right"></i>
+     <i class="fas fa-angle-right"></i>
     </div>
     <div class="card-body">
         <h5 class="card-title">{{service.name}}</h5>
         <p class="card-text">{{description}}</p>
-        <div 
-            class="cta-organizadores" 
-            v-if="this.$route.path==='/organizador/EventNeeds'||this.$route.path==='/organizador/NewEvent'"
-        >
-                <a  
-                    class="inactive"
-                    v-if="quotation.length===0"
-                > 
-                        No tienes cotizaciones
-                </a>
-                <div class="cta animated fadeInUp delay-1s">
-                    <nuxt-link 
-                        to="/organizador/QuotationNeeds" 
-                        class="cta-needs animated tada"
-                        v-if="quotation.length!==0"
-                        > 
-                            Ver cotizaciones
-                    </nuxt-link>
-                </div>
-        </div>
-        <div 
-            class="cta-proveedores"
-            v-else
-        >
+    <div 
+        class="ctas-needs"
+        v-if="this.$route.path!=='/organizador/NewEvent'"
+    >
+            <div 
+                class="cta-organizadores" 
+                v-if="this.$route.path==='/organizador/EventNeeds'"
+            >
+                    <a  
+                        class="inactive"
+                        v-if="quotation.length===0"
+                    > 
+                            No tienes cotizaciones
+                    </a>
+                    <div class="cta animated fadeInUp delay-1s">
+                        <nuxt-link 
+                            to="/organizador/QuotationNeeds" 
+                            class="cta-needs animated tada"
+                            v-if="quotation.length!==0"
+                            > 
+                                Ver cotizaciones
+                        </nuxt-link>
+                    </div>
+            </div>
+            <div 
+                class="cta-proveedores"
+                v-else
+            >
             <a  
                 class="complementary-label"
                 v-if="quotation.length===0"
-                 data-toggle="modal" 
+                data-toggle="modal" 
                 data-target="#QuotationForm"
-
             > 
                 Enviar cotización
             </a>
@@ -67,8 +70,8 @@
             > 
                     Abrir cotización
             </a>
-        </div>
-          <div class="modal fade" id="QuotationDescription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="ariaHidden">
+            </div>
+            <div class="modal fade" id="QuotationDescription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="ariaHidden">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <h1>Descripción de cotización</h1>
@@ -84,6 +87,7 @@
                 </div>
             </div>
     </div>
+</div>
 </template>
 
 <script>

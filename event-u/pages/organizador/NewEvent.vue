@@ -6,34 +6,37 @@
           </h1>
           <div class="col-md-5 justify-content-center">
             <event-card
-            class="event-card"
+                class="event-card"
                 v-bind="eventObject"
-                style="max-width:70%; justify-content:center"
+                style="max-width:70%; 
+                    justify-content:center"
             />
           </div>
       </div>
-      <div class="needs-preview row m-0 mt-3" v-if="currentStepNumber===3">
+        <div 
+            class="needs-preview row m-0 mt-3" 
+            v-if="currentStepNumber===3"
+        >
           <div
             v-for="(need, i) in eventObject.needs"
-           class="col-md-3"
+           class="col-md-3 need-col"
            :key='i'>
             <event-need
                 v-bind='need'
             />
           </div>
-          
       </div>
       <div class="dynamic-form" v-if="formInProgress">
         <keep-alive>
-        <component 
-            class="my-element"
-            v-show="asyncState!=='pending'"
-            ref='currentStep'
-            :is="steps[currentStepNumber-1]" 
-            v-bind="eventObject"
-            @update="update"
-            @newNeed="addNewNeed"
-        />
+            <component 
+                class="my-element"
+                v-show="asyncState!=='pending'"
+                ref='currentStep'
+                :is="steps[currentStepNumber-1]" 
+                v-bind="eventObject"
+                @update="update"
+                @newNeed="addNewNeed"
+            />
         </keep-alive>
       </div>
       <div class="progress-bar">
@@ -166,7 +169,8 @@ data(){
                 description:e.description,
                 service:{
                     name:e.serviceId},
-                quotation:[]
+                quotation:[],
+                isNew:true
             })
         },
         editEvent(){
@@ -184,6 +188,9 @@ data(){
 </script>
 
 <style lang='scss' scoped>
+.need-col{
+    border-left: 1px solid #B8B8B8;
+}
 .event-preview{
     display: flex;
     flex-direction: column;
@@ -195,44 +202,44 @@ h1{
     text-align:center;
 }
 .event-card{
-.event-card-content{
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(0deg, #000000bf, transparent);
-    justify-content: flex-end;
-}
-h5{
-    @extend .h2-font;
-    color:white;
-    font-size: 3.3em;
-}
+    .event-card-content{
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(0deg, #000000bf, transparent);
+        justify-content: flex-end;
+    }
+    h5{
+        @extend .h2-font;
+        color:white;
+        font-size: 3.3em;
+    }
 
-p{
-    color:#B8B8B8;
-    @extend .h4-font;
-    font-size:1em;
-}
+    p{
+        color:#B8B8B8;
+        @extend .h4-font;
+        font-size:1em;
+    }
 
-.list-services-content .card {
-    border-radius: 34px 20px 0px;
-    border: none;
-    margin-bottom: 20px;
-    transition: 1s ease-out;
-    height: auto;
-}
+    .list-services-content .card {
+        border-radius: 34px 20px 0px;
+        border: none;
+        margin-bottom: 20px;
+        transition: 1s ease-out;
+        height: auto;
+    }
 
-.service-date {
-    font-size: 1em;
-    @extend .h4-font;
-    color:white;
-}
-.list-services-content img{
-box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
-border-radius: 34px 20px 0px;
-height:300px;
-overflow: hidden;
-object-fit: cover;
-}
+    .service-date {
+        font-size: 1em;
+        @extend .h4-font;
+        color:white;
+    }
+    .list-services-content img{
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+        border-radius: 34px 20px 0px;
+        height:300px;
+        overflow: hidden;
+        object-fit: cover;
+    }
 }
 .hover-interaction{
     display:flex;

@@ -18,12 +18,30 @@
             </datetime>
         </div>
         <div class="form-grop col-md-4 animated fadeInRight">
-            <label  for="addressEvent">Dirección de tu evento</label>
-            <input @input="setSpecificEventInfo" v-model="addreses" class="form-control" id="addressEvent" rows="3">
+            <label  for="addressEvent">
+                Dirección de tu evento
+            </label>
+            <input 
+                @input="setSpecificEventInfo" 
+                v-model="addreses" 
+                class="form-control" 
+                id="addressEvent" 
+                rows="3"
+            >
         </div>
         <div class="form-grp col-md-5 animated fadeInLeft">
-            <label  for="addressEvent">Inserta la URL de tu imagen</label>
-            <input @input="setSpecificEventInfo" v-model="image" type="email" class="form-control" id="eventImage" >
+            <label  
+                for="addressEvent"
+            >
+                Inserta la URL de tu imagen
+            </label>
+            <input 
+                @input="setSpecificEventInfo" 
+                v-model="image" 
+                type="email" 
+                class="form-control" 
+                id="eventImage" 
+            >
         </div>
     </div>
 </div>

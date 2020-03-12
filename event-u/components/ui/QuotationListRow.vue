@@ -1,15 +1,15 @@
 <template>
     <tr>
-        <th scope="row">{{this.$route==='orgnizador/allQuotations' ? event.name : need.service.category}}</th>
+        <th scope="row">{{this.$route.path==='/organizador/allquotations' ? event.name : need.service.category}}</th>
         <td>
             {{ need.service.name}}
         </td>
-        <td>{{this.$route==='orgnizador/allQuotations' ? provider.businessName : need.description}}</td>
+        <td>{{this.$route.path==='/organizador/allquotations' ? provider.businessName : need.description}}</td>
         <td
-            v-if="this.$route==='orgnizador/allQuotations'"
+            v-if="this.$route.path==='/organizador/allquotations'"
         >${{price}}mxn</td>
         <td
-            v-if="this.$route==='orgnizador/allQuotations'"
+            v-if="this.$route.path==='/organizador/allquotations'"
         >
             <button 
                 type="button" 
@@ -46,10 +46,10 @@
             </div>
         </td>   
         <td class="state-icon">
-            <i v-if="state===3 && this.$route==='orgnizador/allQuotations'" class="fas fa-star"></i>
-            <button v-if="state===3 && this.$route!=='orgnizador/allQuotations'" type="button" class="btn btn-primary" :data-target="`#exampleModal`+_id" data-toggle="modal" >Aceptada</button>
-            <button v-if="state=== 2 && this.$route!=='orgnizador/allQuotations'" type="button" class="btn btn-secondary" disabled>Pendiente</button>
-            <button v-if="state===1 && this.$route!=='orgnizador/allQuotations'" type="button" class="btn btn-danger" disabled>Denegada</button>
+            <i v-if="state===3 && this.$route.path==='/organizador/allquotations'" class="fas fa-star"></i>
+            <button v-if="state===3 && this.$route.path!=='/organizador/allquotations'" type="button" class="btn btn-primary" :data-target="`#exampleModal`+_id" data-toggle="modal" >Aceptada</button>
+            <button v-if="state=== 2 && this.$route.path!=='/organizador/allquotations'" type="button" class="btn btn-secondary" disabled>Pendiente</button>
+            <button v-if="state===1 && this.$route.path!=='/organizador/allquotations'" type="button" class="btn btn-danger" disabled>Denegada</button>
         </td>
     </tr>
 </template>

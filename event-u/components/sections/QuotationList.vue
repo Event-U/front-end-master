@@ -2,12 +2,12 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">{{this.$route==='orgnizador/allQuotations' ? 'Evento' : 'Categoría'}}</th>
-      <th scope="col">{{this.$route==='orgnizador/allQuotations' ? 'Necesidad' : 'Servicio'}}</th>
-      <th scope="col">{{this.$route==='orgnizador/allQuotations' ? 'Proveedor' : 'Descripción'}}</th>
-      <th scope="col">{{this.$route==='orgnizador/allQuotations' ? 'Precio' : 'Estado'}}</th>
-      <th v-if="this.$route==='orgnizador/allQuotations'" scope="col"></th>
-      <th v-if="this.$route==='orgnizador/allQuotations'" scope="col"></th>
+      <th scope="col">{{this.$route.path==='/organizador/allquotations' ? 'Evento' : 'Categoría'}}</th>
+      <th scope="col">{{this.$route.path==='/organizador/allquotations' ? 'Necesidad' : 'Servicio'}}</th>
+      <th scope="col">{{this.$route.path==='/organizador/allquotations' ? 'Proveedor' : 'Descripción'}}</th>
+      <th scope="col">{{this.$route.path==='/organizador/allquotations' ? 'Precio' : 'Estado'}}</th>
+      <th v-if="this.$route.path==='/organizador/allquotations'" scope="col"></th>
+      <th v-if="this.$route.path==='/organizador/allquotations'" scope="col"></th>
     </tr>
   </thead>
   <tbody>

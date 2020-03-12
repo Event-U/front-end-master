@@ -3,7 +3,7 @@
         <div 
             class="row">
             <div 
-                class="col-md-6 animated fadeIn" 
+                class="col-md-3 animated fadeIn" 
                 v-for="(event,i) in events"
                 :key="i"
             >

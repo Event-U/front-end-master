@@ -27,7 +27,7 @@
                             :_id="_id"
                             :provider="provider"
                             :price="price"
-                            :image="images"
+                            :image="image"
                             :state="state"
                             :date="date"
                             :description="description"
@@ -71,7 +71,7 @@ components:{
         provider:Object,
         price:Number,
         description:String,
-        images:String,
+        image:String,
         need:Object,
         state:Number,
         event:Object,

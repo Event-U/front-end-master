@@ -62,6 +62,7 @@
 <script>
 import OptionInput from '@/components/ui/forms/OptionInput.vue'
 import api from '@/lib/api.js'
+
 export default {
     name:'NewNeedForm',
     components:{
@@ -111,8 +112,13 @@ export default {
             this.categoryId=''
             this.serviceId=''
             this.description=''
+        }, 
+      
+    },
+     async mounted(){
+            const categoriees= api.getCategorys()
+            this.categories=categoriees
         }
-    }
 }
 </script>
 

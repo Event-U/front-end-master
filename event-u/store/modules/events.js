@@ -1,6 +1,14 @@
 const state = {
     activeEvent: {},
-    activeNeed: {},
+    activeNeed: {
+        name: '',
+        description: '',
+        _id: '',
+        service: {
+            name: ''
+        },
+        quotation: []
+    },
     newEventObject: {
         name: '',
         description: '',

@@ -29,9 +29,6 @@ export default {
   components: {
         EventCard,
     },
-    props:{
-
-    },
     data() {
         return{
             name:'Mis Eventos',

@@ -79,7 +79,7 @@ export default {
                 quotation:['1','2','3'],
                 },
                  {
-                _id:'23903290329032',
+                _id:'2390329032933032',
                 description:'El evento será en un jardín, así que únicamente necesitamos sillas resistentes y que no importe si se manchan.',
                 service:{
                     name:'Sillas de exterior 🪑',

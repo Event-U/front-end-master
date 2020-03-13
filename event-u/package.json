@@ -16,8 +16,10 @@
         "animate.css": "^3.7.2",
         "luxon": "^1.22.0",
         "nuxt": "^2.0.0",
+        "v-rating": "^1.1.2",
         "vue-datetime": "^1.0.0-beta.11",
-        "vue-form-wizard": "^0.8.4"
+        "vue-form-wizard": "^0.8.4",
+        "vue-rate": "^2.2.0"
     },
     "devDependencies": {
         "babel-eslint": "^10.0.1",

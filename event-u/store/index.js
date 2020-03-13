@@ -8,7 +8,7 @@ const createStore = () => {
         },
         state: {
             activePage: '',
-            lastPage: ''
+            lastPage: '',
         },
         mutations: {
             change: (state, name) => {

@@ -52,17 +52,17 @@
             aria-labelledby="dropdownMenuOrganizer"
             :class="{show: hoverOrg}"
           >
-            <nuxt-link to="/proveedor/events">
+            <nuxt-link to="/organizador/myevents">
               <a class="dropdown-item">
                 Mis Eventos
               </a>
             </nuxt-link>
-            <nuxt-link to="/proveedor/myservices">
-              <a class="dropdown-item">
-                Nuevo Evento
-              </a>
+            <nuxt-link to="/organizador/newevent">
+                <a class="dropdown-item">
+                  Nuevo Evento
+                </a>
             </nuxt-link>
-            <nuxt-link to="/proveedor/allquotations">
+            <nuxt-link to="/organizador/allquotations">
               <a class="dropdown-item">
                 Cotizaciones
               </a>

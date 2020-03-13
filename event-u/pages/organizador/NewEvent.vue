@@ -1,10 +1,17 @@
 <template>
   <div>
-      <div class="event-preview mt-3" v-if="currentStepNumber>=4 && formInProgress">
-          <h1 class="animated bounce">
-              ¡Éste es tu nuevo evento!
-          </h1>
-          <div class="col-md-5 justify-content-center">
+        <div 
+            class="event-preview mt-3" 
+            v-if="currentStepNumber>=4 && formInProgress"
+        >
+        <h1 
+            class="animated bounce"
+        >
+            ¡Éste es tu nuevo evento!
+        </h1>
+        <div 
+            class="col-md-5 justify-content-center"
+        >   
             <event-card
                 class="event-card"
                 v-bind="eventObject"
@@ -88,6 +95,10 @@
               ¡Genial, creaste tu evento!
           </h1>
       </div>
+<img 
+    :src="bgs[currentStepNumber-1]"
+    alt=""
+>
   </div>
 </template>
 
@@ -128,7 +139,12 @@ data(){
             'EventBasicInfo',
             'EventSpecificInfo',
             'NewNeedForm'
-        ]
+        ],
+        bgs:[
+            '../../_nuxt/assets/img/new-event-bgs/7.png',
+            '../../_nuxt/assets/img/new-event-bgs/7.png',
+            '../../_nuxt/assets/img/new-event-bgs/6.png',
+        ],
         }
     },
     mounted(){
@@ -258,4 +274,53 @@ h1{
         transition: .5s cubic-bezier(0.19, 1, 0.22, 1);
     }
 }
+// Ken Burns when the input is active::after
+
+
+.kb{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: no-repeat 50% 50%;
+  background-size: cover;
+  animation-name: kenburns;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 16s;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+@keyframes kenburns { 
+0% {
+ opacity: 1;
+ transform: scale(1.2);
+ transform: scale(1.2);
+}
+ 1% {
+ opacity: 1;
+}
+ 23% {
+ opacity: 1;
+}
+ 26% {
+ opacity: 0;
+ transform: scale(1);
+ transform: scale(1);
+}
+ 100% {
+ opacity: 0;
+ transform: scale(1.2);
+ transform: scale(1.2);
+}
+ 98% {
+ opacity: 0;
+ transform: scale(1.21176);
+ transform: scale(1.21176);
+}
+ 100% {
+ opacity: 1;
+}
+}
+
 </style>

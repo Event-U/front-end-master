@@ -11,12 +11,18 @@
         <h5 class="card-text"><small class="text-muted">{{date}}</small></h5>
       </div>
     </div>
-    <div class="col-md-1 justify-content-center align-self-center animated fadeInRight delay-1s" data-toggle="tooltip" data-placement="right" title="Guardar cotización">
-        <div class=" quotation-actions d-flex flex-column justify-content-around text-center" >
-            <i class="fas fa-star save" data-toggle="tooltip" data-placement="right" title="Guardar cotización"></i>
-            <i class="fas fa-check aware" data-toggle="tooltip" data-placement="right" title="Adjudicar cotización"></i>
-            <i class="fas fa-times delete" data-toggle="tooltip" data-placement="right" title="Deshechar cotización"></i>
-        </div>
+    <div 
+        class="col-md-1 justify-content-center align-self-center animated fadeInRight delay-1s" 
+        data-toggle="tooltip" 
+        data-placement="right" 
+        title="Guardar cotización"
+        v-if="this.$route.path!=='/proveedor/EventQuotations'"
+    >
+            <div class=" quotation-actions d-flex flex-column justify-content-around text-center" >
+                <i class="fas fa-star save" data-toggle="tooltip" data-placement="right" title="Guardar cotización"></i>
+                <i class="fas fa-check aware" data-toggle="tooltip" data-placement="right" title="Adjudicar cotización"></i>
+                <i class="fas fa-times delete" data-toggle="tooltip" data-placement="right" title="Deshechar cotización"></i>
+            </div>
     </div>
   </div>
 </div>

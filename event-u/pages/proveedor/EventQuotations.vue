@@ -50,7 +50,17 @@ export default {
                         name:'Bebidas'
                     }
                 },
-                quotation:['1','2','3','4','5'],
+                quotation:[{
+                    _id:'11111111',
+                    provider:{
+                        businessName: 'Birza'
+                    },
+                    price:1400,
+                    image:'https://www.specialevents.com/sites/specialevents.com/files/styles/article_featured_retina/public/2018_Rental_Trends_Bright_Zialena-1_1.jpg',
+                    state:3,
+                    date:'25 de Mayo',
+                    description:'Las mejores mesas de la ciudad'   
+                 }],
                 },
                  {
                 _id:'34532323',
@@ -76,7 +86,17 @@ export default {
                         name:'Mobiliario'
                     }
                 },
-                quotation:['1','2','3'],
+                quotation:[{
+                    _id:'11111111',
+                    provider:{
+                        businessName: 'Birza'
+                    },
+                    price:1400,
+                    image:'https://www.specialevents.com/sites/specialevents.com/files/styles/article_featured_retina/public/2018_Rental_Trends_Bright_Zialena-1_1.jpg',
+                    state:3,
+                    date:'25 de Mayo',
+                    description:'Las mejores mesas de la ciudad'   
+                 }],
                 },
                  {
                 _id:'2390329032933032',
@@ -89,7 +109,17 @@ export default {
                         name:'Mobiliario'
                     }
                 },
-                quotation:['1','2','3'],
+                quotation:[{
+                    _id:'11111111',
+                    provider:{
+                        businessName: 'Birza'
+                    },
+                    price:1400,
+                    image:'https://www.specialevents.com/sites/specialevents.com/files/styles/article_featured_retina/public/2018_Rental_Trends_Bright_Zialena-1_1.jpg',
+                    state:3,
+                    date:'25 de Mayo',
+                    description:'Las mejores mesas de la ciudad'   
+                 }],
                 },
                 ]
         }

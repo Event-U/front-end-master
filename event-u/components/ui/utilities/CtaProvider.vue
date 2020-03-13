@@ -8,9 +8,9 @@
     > 
         Enviar cotización
     </a>
-    <div class="modal fade" :id="`QuotationForm${_id}`" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="ariaHidden">
+    <div class="modal  fade" :id="`QuotationForm${_id}`" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="ariaHidden">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content m-3 p3">
                 <new-quotation-form
                     v-if="activeNeed"
                 />
@@ -38,12 +38,12 @@
     > 
         Abrir cotización
     </a>
-    <div class="modal fade" :id="`QuotationDescription${_id}`" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="ariaHidden">
+    <div  v-if="quotation.length!==0" class="modal fade" :id="`QuotationDescription${_id}`" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="ariaHidden">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <h1>
-                    Descripción de cotización
-                </h1>
+                <need-quotation
+                    v-bind="quotation"
+                />
                 <button 
                     type="button" 
                     class="btn btn-secondary" 
@@ -60,11 +60,13 @@
 <script>
 import {mapState} from 'vuex'
 import NewQuotationForm from '@/components/sections/NewQuotationForm.vue';
+import NeedQuotation from '@/components/ui/NeedQuotation.vue';
 
 export default {
     name:'CtaProvider',
     components:{
         NewQuotationForm,
+        NeedQuotation,
     },
     props:{
         quotation:Array,
@@ -77,6 +79,7 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+
 .green-label{
   color:green;  
 }

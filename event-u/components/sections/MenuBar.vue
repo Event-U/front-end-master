@@ -1,5 +1,5 @@
 <template>
-  <div class='page-enter-active navbar d-flex justify-content-between animated fadeInDown'>
+<div class='page-enter-active navbar d-flex justify-content-between animated fadeInDown'>
     <app-logo
         class='logo-menu col-4'
     /> 
@@ -7,15 +7,15 @@
         <h1
         class="animated bounce"
         >
-         {{activePage}}
+            {{activePage}}
         </h1>
     </div>
-    <div class="icons-navbar col-2">
-        <i class="fas fa-search"></i>
-        <i class="far fa-bell"></i>
-        <i class="fas fa-cog"></i>
-    </div>
-  </div>
+        <div class="icons-navbar col-2">
+            <i class="fas fa-search"></i>
+            <i class="far fa-bell"></i>
+            <i class="fas fa-cog"></i>
+        </div>
+</div>
 </template>
 
 <script>
@@ -41,6 +41,7 @@ export default {
 
 <style lang="scss" scoped>
 .navbar{
+    z-index:2;
     background-color: $alpha;
     padding:1% 0%;
     border-radius:0px 0px 16px 16px;

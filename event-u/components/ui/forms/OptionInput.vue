@@ -1,10 +1,11 @@
 <template>
     <option 
-    :value='name'
-    @change="$emit( 'change', $event )"
-    @input="$emit( 'input', $event )"
+        :value='_id'
+        @change="$emit( 'change', $event )"
+        @input="$emit( 'input', $event )"
     >
         {{name}}
+        {{businessName}}
     </option>
 </template>
 
@@ -19,6 +20,10 @@ export default {
         _id:{
             type:String, 
             required:true
+        },
+        businessName:{
+            type:String,
+            required:false
         }
     }
 }

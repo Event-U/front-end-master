@@ -1,25 +1,36 @@
 <template>
 <form class='mt-3'>
     <div class="title animated fadeInDown">
-        <h3 class="mb-3">Nueva necesidad</h3>
+        <h3 
+            class="mb-3"
+        >
+            Nueva necesidad
+        </h3>
     </div>
   <div class="row">
-    <div class="input-group mb-3 col">
-        <div class="input-group-prepend animated fadeInDown">
-        <label class="input-group-text" for="inputGroupSelect01">Categoría</label>
-        </div>
-        <select
-            v-model="categoryId"
-            class="custom-select" 
-            id="inputGroupSelect01"
-         >
-        <option selected>Elige una categoría...</option>
-        <option-input
-            v-for="(category,i) in categories"
-            :key='i'
-            v-bind="category"
-        />
-        </select>
+    <div 
+        class="input-group mb-3 col"
+    >
+            <div class="input-group-prepend animated fadeInDown">
+                <label 
+                    class="input-group-text" 
+                    for="inputGroupSelect01"
+                >
+                    Categoría
+                </label>
+            </div>
+            <select
+                v-model="categoryId"
+                class="custom-select" 
+                id="inputGroupSelect01"
+            >
+            <option selected>Elige una categoría...</option>
+                <option-input
+                    v-for="category in categories"
+                    :key='category._id'
+                    v-bind="category"
+                />
+            </select>
     </div>
     <div class="input-group mb-3 col">
         <div class="input-group-prepend animated fadeInDown">
@@ -28,8 +39,8 @@
         <select v-model="serviceId" class="custom-select" id="inputGroupSelect01">
         <option selected>Elige un servicio...</option>
         <option-input
-            v-for="(service,i) in services"
-            :key='i'
+            v-for="service in servicesByCategoryId(categoryId)"
+            :key='service._id'
             v-bind="service"
         />
         </select>
@@ -60,6 +71,7 @@
 </template>
 
 <script>
+import {mapState, mapGetters} from 'vuex'
 import OptionInput from '@/components/ui/forms/OptionInput.vue'
 import api from '@/lib/api.js'
 
@@ -69,24 +81,6 @@ export default {
         OptionInput
     },data(){
         return{
-            categories:[
-                {
-                name:'Cosas',
-                _id:'asdasdasdasd'
-                },
-                {
-                name:'Otras cosas',
-                _id:'1231232132131'
-                }],
-            services:[
-                {
-                name:'Mesas largas',
-                _id:'asdasdasdasd'
-                },
-                {
-                name:'Mesas de Jardín',
-                _id:'1231232132131'
-                }],
             categoryId:'',
             serviceId:'',
             description:''
@@ -114,11 +108,12 @@ export default {
             this.description=''
         }, 
       
-    },
-     async mounted(){
-            const categoriees= api.getCategorys()
-            this.categories=categoriees
-        }
+    },computed:{
+       ...mapGetters('service',['servicesByCategoryId']),
+        ...mapState({
+            categories: state=> state.service.categories,
+        })
+    }
 }
 </script>
 
@@ -126,7 +121,6 @@ export default {
 .hover-interaction{
     @extend .btn-hover-interaction;
     text-align: center;
-
 }
 h3{
     @extend .h2-font;

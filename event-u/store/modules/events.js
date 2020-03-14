@@ -1,3 +1,5 @@
+import api from '@/lib/api.js'
+
 const state = {
     activeEvent: {},
     activeNeed: {
@@ -16,7 +18,8 @@ const state = {
         addreses: '',
         image: '',
         needs: []
-    }
+    },
+    events: []
 }
 
 // getters

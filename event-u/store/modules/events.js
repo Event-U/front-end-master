@@ -29,7 +29,13 @@ const getters = {
 
 // actions
 const actions = {
-
+    async fetchEvents({ commit }) {
+        const allEvents = await api.getEvent()
+        commit('SET_EVENTS', allEvents)
+    },
+    async postEvent({ commit }) {
+        const newEvent = await api.createEvent(newEventObject)
+    }
 }
 
 // mutations
@@ -48,6 +54,9 @@ const mutations = {
         state.newEventObject['date'] = date
         state.newEventObject['addreses'] = addreses
         state.newEventObject['image'] = image
+    },
+    SET_EVENTS(state, eventss) {
+        state.events = eventss
     }
 }
 export default {
@@ -55,5 +64,5 @@ export default {
     state,
     getters,
     actions,
-    mutations
+    mutations,
 }

@@ -43,6 +43,7 @@ export default {
     methods:{
       setActiveEvent(){
           this.$store.commit('event/change', {
+              needs:this.needs,
               name:this.name,
               description:this.description,
               date:this.date,

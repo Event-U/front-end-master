@@ -1,4 +1,4 @@
-const UrlBase = 'https://event-uback.mybluemix.net'
+const UrlBase = 'http://event-uback.mybluemix.net'
 
 export default {
     // 
@@ -143,7 +143,7 @@ export default {
         const { data } = jsonBody
         if (!response.ok) throw new Error('Ocurrió un error al obtener los eventos')
 
-        return data
+        return data.event
     },
 
     async createEvent(event) {
@@ -239,7 +239,7 @@ export default {
     },
 
     async createCatServices(service) {
-        const response = await fetch(`${UrlBase}/catServices/`, {
+        const response = await fetch(`${UrlBase}/category/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -254,13 +254,13 @@ export default {
         return jsonBody.data
     },
     async getCatServiceById(id) {
-        const response = await fetch(`${UrlBase}/catServices/${id}`)
+        const response = await fetch(`${UrlBase}/category/${id}`)
         const jsonBody = await response.json()
 
         const { data } = jsonBody.data
 
         if (!response.ok) throw new Error('Ocurrió un error al obtener los servicios')
 
-        return data.catServices
+        return data.category
     }
 }

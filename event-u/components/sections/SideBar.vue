@@ -2,7 +2,7 @@
 <div class="main-nav">
       <ul class="nav fadeInLeft animated dropdown">
         <li
-            class="dropdown-toggle d-pr"
+            class="dropdown-toggle d-pr  animated fadeIn"
             data-toggle="dropdown" 
             aria-haspopup="true" 
             aria-expanded="false"
@@ -11,7 +11,7 @@
             @mouseout="hoverProv=false"
         >
         <div 
-          class="dropdown-menu animated fadeIn" 
+          class="dropdown-menu" 
           aria-labelledby="dropdownMenuProvider"
           :class="{show: hoverProv}"
         >
@@ -41,14 +41,14 @@
         <li
           @mouseover="hoverOrg=true"
           @mouseout="hoverOrg=false"
-          class="dropdown-toggle d-or"
+          class="dropdown-toggle d-or animated fadeIn"
           data-toggle="dropdown" 
           aria-haspopup="true" 
           aria-expanded="false"
           id="dropdownMenuOrganizer"
         >
           <div 
-            class="dropdown-menu animated fadeIn" 
+            class="dropdown-menu " 
             aria-labelledby="dropdownMenuOrganizer"
             :class="{show: hoverOrg}"
           >

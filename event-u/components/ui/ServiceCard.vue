@@ -1,9 +1,9 @@
 <template>
 <div class="card">
     <img 
-        :src="imagen" 
+        :src="image" 
         class="card-img-top" 
-        :alt="`service${name}`"
+        :alt="`service-${name}`"
     >
     <div class="card-body">
         <h5 class="card-title">
@@ -26,7 +26,7 @@
     </div>
     <div class="card-footer text-left">
         <small class="category">
-            {{category}}
+            {{categoryNameById(category)}}
         </small>
     </div>
 </div>
@@ -34,6 +34,7 @@
 
 <script>
 import Raitings from '@/components/ui/utilities/Raitings.vue'
+import {mapState, mapGetters} from 'vuex'
 
 export default {
     name:'ServiceCard', 
@@ -46,9 +47,12 @@ export default {
         description:String,
         measurementUnit:String,
         unitPrice:Number,
-        imagen:String,
+        image:String,
         category:String,
         number:Number
+    },
+    computed:{
+       ...mapGetters('service',['categoryNameById']),
     }
 }
 </script>

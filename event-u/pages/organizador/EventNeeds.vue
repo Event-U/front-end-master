@@ -48,68 +48,16 @@ export default {
         return{
             addingNeed: false,
             name:'Necesidades evento',
-            needs:[
-                 {
-                _id:'12178327123718',
-                description:'Necesito comprar 3 lotes de cerveza, al tiempo y de preferencia de Grupo Modelo',
-                service:{
-                    name:'Cerveza (Mayoreo) 🍺',
-                    description:'Cerveza en mayoreo',
-                    measurmentUnit:'Litros',
-                    category:{
-                        name:'Bebidas'
-                    }
-                },
-                quotation:['1','2','3','4','5'],
-                },
-                 {
-                _id:'34532323',
-                description:'Necesitamos tres mesas largas tipo banquete, para poder poner platillos. No incluir manteles ni accesorios',
-                service:{
-                    name:'Mesas Largas🍱',
-                    description:'Mesas tipo banquetes',
-                    measurmentUnit:'Mesas',
-                    category:{
-                        name:'Mobiliario'
-                    }
-                },
-                quotation:[],
-                },
-                 {
-                _id:'23903290329032',
-                description:'El evento será en un jardín, así que únicamente necesitamos sillas resistentes y que no importe si se manchan.',
-                service:{
-                    name:'Sillas de exterior 🪑',
-                    description:'Sillas que resistan el exterior',
-                    measurmentUnit:'Sillas',
-                    category:{
-                        name:'Mobiliario'
-                    }
-                },
-                quotation:['1','2','3'],
-                },
-                 {
-                _id:'23903290329032',
-                description:'El evento será en un jardín, así que únicamente necesitamos sillas resistentes y que no importe si se manchan.',
-                service:{
-                    name:'Sillas de exterior 🪑',
-                    description:'Sillas que resistan el exterior',
-                    measurmentUnit:'Sillas',
-                    category:{
-                        name:'Mobiliario'
-                    }
-                },
-                quotation:['1','2','3'],
-                },
-                ]
-        }
+         }
     },
+        created () {
+           this.$store.commit('change',this.name),
+            this.$store.dispatch('need/fetchNeeds')
+      },
     computed: mapState({
-        activeEvent:state=> state.event.activeEvent
+        activeEvent:state=> state.event.activeEvent,
+        needs:state=>state.need.needs
     }),
-    mounted () {
-       this.$store.commit('change',this.name)
-  },
   methods: {
     actionNewNeed(e){
         this.addingNeed=true

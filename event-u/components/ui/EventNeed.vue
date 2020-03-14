@@ -10,7 +10,7 @@
      <i class="fas fa-angle-right"/>
     </div>
     <div class="card-body">
-        <h5 class="card-title">{{service.name}}</h5>
+        <h5 class="card-title"></h5>
         <p class="card-text">{{description}}</p>
         <div 
             class="ctas-needs"

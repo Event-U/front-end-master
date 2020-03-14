@@ -1,17 +1,41 @@
 <template>
 <div class="mt-3">
     <div class="mt-3 mb-3 cta-new-service d-flex justify-content-center">
-        <button class="btn btn-iconed">
-            <i class="fas fa-arrow-alt-circle-up">
-            </i>
-                Agregar servicio
+        <button 
+            class="btn btn-iconed"
+            data-toggle="modal" 
+            data-target="#ServiceForm"
+        >
+            <i class="fas fa-arrow-alt-circle-up"/>
+            Agregar servicio
         </button>
+    <div class="modal fade" id="ServiceForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="ariaHidden">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content m-3 p3">
+                <new-service-form
+                />
+                <button 
+                    type="button" 
+                    class="btn btn-complementary" 
+                >
+                Crear servicio
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-danger" 
+                    data-dismiss="modal"
+                >
+                    Cerrar formulario
+                </button>
+            </div>
+        </div>
+    </div>
     </div>
     <div class="service-row row">
         <div 
             class="col-md-2"
-            v-for="(service,i) in services"
-            :key="i"
+            v-for="service in services"
+            :key="service._id"
         >
                 <service-card
                     v-bind="service"
@@ -23,50 +47,26 @@
 
 <script>
 import ServiceCard from '@/components/ui/ServiceCard.vue'
-import {mapMutations} from 'vuex'
+import NewServiceForm from '@/components/sections/NewServiceForm.vue'
+import {mapState} from 'vuex'
 
 export default {
     name:'MyServices',
     components:{
         ServiceCard,
+        NewServiceForm
     }, 
     data(){
         return{
             name:'Mis servicios',
-            services:[
-                {
-                _id:'asdasdas',
-                name:'Sillas brgas',
-                description:'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-                measurementUnit:'Metros',
-                unitPrice:125,
-                imagen:'https://i.pinimg.com/originals/1f/c4/76/1fc4767894db24a041bfca54bbeeb5a3.jpg',
-                category:'Inmobiliario'
-            },
-                {
-                _id:'asdasdas',
-                name:'Sillas brgas',
-                description:'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-                measurementUnit:'Metros',
-                unitPrice:125,
-                imagen:'https://i.pinimg.com/originals/1f/c4/76/1fc4767894db24a041bfca54bbeeb5a3.jpg',
-                category:'Inmobiliario'
-            },
-                {
-                _id:'asdasdas',
-                name:'Sillas brgas',
-                description:'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-                measurementUnit:'Metros',
-                unitPrice:125,
-                imagen:'https://i.pinimg.com/originals/1f/c4/76/1fc4767894db24a041bfca54bbeeb5a3.jpg',
-                category:'Inmobiliario'
-            },
-            ]
         }
     },
-    mounted () {
-       this.$store.commit('change', this.name)
-  }
+     created() {
+        this.$store.commit('change', this.name)
+        this.$store.dispatch('service/fetchCategories')
+        this.$store.dispatch('service/fetchServices')
+  },
+  computed:mapState('service',['services'])
 }
 </script>
 
@@ -87,8 +87,5 @@ export default {
     box-shadow:5px 3px 11px #00000059;
     transition:.3s ease-in;
     font-size:1.3em;
-}
-.cta-new-service{
-    
 }
 </style>

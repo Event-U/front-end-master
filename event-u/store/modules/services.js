@@ -1,78 +1,50 @@
+import api from '@/lib/api'
+
 const state = {
-    categories: [{
-            _id: 'asdasdasd',
-            description: 'GGG',
-            name: 'Inmobiliarios'
-        },
-        {
-            _id: 'asdasd2asd',
-            description: 'GGG',
-            name: 'Músicos'
-        },
-        {
-            _id: 'asdasssdasd',
-            description: 'GGG',
-            name: 'Performancee'
-        },
-        {
-            _id: 'asdasssdasd',
-            description: 'GGG',
-            name: 'Juu'
-        },
-    ],
-    services: [{
-            _id: '33',
-            name: 'Mariachis Dons Chucho',
-            description: 'Los mejores músicos de la historia de la humanidad',
-            measurementUnit: 'Hora',
-            unitPrice: 250,
-            imagen: 'nothing here',
-            category: 'asdasssdasd'
-        },
-        {
-            _id: '33',
-            name: 'Mariachissss Don Chucho',
-            description: 'Los mejores músicos de la historia de la humanidad',
-            measurementUnit: 'Hora',
-            unitPrice: 250,
-            imagen: 'nothing here',
-            category: 'asdasssdasd'
-        },
-        {
-            _id: '33',
-            name: 'Mariachis Don Chucho',
-            description: 'Los mejores músicos de la historia de la humanidad',
-            measurementUnit: 'Hora',
-            unitPrice: 250,
-            imagen: 'nothing here',
-            category: 'asdasssdasd'
-        },
-        {
-            _id: '33',
-            name: 'Mariachis Don Chucho',
-            description: 'Los mejores músicos de la historia de la humanidad',
-            measurementUnit: 'Hora',
-            unitPrice: 250,
-            imagen: 'nothing here',
-            category: '333'
-        },
-    ]
+    categories: [],
+    services: [],
+    newService: {}
 }
 
 // getters
 const getters = {
     servicesByCategoryId: state => name => {
         return state.services.filter(service => service.category === name)
+    },
+    categoryById: state => id => {
+        return state.categories.find(category => category._id === id)
+    },
+    categoryNameById: state => id => {
+        const catObj = state.categories.find(category => category._id === id)
+        return catObj.name
     }
 }
 
 // actions
 const actions = {
+    async postService(state, service) {
+        const newService = await api.createServices(service)
+        state.newService = newService
 
+    },
+    async fetchServices({ commit }) {
+        const allServices = await api.getServices()
+        commit('SET_SERVICES', allServices)
+    },
+    async fetchCategories({ commit }) {
+        const allCategories = await api.getCategorys()
+        commit('SET_CATEGORIES', allCategories)
+    },
 }
 
 // mutations
 const mutations = {
+    SET_SERVICES(state, services) {
+        state.services = services
+    },
+    SET_CATEGORIES(state, categories) {
+        state.categories = categories
+    },
 
 }
 export default {

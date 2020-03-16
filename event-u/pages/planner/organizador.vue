@@ -3,11 +3,11 @@
   class="board"
 >
   <div 
-    class="row d-flex justify-content-around"
+    class="d-flex justify-content-between"
     :class="{blur:isTaskOpen}"
   >
     <div 
-      class="column col-3"
+      class="col-3 m-3 column animated fadeInUp"
       v-for="(column,columnIndex) in board.columns"
       :key="columnIndex"
       draggable
@@ -16,8 +16,12 @@
       @dragover.prevent
       @dragenter.prevent
     >
-      <div class="column-title text-center">
-        {{column.name}} :
+      <div class="column-title text-center animated fadeInDown delay-1s">
+        <h2
+          class="mt-3"
+        >
+          {{column.name}}:
+        </h2>
       </div>
       <div class="list-reset">
         <div 
@@ -26,12 +30,17 @@
           :key="taskIndex"
           draggable
           @dragstart="pickTask($event,taskIndex, columnIndex)"
-          @click="goToTask(task)"
           @dragover.prevent
           @dragenter.prevent
           @drop.stop="moveTask($event,column.tasks, taskIndex)"
+          @click="goToTask(task)"
         >
-          {{task.name}}
+          <h3>
+            {{task.name}}
+          </h3>
+          <p>
+            {{task.description}}
+          </p>
         </div>
       </div>
       <input 
@@ -41,25 +50,25 @@
         @keyup.enter="createTask(column.tasks , $event)"
       />
     </div>
-  </div>
-  <div class="column d-flex">
+  <div class="new-column">
     <input 
       type="text" 
-      class='flex-grow'
-      placeholder="Nuevo paso"
+      class='flex-grow border-0 text-center'
+      placeholder="Agregar paso +"
       v-model="newColumnName"
       @keyup.enter="createColumn"
     />
   </div>
-  <div 
-    class="task-bg"
-    v-if="isTaskOpen"
-  >
-    <!-- @click="close" -->
-    <router-view
-    @keypress.esc="close"
-    />
   </div>
+    <div 
+      class="task-bg"
+      v-if="isTaskOpen"
+    >
+      <!-- @click="close" -->
+      <nuxt-child
+        v-if="isTaskOpen"
+      />
+    </div>
 </div>
 </template>
 
@@ -78,11 +87,11 @@ export default {
   },computed:{
     ...mapState('planner',['board']),
     isTaskOpen(){
-      return this.$route.name==='tarea'
+      return this.$route.name==="planner-organizador-id"
     }
   }, methods:{
     goToTask(task){
-      this.$router.push({name:'tarea', params:{id:task.id}})
+      this.$router.push({name:"planner-organizador-id", params:{id:task.id}})
     },
     createTask(tasks,e){
       this.$store.commit('planner/CREATE_TASK', {
@@ -92,7 +101,7 @@ export default {
       e.target.value=''
     },
     close(){
-      this.$router.push({name:'board'})
+      this.$router.push({name:'planner-organizador'})
     },
     pickTask(e,$taskIndex,fromColumnIndex){
       /* This functions are from the DragDrop API, 
@@ -149,6 +158,45 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.new-column{
+  border:4px dashed grey;
+  background-color: transparent!important;
+  margin-top: 1em;
+  transition: .2s ease-in;
+}
+.new-column:hover{
+  border-radius:8px;
+  transition: .2s ease-in;
+}
+
+h2{
+  @extend .h2-font;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+h3{
+  @extend .h3-font;
+  font-size:1em;
+}
+.column{
+      background-color: #efefef!important;
+    border-radius: 8px 8px 0px 0px;
+    margin-top: 1em;
+    box-shadow: 5px 5px 9px 0px #00000029;
+    transition:.3s cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+.column:hover, .task:hover{
+  // box-shadow: 5px 5px 8px 0px #ffff0036;
+  box-shadow: 5px 5px 9px 0px #00000056;
+  transition:.4s cubic-bezier(0.47, 0, 0.745, 0.715);
+  border:.5px solid #ffff00;
+}
+.task:hover{
+  box-shadow: 5px 5px 8px 0px #ffff0036;
+  transition:.2s ease-in;
+  font-size:1.1em;
+  // border:1px solid #ffff00;
+}
 .new-task{
   background-color:#bbbb;
   color:white!important;
@@ -162,13 +210,19 @@ export default {
 }
 
 .task{
-  background-color: greenyellow;
+  background-color: white;
   border-radius:8px;
+  border-radius: 8px;
+  padding: 3% 0%;
+  text-align: center;
+  box-shadow: 5px 5px 8px #0000000f;
+  transition: .3s ease-in-out;
 }
 .row{
   margin:0,
 }
-.column{
-  background-color:red;
+.board{
+  overflow: auto;
+  white-space: nowrap;
 }
 </style>

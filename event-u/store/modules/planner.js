@@ -52,6 +52,12 @@ const mutations = {
         const columnToMove = columnList.splice(fromColumnIndex, 1)[0]
         columnList.splice(toColumnIndex, 0, columnToMove)
     },
+    CREATE_COLUMN(state, { name }) {
+        state.board.columns.push({
+            name,
+            tasks: []
+        })
+    }
 }
 export default {
     namespaced: true,

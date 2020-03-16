@@ -16,9 +16,9 @@
       @dragover.prevent
       @dragenter.prevent
     >
-    <div class="column-title text-center">
-      {{column.name}} :
-    </div>
+      <div class="column-title text-center">
+        {{column.name}} :
+      </div>
       <div class="list-reset">
         <div 
           class="task mt-3 mb-3"
@@ -34,24 +34,31 @@
           {{task.name}}
         </div>
       </div>
-        <input 
-          type="text"
-          class=" bg-transparent fluid p-2 d-flex new-task border-0"
-          placeholder="Agregar tarea +"
-          @keyup.enter="createTask(column.tasks , $event)"
-        />
-    </div>
-
-
-    </div>
-    <div 
-      class="task-bg"
-      v-if="isTaskOpen"
-    >
-      <!-- @click="close" -->
-      <router-view
-        @keypress.esc="close"
+      <input 
+        type="text"
+        class=" bg-transparent fluid p-2 d-flex new-task border-0"
+        placeholder="Agregar tarea +"
+        @keyup.enter="createTask(column.tasks , $event)"
       />
+    </div>
+  </div>
+  <div class="column d-flex">
+    <input 
+      type="text" 
+      class='flex-grow'
+      placeholder="Nuevo paso"
+      v-model="newColumnName"
+      @keyup.enter="createColumn"
+    />
+  </div>
+  <div 
+    class="task-bg"
+    v-if="isTaskOpen"
+  >
+    <!-- @click="close" -->
+    <router-view
+    @keypress.esc="close"
+    />
   </div>
 </div>
 </template>
@@ -63,7 +70,8 @@ export default {
     name:'organizador',
     data(){
         return{
-            name:'Planificador de eventos'
+            name:'Planificador de eventos',
+            newColumnName:''
         }
     },created() {
         this.$store.commit('change', this.name)
@@ -112,8 +120,7 @@ export default {
       }else{
         this.moveColumn(e, toColumnIndex)
       }
-    }
-    ,moveTask(e, toTasks, toTaskIndex){
+    },moveTask(e, toTasks, toTaskIndex){
       const fromColumnIndex=e.dataTransfer.getData('from-column-index')
       const fromTasks = this.board.columns[fromColumnIndex].tasks
       const fromTaskIndex= e.dataTransfer.getData('from-task-index')
@@ -124,14 +131,18 @@ export default {
         toTasks,
         toTaskIndex
       })
-    }
-    ,moveColumn(e, toColumnIndex){
+    },moveColumn(e, toColumnIndex){
       const fromColumnIndex=e.dataTransfer.getData('from-column-index')
 
       this.$store.commit('planner/MOVE_COLUMN',{
         fromColumnIndex,
         toColumnIndex
       })
+    },createColumn(){
+      this.$store.commit('planner/CREATE_COLUMN',{
+        name:this.newColumnName
+      })
+      this.newColumnName=''
     }
   },
 }

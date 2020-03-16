@@ -14,7 +14,6 @@ const state = {
     },
 }
 
-// getters
 const getters = {
     getTask(state) {
         return (id) => {
@@ -29,14 +28,21 @@ const getters = {
     }
 }
 
-// actions
 const actions = {
 
 }
 
-// mutations
 const mutations = {
-
+    CREATE_TASK(state, { tasks, name }) {
+        tasks.push({
+            name,
+            id: tasks.length + 1,
+            description: ''
+        })
+    },
+    UPDATE_TASK(state, { task, key, value }) {
+        task[key] = value
+    },
 }
 export default {
     namespaced: true,

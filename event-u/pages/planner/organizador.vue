@@ -8,8 +8,8 @@
   >
     <div 
       class="column col-3"
-      v-for="column of board.columns"
-      :key="column.id"
+      v-for="(column,i) of board.columns"
+      :key="i"
     >
     <div class="column-title text-center">
       {{column.name}} :
@@ -17,18 +17,27 @@
       <div class="list-reset">
         <div 
           class="task mt-3 mb-3"
-          v-for="task of column.tasks"
-          :key="task.id"
+          v-for="(task,i) in column.tasks"
+          :key="i"
           @click="goToTask(task)"
         >
           {{task.name}}
         </div>
       </div>
+        <input 
+          type="text"
+          class=" bg-transparent fluid p-2 d-flex new-task border-0"
+          placeholder="Agregar tarea +"
+          @keyup.enter="createTask(column.tasks , $event)"
+        />
     </div>
+
+
     </div>
     <div 
       class="task-bg"
       v-if="isTaskOpen"
+      @keyup.esc="close"
     >
       <!-- @click="close" -->
       <router-view
@@ -56,12 +65,23 @@ export default {
   }, methods:{
     goToTask(task){
       this.$router.push({name:'tarea', params:{id:task.id}})
-    }, 
+    },
+    createTask(tasks,e){
+      this.$store.commit('planner/CREATE_TASK', {
+        tasks,
+        name:e.target.value,
+      })
+      e.target.value=''
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
+.new-task{
+  background-color:#bbbb;
+  color:white!important;
+}
 .blur{
   filter: blur(3px);
   transition:cubic-bezier(0.445, 0.05, 0.55, 0.95) .3s;

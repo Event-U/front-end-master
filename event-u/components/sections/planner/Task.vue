@@ -3,12 +3,24 @@
     class="task-view container animated fadeIn"
     @click.self="close"
 >
-        <div class="col-6 text-center single-task animated fadeInDown">
-            <h1>
-            {{task.name}}
-            </h1>
+        <div 
+            class=
+                "col-6 
+                d-flex 
+                flex-column 
+                single-task 
+                animated fadeInDown"
+        >
+            <input 
+                type="text"
+                class='border-0'
+                :value='task.name'
+                @change="updateTask($event, 'name')"
+            >
             <textarea
+                class="border-0"
                 :value="task.description"
+                @change="updateTask($event, 'description')"
             />
     </div>
 </div>
@@ -27,6 +39,13 @@ export default {
     },methods:{
         close(){
             this.$router.push({name:'board'})
+         },
+         updateTask(e,key){
+             this.$store.commit('planner/UPDATE_TASK',{
+                 task:this.task,
+                 key,
+                 value:e.target.value
+             })
          }
     }
 }
@@ -36,9 +55,10 @@ export default {
 .fadeInDown{
     animation-delay: .5s;
 }
-h1{
+input{
     @extend .h2-font;
     font-size:2em;
+    text-align: center;
 }
 .task-view{
     display: flex;
@@ -58,6 +78,5 @@ h1{
     top:250px;
     border-radius: 8px;
     background-color:white;
-    text-align: center;
 }
 </style>

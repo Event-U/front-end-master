@@ -8,8 +8,8 @@
   >
     <div 
       class="column col-3"
-      v-for="(column,i) of board.columns"
-      :key="i"
+      v-for="(column,columnIndex) of board.columns"
+      :key="columnIndex"
     >
     <div class="column-title text-center">
       {{column.name}} :
@@ -17,8 +17,10 @@
       <div class="list-reset">
         <div 
           class="task mt-3 mb-3"
-          v-for="(task,i) in column.tasks"
-          :key="i"
+          v-for="(task,taskIndex) in column.tasks"
+          :key="taskIndex"
+          draggable
+          @dragstart="pickTask($event,taskIndex, columnIndex)"
           @click="goToTask(task)"
         >
           {{task.name}}
@@ -37,10 +39,10 @@
     <div 
       class="task-bg"
       v-if="isTaskOpen"
-      @keyup.esc="close"
     >
       <!-- @click="close" -->
       <router-view
+        @keypress.esc="close"
       />
   </div>
 </div>
@@ -73,6 +75,20 @@ export default {
       })
       e.target.value=''
     },
+    close(){
+      this.$router.push({name:'board'})
+    },
+    pickTask(e,$taskIndex,fromColumnIndex){
+      /* This functions are from the DragDrop API, 
+      just give us the move functionallity*/
+      e.dataTransfer.effectAllowed='move'
+      e.dataTransfer.dropEffect='move'
+
+    /*This functions are just for setting some data*/
+
+      e.dataTransfer.setData('task-index', $taskIndex)
+      e.dataTransfer.setData('from-column-index', fromColumnIndex)
+    }
   },
 }
 </script>

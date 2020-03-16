@@ -8,8 +8,13 @@
   >
     <div 
       class="column col-3"
-      v-for="(column,columnIndex) of board.columns"
+      v-for="(column,columnIndex) in board.columns"
       :key="columnIndex"
+      draggable
+      @dragstart.self="pickColumn($event,columnIndex)"
+      @drop="moveTaskOrColumn($event, column.tasks, columnIndex)"
+      @dragover.prevent
+      @dragenter.prevent
     >
     <div class="column-title text-center">
       {{column.name}} :
@@ -22,6 +27,9 @@
           draggable
           @dragstart="pickTask($event,taskIndex, columnIndex)"
           @click="goToTask(task)"
+          @dragover.prevent
+          @dragenter.prevent
+          @drop.stop="moveTask($event,column.tasks, taskIndex)"
         >
           {{task.name}}
         </div>
@@ -86,8 +94,44 @@ export default {
 
     /*This functions are just for setting some data*/
 
-      e.dataTransfer.setData('task-index', $taskIndex)
+      e.dataTransfer.setData('from-task-index', $taskIndex)
       e.dataTransfer.setData('from-column-index', fromColumnIndex)
+      e.dataTransfer.setData('type', 'task')
+    },
+    pickColumn(e, fromColumnIndex){
+      e.dataTransfer.effectAllowed='move'
+      e.dataTransfer.dropEffect='move'
+
+      e.dataTransfer.setData('from-column-index', fromColumnIndex)
+      e.dataTransfer.setData('type', 'column')
+    },
+    moveTaskOrColumn(e, toTasks, toColumnIndex){
+      const type=e.dataTransfer.getData('type')
+      if(type==='task'){
+        this.moveTask(e,toTasks)
+      }else{
+        this.moveColumn(e, toColumnIndex)
+      }
+    }
+    ,moveTask(e, toTasks, toTaskIndex){
+      const fromColumnIndex=e.dataTransfer.getData('from-column-index')
+      const fromTasks = this.board.columns[fromColumnIndex].tasks
+      const fromTaskIndex= e.dataTransfer.getData('from-task-index')
+
+      this.$store.commit('planner/MOVE_TASK',{
+        fromTasks,
+        fromTaskIndex,
+        toTasks,
+        toTaskIndex
+      })
+    }
+    ,moveColumn(e, toColumnIndex){
+      const fromColumnIndex=e.dataTransfer.getData('from-column-index')
+
+      this.$store.commit('planner/MOVE_COLUMN',{
+        fromColumnIndex,
+        toColumnIndex
+      })
     }
   },
 }

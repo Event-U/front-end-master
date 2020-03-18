@@ -58,7 +58,7 @@ module.exports = {
     },
     server: {
         port: 8080, // default: 3000
-        host: 'https://event-u.mybluemix.net' // default: localhost
+        // host: 'https://event-u.mybluemix.net' // default: localhost
     },
 
 }

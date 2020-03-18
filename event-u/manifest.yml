@@ -1,3 +1,3 @@
-applications:
-  - name: front-end
-    memory: 128mb
+applications: 
+  - name: front-eventu
+    memory: 128M

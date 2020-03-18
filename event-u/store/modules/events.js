@@ -3,7 +3,7 @@ import api from '@/lib/api.js'
 const state = {
     activeEvent: {},
     activeNeed: {
-        name: '',
+        name: 'Irving',
         description: '',
         _id: '',
         service: {

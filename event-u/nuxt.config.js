@@ -55,6 +55,10 @@ module.exports = {
         scss: [
             './style/_variables.scss'
         ]
-    }
+    },
+    server: {
+        port: 3000, // default: 3000
+        host: 'event-u.mybluemix.net' // default: localhost
+    },
 
 }

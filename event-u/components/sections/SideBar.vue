@@ -35,7 +35,7 @@
               to='/proveedor/events'
             >
               <i class="fas fa-clipboard-check"/>
-              Proveedores
+              Proveedor
             </nuxt-link>
         </li>
         <li
@@ -72,7 +72,7 @@
           to='/organizador/myevents'
         >
           <i class="fab fa-buffer"/>
-          Organizadores
+          Organizador
          </nuxt-link>
         </li>
           <img src="@/assets/logo/logo.png" alt="Event-U logo" srcset="">

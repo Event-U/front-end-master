@@ -50,11 +50,11 @@ module.exports = {
             id: 'UA-159826239-1'
         }]
     ],
-    // modules: ['@nuxtjs/style-resources'],
-    // styleResources: {
-    //     scss: [
-    //         './style/_variables.scss'
-    //     ]
-    // }
+    modules: ['@nuxtjs/style-resources'],
+    styleResources: {
+        scss: [
+            './style/_variables.scss'
+        ]
+    }
 
 }

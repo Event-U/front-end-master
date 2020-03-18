@@ -18,6 +18,7 @@
         "animate.css": "^3.7.2",
         "luxon": "^1.22.0",
         "nuxt": "^2.0.0",
+        "sass-loader": "^8.0.2",
         "v-rating": "^1.1.2",
         "vue-datetime": "^1.0.0-beta.11",
         "vue-form-wizard": "^0.8.4",

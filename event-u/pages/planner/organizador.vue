@@ -25,7 +25,7 @@
       </div>
       <div class="list-reset">
         <div 
-          class="task mt-3 mb-3"
+          class="task mt-3 mb-3 animated slideInUp faster"
           v-for="(task,taskIndex) in column.tasks"
           :key="taskIndex"
           draggable
@@ -35,7 +35,9 @@
           @drop.stop="moveTask($event,column.tasks, taskIndex)"
           @click="goToTask(task)"
         >
-          <h3>
+          <h3
+            class=""
+          >
             {{task.name}}
           </h3>
           <p>
@@ -45,7 +47,7 @@
       </div>
       <input 
         type="text"
-        class=" bg-transparent fluid p-2 d-flex new-task border-0"
+        class="text-dark bg-transparent fluid p-2 d-flex new-task border-0 text-center w-100"
         placeholder="Agregar tarea +"
         @keyup.enter="createTask(column.tasks , $event)"
       />
@@ -158,25 +160,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+body::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
 .new-column{
   border:4px dashed grey;
   background-color: transparent!important;
   margin-top: 1em;
-  transition: .2s ease-in;
+  transition: .1s ease-in;
 }
 .new-column:hover{
   border-radius:8px;
-  transition: .2s ease-in;
+  transition: .2s ease-in-out;
 }
 
 h2{
   @extend .h2-font;
   font-weight: 500;
   font-size: 1.2em;
-}
-h3{
-  @extend .h3-font;
-  font-size:1em;
 }
 .column{
       background-color: #efefef!important;
@@ -195,18 +206,30 @@ h3{
   box-shadow: 5px 5px 8px 0px #ffff0036;
   transition:.2s ease-in;
   font-size:1.1em;
+  cursor:pointer;
   // border:1px solid #ffff00;
 }
 .new-task{
   background-color:#bbbb;
-  color:white!important;
+  color:#3333;
 }
+  .focus-visible{
+    border:1px dashed grey!important;
+    // box-shadow: 5px 5px 5px black!important;
+    transition:.3s ease-in;
+    border-radius:8px;
+    color:grey;
+  }
 .blur{
   filter: blur(3px);
   transition:cubic-bezier(0.445, 0.05, 0.55, 0.95) .3s;
 }
 .board,.row{
   transition:ease-in-out .4s;
+}
+.d-flex{
+  transition:ease-in-out .4s;
+  
 }
 
 .task{
@@ -217,6 +240,16 @@ h3{
   text-align: center;
   box-shadow: 5px 5px 8px #0000000f;
   transition: .3s ease-in-out;
+  overflow: auto;
+  h3{
+    margin:0em 1em;
+    @extend .h3-font;
+    font-size:1em;
+  }
+  p{
+    @extend .h5-font;
+    font-size:.9em;
+  }
 }
 .row{
   margin:0,

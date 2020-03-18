@@ -1,5 +1,5 @@
 export default {
-    name: 'workshop',
+    name: 'EventName',
     columns: [{
             name: 'Por hacer',
             tasks: [{

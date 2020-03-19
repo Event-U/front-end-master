@@ -1,3 +1,7 @@
 applications: 
   - name: front-eventu
     memory: 128M
+    path: ./dist
+    buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+    env:
+    FORCE_HTTPS: true

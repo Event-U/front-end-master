@@ -16,12 +16,6 @@
                 />
                 <button 
                     type="button" 
-                    class="btn btn-complementary" 
-                >
-                    Enviar Cotización
-                </button>
-                <button 
-                    type="button" 
                     class="btn btn-danger" 
                     data-dismiss="modal"
                 >
@@ -69,7 +63,7 @@ export default {
         NeedQuotation,
     },
     props:{
-        quotation:Array,
+        quotation:[Array,Object],
         _id:String
     },
     computed: mapState({

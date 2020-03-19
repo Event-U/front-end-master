@@ -38,97 +38,16 @@ export default {
         return{
             addingNeed: false,
             name:'Cotización por necesidad',
-            needs:[
-                 {
-                _id:'12178327123718',
-                description:'Necesito comprar 3 lotes de cerveza, al tiempo y de preferencia de Grupo Modelo',
-                service:{
-                    name:'Cerveza (Mayoreo) 🍺',
-                    description:'Cerveza en mayoreo',
-                    measurmentUnit:'Litros',
-                    category:{
-                        name:'Bebidas'
-                    }
-                },
-                quotation:[{
-                    _id:'11111111',
-                    provider:{
-                        businessName: 'Birza'
-                    },
-                    price:1400,
-                    image:'https://www.specialevents.com/sites/specialevents.com/files/styles/article_featured_retina/public/2018_Rental_Trends_Bright_Zialena-1_1.jpg',
-                    state:3,
-                    date:'25 de Mayo',
-                    description:'Las mejores mesas de la ciudad'   
-                 }],
-                },
-                 {
-                _id:'34532323',
-                description:'Necesitamos tres mesas largas tipo banquete, para poder poner platillos. No incluir manteles ni accesorios',
-                service:{
-                    name:'Mesas Largas🍱',
-                    description:'Mesas tipo banquetes',
-                    measurmentUnit:'Mesas',
-                    category:{
-                        name:'Mobiliario'
-                    }
-                },
-                quotation:[],
-                },
-                 {
-                _id:'23903290329032',
-                description:'El evento será en un jardín, así que únicamente necesitamos sillas resistentes y que no importe si se manchan.',
-                service:{
-                    name:'Sillas de exterior 🪑',
-                    description:'Sillas que resistan el exterior',
-                    measurmentUnit:'Sillas',
-                    category:{
-                        name:'Mobiliario'
-                    }
-                },
-                quotation:[{
-                    _id:'11111111',
-                    provider:{
-                        businessName: 'Birza'
-                    },
-                    price:1400,
-                    image:'https://www.specialevents.com/sites/specialevents.com/files/styles/article_featured_retina/public/2018_Rental_Trends_Bright_Zialena-1_1.jpg',
-                    state:3,
-                    date:'25 de Mayo',
-                    description:'Las mejores mesas de la ciudad'   
-                 }],
-                },
-                 {
-                _id:'2390329032933032',
-                description:'El evento será en un jardín, así que únicamente necesitamos sillas resistentes y que no importe si se manchan.',
-                service:{
-                    name:'Sillas de exterior 🪑',
-                    description:'Sillas que resistan el exterior',
-                    measurmentUnit:'Sillas',
-                    category:{
-                        name:'Mobiliario'
-                    }
-                },
-                quotation:[{
-                    _id:'11111111',
-                    provider:{
-                        businessName: 'Birza'
-                    },
-                    price:1400,
-                    image:'https://www.specialevents.com/sites/specialevents.com/files/styles/article_featured_retina/public/2018_Rental_Trends_Bright_Zialena-1_1.jpg',
-                    state:3,
-                    date:'25 de Mayo',
-                    description:'Las mejores mesas de la ciudad'   
-                 }],
-                },
-                ]
         }
     },
     computed: mapState({
-        activeEvent:state=> state.event.activeEvent
+        activeEvent:state=> state.event.activeEvent,
+        needs:state=> state.need.needs
     }),
-    mounted () {
+    created () {
        this.$store.commit('change',this.name)
+       this.$store.dispatch('need/fetchNeeds',this.activeEvent._id)
+       this.$store.dispatch('service/fetchServices')
   },
   methods: {
     actionNewNeed(e){

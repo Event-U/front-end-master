@@ -10,8 +10,8 @@
       </div>
       <div class="row needs-row mt-3">
         <div
-            class="col-sm-4 mt-3 quotation-container animated fadeInDown"
-            v-for="(quotation,i) in quotations"
+            class="col-sm-5 mt-3 quotation-container animated fadeInDown"
+            v-for="(quotation,i) in activeNeed.quotation"
             :key="i"
         >
             <need-quotation
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import {mapState,mapGetters} from 'vuex';
 import NeedQuotation from '@/components/ui/NeedQuotation.vue'
 
 export default {
@@ -37,11 +37,14 @@ export default {
         }},
     mounted(){
         this.$store.commit('change',this.name)
-    }, computed: mapState({
+        this.$store.dispatch('quotation/fetchQuotation')
+    }, computed: {
+        ...mapGetters('quotation',['quotationsByNeedId']),
+        ...mapState({
         activeNeed:state=> state.event.activeNeed,
-        quotations:state=>state.quotation.quotations
+        needId:state=>state.quotation.needId
     })
-    ,
+    },
 }
 </script>
 

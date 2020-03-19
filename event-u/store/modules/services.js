@@ -3,13 +3,14 @@ import api from '@/lib/api'
 const state = {
     categories: [],
     services: [],
-    newService: {}
+    newService: {},
+    activeNeedService: {}
 }
 
 // getters
 const getters = {
-    servicesByCategoryId: state => name => {
-        return state.services.filter(service => service.category === name)
+    servicesByCategoryId: state => id => {
+        return state.services.filter(service => service.category._id === id)
     },
     categoryById: state => id => {
         return state.categories.find(category => category._id === id)
@@ -17,7 +18,12 @@ const getters = {
     categoryNameById: state => id => {
         const catObj = state.categories.find(category => category._id === id)
         return catObj.name
-    }
+    },
+    serviceNameById: state => id => {
+        const nate = state.services.find(service => service._id === id)
+        return nate.name
+    },
+
 }
 
 // actions
@@ -35,6 +41,10 @@ const actions = {
         const allCategories = await api.getCategorys()
         commit('SET_CATEGORIES', allCategories)
     },
+    async getNameService({ commit, state }, id) {
+        const serviceObject = state.services.find(service => service._id === id)
+        commit('SET_ACTIVE_NEED_SERVICE', serviceObject)
+    }
 }
 
 // mutations
@@ -45,6 +55,9 @@ const mutations = {
     SET_CATEGORIES(state, categories) {
         state.categories = categories
     },
+    SET_ACTIVE_NEED_SERVICE(state, service) {
+        state.activeNeedService = service
+    }
 
 }
 export default {

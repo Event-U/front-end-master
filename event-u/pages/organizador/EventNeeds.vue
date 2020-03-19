@@ -49,10 +49,9 @@ export default {
             addingNeed: false,
             name:'Necesidades evento',
          }
-    },
-        created () {
+    },created () {
            this.$store.commit('change',this.name),
-            this.$store.dispatch('need/fetchNeeds')
+            this.$store.dispatch('need/fetchNeeds',this.activeEvent._id)
       },
     computed: mapState({
         activeEvent:state=> state.event.activeEvent,
@@ -61,19 +60,8 @@ export default {
   methods: {
     actionNewNeed(e){
         this.addingNeed=true
-    },
-    newNeed(e) {
-        this.needs.push({
-            _id:e._id,
-            description:e.description,
-            service:{
-                name:e.serviceId,
-                category:{
-                    name:e.categoryId
-                }
-            },
-            quotation:[]
-        })
+    },newNeed() {
+        this.$store.dispatch('need/fetchNeeds')
     }
   }}
 

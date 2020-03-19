@@ -1,33 +1,66 @@
 import api from '@/lib/api'
 
 const state = {
-    quotations: []
+    quotations: [],
+    newQuotation: {},
+    quotationsId: [],
+    quotationsNeeds: [],
+    needId: ''
 }
 
 // getters
 const getters = {
-
+    quotationsByNeedId: state => id => {
+        return state.quotations.filter(quotation => quotation.need._id === id)
+    },
 }
 
 // actions
 const actions = {
-    async fetchQuotation({ commit }) {
-        const allQuotationObjects = []
-        const quotationObject = await api.getQuotations()
-        quotationObject.forEach(async quotation => {
-            const needObject = await api.getNeedById(quotation.need[0])
-            quotation.need[0] = needObject
-            allQuotationObjects.push(quotation)
-        });
-        commit('SET_QUOTATIONS', allQuotationObjects)
+    async fetchQuotation({ commit, state }) {
+        const quotationsObject = await api.getQuotations()
+        commit('SET_QUOTATIONS', quotationsObject)
     },
+    async postQuotation({ commit, rootState, state }, newQuotObj) {
+        commit('SET_QUOTATIONS', rootState.event.activeNeed.quotation)
+        const newQuotationObject = await api.createQuotation(newQuotObj)
+        commit('SET_NEW_QUOTATION', newQuotationObject)
+        commit('ADDING_NEW_QUOTATION', state.newQuotation)
+        state.quotations.forEach(quotation => {
+            commit('PUSH_QUOTATION_ID', quotation._id)
+        });
+        const needId = rootState.event.activeNeed._id
+        const quotationsId = state.quotationsId
+        const updatedNeed = await api.updateNeed(needId, quotationsId)
+        commit('CLEAN_QUOTATIONS_ID')
+    },
+
 }
 
 // mutations
 const mutations = {
     SET_QUOTATIONS(state, quotations) {
         state.quotations = quotations
+    },
+    SET_NEW_QUOTATION(state, quotation) {
+        state.newQuotation = quotation
+    },
+    ADDING_NEW_QUOTATION(state, quotation) {
+        state.quotations.push(quotation)
+    },
+    PUSH_QUOTATION_ID(state, quotation) {
+        state.quotationsId.push(quotation)
+    },
+    CLEAN_QUOTATIONS_ID(state) {
+        state.quotationsId = []
+    },
+    SET_NEED_QUOTATION(state, filteredQuotations) {
+        state.quotationsNeeds = filteredQuotations
+    },
+    SET_NEED_ID(state, needId) {
+        state.needId = needId
     }
+
 }
 export default {
     namespaced: true,

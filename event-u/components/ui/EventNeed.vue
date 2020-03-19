@@ -4,13 +4,15 @@
     @click="setActiveNeed"
 >
     <div 
-        class="need-icon animated 
+        class="
+                need-icon 
+                animated 
                 fadeInLeft"
     >
      <i class="fas fa-angle-right"/>
     </div>
     <div class="card-body">
-        <h5 class="card-title"></h5>
+        <h5 v-if="service" class="card-title">{{serviceNameById(service)}}</h5>
         <p class="card-text">{{description}}</p>
         <div 
             class="ctas-needs"
@@ -19,11 +21,13 @@
             <cta-organizers
                 v-if="this.$route.path==='/organizador/EventNeeds'"
                 :quotation="quotation"
+                 @click="setActiveNeed"
             />
             <cta-provider
                 :_id="_id"
                 :quotation="quotation"
                 v-else
+                 @click="setActiveNeed"
             />
         </div>
     </div>
@@ -33,6 +37,7 @@
 <script>
 import CtaOrganizers from '@/components/ui/utilities/CtaOrganizers.vue'
 import CtaProvider from '@/components/ui/utilities/CtaProvider.vue'
+import {mapState, mapGetters} from 'vuex'
 
 const stringDefault = {
   type: String,
@@ -44,21 +49,27 @@ export default {
     props: {
         _id:stringDefault,
         description:stringDefault,
-        service:Object,
+        service:String,
         quotation:Array
   },components:{
       CtaOrganizers,
       CtaProvider
   },
+  computed:{
+      ...mapGetters('service',['serviceNameById'])
+  },
   methods:{
       setActiveNeed(){
-          this.$store.commit('event/changeNeed', {
-              _id:this._id,
-              description:this.description,
-              service:this.service,
-              quotation:this.quotation
-          })
-      }
+        this.$store.dispatch('service/getNameService', this.service)
+        this.$store.commit('event/changeNeed', {
+            _id:this._id,
+            description:this.description,
+            service:this.service,
+            quotation:this.quotation,
+        //   serviceName:this.serviceNameById(this.service)
+        })
+        this.$store.commit('quotation/SET_NEED_ID', this._id)
+      },
     }
 }
 </script>

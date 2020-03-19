@@ -2,15 +2,7 @@ import api from '@/lib/api.js'
 
 const state = {
     activeEvent: {},
-    activeNeed: {
-        name: 'Irving',
-        description: '',
-        _id: '',
-        service: {
-            name: ''
-        },
-        quotation: []
-    },
+    activeNeed: {},
     newEventObject: {
         name: '',
         description: '',

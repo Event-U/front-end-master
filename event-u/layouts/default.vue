@@ -15,6 +15,9 @@ export default {
     components:{
         MenuBar,
         SideBar
+    },
+    mounted(){
+      
     }
 }
 </script>

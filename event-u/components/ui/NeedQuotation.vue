@@ -39,6 +39,7 @@ export default {
         state:Number,
         date:String,
         description:String,
+        quotation:{}
     },
     computed: {
         styles() {

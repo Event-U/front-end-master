@@ -17,7 +17,7 @@ const createStore = () => {
         state: {
             activePage: '',
             lastPage: '',
-            activeUser: 'Jejejeje'
+            activeUser: '5de34fe91e7f97289116ac25'
         },
         mutations: {
             change: (state, name) => {

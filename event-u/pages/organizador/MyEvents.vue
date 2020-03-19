@@ -37,6 +37,7 @@ export default {
     created() {
         this.$store.commit('change', this.name)
         this.$store.dispatch('event/fetchEvents')
+        this.$store.dispatch('service/fetchServices')
   },
   computed:mapState('event',['events'])
 }

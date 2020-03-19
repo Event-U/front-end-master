@@ -36,12 +36,12 @@
         <div class="input-group-prepend animated fadeInDown">
         <label class="input-group-text" for="inputGroupSelect01">Servicio</label>
         </div>
-        <select v-model="serviceId" class="custom-select" id="inputGroupSelect01">
+        <select v-model="service" class="custom-select" id="inputGroupSelect01">
         <option selected>Elige un servicio...</option>
         <option-input
-            v-for="service in servicesByCategoryId(categoryId)"
-            :key='service._id'
-            v-bind="service"
+            v-for="serviceOption in servicesByCategoryId(categoryId)"
+            :key='serviceOption._id'
+            v-bind="serviceOption"
         />
         </select>
     </div>
@@ -82,33 +82,32 @@ export default {
     },data(){
         return{
             categoryId:'',
-            serviceId:'',
+            service:'',
             description:''
         }
     },
     methods:{
-        async onSubmit(){
-        //  const needId= await api.createNeed({
-        //     category:this.categoryId,
-        //     service:this.serviceId,
-        //     description:this.description
-        // })
-        this.$store.commit('event/setNewNeeds', {
-            //   needId:needId._id
-            _id:'123444'
-          })
+    onSubmit:function(){
+        this.$store.dispatch('need/postNeedToEvent',{
+                    description:this.description,
+                    service:this.service,
+                    quotation:[]
+                }),
           this.$emit('newNeed', {
                 categoryId:this.categoryId,
-                serviceId:this.serviceId,
+                service:this.service,
                 description:this.description,
                 _id:'asdasdasas',
             })
             this.categoryId=''
             this.serviceId=''
             this.description=''
-        }, 
-      
-    },computed:{
+    } 
+    },created(){
+        this.$store.dispatch('service/fetchCategories'),
+        this.$store.dispatch('service/fetchServices')
+    },
+    computed:{ 
        ...mapGetters('service',['servicesByCategoryId']),
         ...mapState({
             categories: state=> state.service.categories,

@@ -1,7 +1,7 @@
 <template>
 <form>
     <h1>
-        {{activeNeed.service.name}}
+        <!-- {{serviceName.name}} -->
     </h1>
     <h3>
         {{activeNeed.description}}
@@ -23,37 +23,71 @@
     </div>
     <div class="form-group">
         <label for="validationTextarea">Descripción de tu cotización</label>
-        <textarea class="form-control" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+        <textarea 
+            class="form-control" 
+            id="validationTextarea" 
+            placeholder="Required example textarea" 
+            required
+            v-model="newQuotationObject.description"
+        />
     </div>
-    <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <div class="form-group">
+        <label for="quotation-image">Sube tu imagen</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="quotation-image" 
+            v-model="newQuotationObject.image"
+        >
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button 
+        class="btn btn-primary"
+        @click.prevent="postQuotation(newQuotationObject)"
+    >
+        Subir Cotización
+    </button>
 </form>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState,mapGetters} from 'vuex'
+import api from '@/lib/api.js'
 
 export default {
     name:'NewQuotationForm', 
     data(){
         return{
             newQuotationObject:{
-                provider:'',
                 price:0,
                 description:'',
-                images:'',
+                image:'',
             }
         }
     },props:{
         userid:String,
         need:Object
     },
-    computed: mapState({
-        activeNeed:state=> state.event.activeNeed
-    })
+    mounted(){
+        this.$store.dispatch('service/getNameService', this.service)
+    },
+    computed: {
+        ...mapState({
+        activeNeed:state=> state.event.activeNeed,
+        serviceName:state=> state.service.activeNeedService,
+        activeUser:state=>state.activeUser
+         })
+    },
+    methods:{
+        postQuotation({price,description,image}){
+            this.$store.dispatch('quotation/postQuotation',{
+                provider:this.activeUser,
+                price:price,
+                description:description,
+                image:image,
+                need:this.activeNeed._id
+            })
+        }
+    }
 }
 </script>
 

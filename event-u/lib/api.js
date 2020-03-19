@@ -1,4 +1,4 @@
-const UrlBase = 'http://event-uback.mybluemix.net'
+const UrlBase = 'https://event-uback.mybluemix.net'
 
 export default {
     // 
@@ -63,7 +63,7 @@ export default {
 
         if (!response.ok) throw new Error('Ocurrió un error al crear las cotizaciones')
 
-        return jsonBody
+        return jsonBody.data.quotation
     },
 
     async getQuotationById(id) {
@@ -162,9 +162,10 @@ export default {
 
         return jsonBody
     },
-    async updateEvent(id, need) {
+    async updateEvent(id, needs) {
         // console.log(event)
-        const bodyUpdateEvent = `needs: [${need}]`
+        const bodyUpdateEvent = { needs: needs }
+        console.log(JSON.stringify(bodyUpdateEvent))
         const response = await fetch(`${UrlBase}/event/${id}`, {
             method: 'PATCH',
             headers: {
@@ -211,9 +212,9 @@ export default {
 
         const jsonBody = await response.json()
 
-        if (!response.ok) throw new Error('Ocurrió un error al obtener los usuarios')
+        if (!response.ok) throw new Error('Ocurrió un error al crear la necesidad')
 
-        return jsonBody
+        return jsonBody.data.Need
     },
 
     async getNeedById(id) {
@@ -225,6 +226,23 @@ export default {
         if (!response.ok) throw new Error('Ocurrió un error al obtener la necesidad')
 
         return data.Need
+    },
+    async updateNeed(id, quotations) {
+        // console.log(event)
+        const bodyUpdateEvent = { quotation: quotations }
+        console.log(JSON.stringify(bodyUpdateEvent))
+        const response = await fetch(`${UrlBase}/need/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bodyUpdateEvent)
+        })
+        const { data } = await response.json()
+            // console.log(jsonBody)
+        if (!response.ok) throw new Error('Ocurrió un error al obtener los usuarios')
+
+        return data.event
     },
     // catServices
     async getCategorys() {

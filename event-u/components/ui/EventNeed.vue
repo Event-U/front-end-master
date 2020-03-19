@@ -19,7 +19,7 @@
             v-if="this.$route.path!=='/organizador/NewEvent'"
         >
             <cta-organizers
-                v-if="this.$route.path==='/organizador/EventNeeds'"
+                v-if="this.$route.path==='/organizador/EventNeeds'&&this.$route.path!=='/organizador/newevent'"
                 :quotation="quotation"
                  @click="setActiveNeed"
             />

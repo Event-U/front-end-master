@@ -3,15 +3,9 @@ import api from '@/lib/api.js'
 const state = {
     activeEvent: {},
     activeNeed: {},
-    newEventObject: {
-        name: '',
-        description: '',
-        date: '',
-        addreses: '',
-        image: '',
-        needs: []
-    },
-    events: []
+    newEventObject: {},
+    events: [],
+    newEvent: {}
 }
 
 // getters
@@ -25,8 +19,9 @@ const actions = {
         const allEvents = await api.getEvent()
         commit('SET_EVENTS', allEvents)
     },
-    async postEvent({ commit }) {
+    async postEvent({ commit }, newEventObject) {
         const newEvent = await api.createEvent(newEventObject)
+        commit('SET_NEW_EVENT', newEvent)
     }
 }
 
@@ -49,6 +44,9 @@ const mutations = {
     },
     SET_EVENTS(state, eventss) {
         state.events = eventss
+    },
+    SET_NEW_EVENT(state, event) {
+        state.newEvent = event
     }
 }
 export default {

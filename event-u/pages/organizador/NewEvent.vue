@@ -15,7 +15,8 @@
             <event-card
                 class="event-card"
                 v-bind="eventObject"
-                style="max-width:70%; 
+                style="max-width:50%;
+                max-height:50%; 
                     justify-content:center"
             />
           </div>
@@ -81,7 +82,7 @@
           <button 
             v-if='currentStepNumber>=4 && formInProgress'
             class="btn btn-iconed animated wobble"
-            @click="submitEvent"
+            @click="submitEvent(eventObject)"
             >
               Subir evento
               <i class="fas fa-hand-point-up"></i>
@@ -132,7 +133,6 @@ data(){
             date:'',
             addreses:'',
             image:'',
-            organizator:'',
             needs:[],
          },
         steps:[
@@ -151,6 +151,9 @@ data(){
         this.$store.commit('change',this.name)
     }, 
     computed:{
+        ...mapState({
+            activeUser:state=>state.activeUser
+        }),
         progress(){
             return this.currentStepNumber/this.length*100
         },
@@ -162,7 +165,7 @@ data(){
         },
         formInProgress(){
             return this.currentStepNumber<= this.length
-        }
+        },
     },
     methods:{
         update(e){
@@ -183,8 +186,7 @@ data(){
                 _id:e._id,
                 category:e.categoryId,
                 description:e.description,
-                service:{
-                    name:e.serviceId},
+                service:e.service,
                 quotation:[],
                 isNew:true
             })
@@ -192,12 +194,12 @@ data(){
         editEvent(){
             this.currentStepNumber=0
         },
-        submitEvent(){
+        submitEvent(eventObject){
             this.currentStepNumber++
-            this.asyncState='pending'
-            setTimeout(()=>{
-                this.asyncState='success'
-            },3000)
+            this.$store.dispatch('event/postEvent',{
+                organizator:this.activeUser,
+                ...eventObject
+            })
         }
     }
 }

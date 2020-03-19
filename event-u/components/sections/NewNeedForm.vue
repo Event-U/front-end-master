@@ -60,12 +60,21 @@
 </div>
     <div class="hover-interaction animated bounce delay-3s">
         <button
+        v-if="this.$route.path==='/organizador/EventNeeds'"
         class="btn btn-iconed mt-3" 
         role="button"
             @click.prevent="onSubmit"
         >
             <i class="fas fa-angle-right"></i> <span class="spn">Agregar necesidad</span>
-    </button>
+        </button>
+        <button
+        v-if="this.$route.path==='/organizador/newevent'"
+        class="btn btn-iconed mt-3" 
+        role="button"
+            @click.prevent="onSubmitNew"
+        >
+            <i class="fas fa-angle-right"></i> <span class="spn">Agregar nueva necesidad</span>
+        </button>
     </div>
 </form>
 </template>
@@ -93,13 +102,24 @@ export default {
                     service:this.service,
                     quotation:[]
                 }),
-          this.$emit('newNeed', {
+         
+            this.categoryId=''
+            this.serviceId=''
+            this.description=''
+    },
+    async onSubmitNew(){
+       await this.$store.dispatch('need/postNeed',{
+            description:this.description,
+            service:this.service,
+            quotation:[]
+        }),
+         this.$emit('newNeed', {
                 categoryId:this.categoryId,
                 service:this.service,
                 description:this.description,
-                _id:'asdasdasas',
+                _id:this.$store.state.need.newNeed._id,
             })
-            this.categoryId=''
+             this.categoryId=''
             this.serviceId=''
             this.description=''
     } 

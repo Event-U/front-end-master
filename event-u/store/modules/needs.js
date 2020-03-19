@@ -33,6 +33,11 @@ const actions = {
         const updatedEvent = await api.updateEvent(eventId, needsIds)
         commit('CLEAN_NEED_ID_ARRAY')
     },
+    async postNeed({ commit }, need) {
+        const newNeedObject = await api.createNeed(need)
+        commit('SET_NEW_NEED', newNeedObject)
+        return 'ready'
+    },
 
 }
 

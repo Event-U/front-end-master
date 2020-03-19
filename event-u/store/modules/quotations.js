@@ -5,7 +5,8 @@ const state = {
     newQuotation: {},
     quotationsId: [],
     quotationsNeeds: [],
-    needId: ''
+    needId: '',
+    updatedQuotation: {}
 }
 
 // getters
@@ -34,6 +35,10 @@ const actions = {
         const updatedNeed = await api.updateNeed(needId, quotationsId)
         commit('CLEAN_QUOTATIONS_ID')
     },
+    async updateQuotation({ commit }, { status, id }) {
+        const updatedQuotation = await api.updateQuotation(id, `${status}`)
+        commit('SET_UPDATED_QUOTATION', updatedQuotation)
+    }
 
 }
 
@@ -59,6 +64,9 @@ const mutations = {
     },
     SET_NEED_ID(state, needId) {
         state.needId = needId
+    },
+    SET_UPDATED_QUOTATION(state, updatedQuotation) {
+        state.updatedQuotation = updatedQuotation
     }
 
 }

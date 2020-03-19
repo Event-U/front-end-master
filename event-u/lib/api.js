@@ -96,6 +96,23 @@ export default {
 
         return data.quotation
     },
+    async updateQuotation(id, newStatus) {
+        // console.log(event)
+        const bodyUpdateEvent = { status: newStatus }
+        console.log(JSON.stringify(bodyUpdateEvent), id)
+        const response = await fetch(`${UrlBase}/quotation/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bodyUpdateEvent)
+        })
+        const { data } = await response.json()
+            // console.log(jsonBody)
+        if (!response.ok) throw new Error('Ocurrió un error al obtener los usuarios')
+
+        return data.quotation
+    },
     // users
     async getUsers() {
         const response = await fetch(`${UrlBase}/users/`)

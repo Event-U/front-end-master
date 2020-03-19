@@ -26,7 +26,7 @@
     </div>
     <div class="card-footer text-left">
         <small class="category">
-            {{categoryNameById(category)}}
+            {{category.name}}
         </small>
     </div>
 </div>
@@ -48,11 +48,10 @@ export default {
         measurementUnit:String,
         unitPrice:Number,
         image:String,
-        category:String,
+        category:Object,
         number:Number
     },
     computed:{
-       ...mapGetters('service',['categoryNameById']),
     }
 }
 </script>

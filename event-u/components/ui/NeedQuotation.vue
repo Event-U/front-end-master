@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-6">
       <div class="card-body">
-        <h5 class="card-title">{{provider.businessName}}</h5>
+        <h5 class="card-title">{{provider.bussinesName}}</h5>
         <p class="card-text">{{description}}</p>
         <h5 class="card-text"><small class="text-muted">{{date}}</small></h5>
       </div>
@@ -19,9 +19,27 @@
         v-if="this.$route.path!=='/proveedor/EventQuotations'"
     >
             <div class=" quotation-actions d-flex flex-column justify-content-around text-center" >
-                <i class="fas fa-star save" data-toggle="tooltip" data-placement="right" title="Guardar cotización"></i>
-                <i class="fas fa-check aware" data-toggle="tooltip" data-placement="right" title="Adjudicar cotización"></i>
-                <i class="fas fa-times delete" data-toggle="tooltip" data-placement="right" title="Deshechar cotización"></i>
+                <i 
+                    class="fas fa-star save" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    title="Guardar cotización"
+                    @click="updateQuotationState(0,_id)"
+                />
+                <i 
+                    class="fas fa-check aware" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    title="Adjudicar cotización"
+                    @click="updateQuotationState(1,_id)"
+                />
+                <i 
+                    class="fas fa-times delete" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    title="Deshechar cotización"
+                    @click="updateQuotationState(2,_id)"
+                />
             </div>
     </div>
   </div>
@@ -49,11 +67,23 @@ export default {
                 'background-size': 'cover',
             }
         }
+    },
+    methods:{
+        updateQuotationState(newState,id){
+            console.log(id)
+            this.$store.dispatch('quotation/updateQuotation',{
+                status:newState,
+                id:id
+                })
+        }
     }
 }
 </script>
 
 <style lang='scss' scoped>
+i:hover{
+    cursor:pointer;
+}
 p{
     @extend .body-font;
 }

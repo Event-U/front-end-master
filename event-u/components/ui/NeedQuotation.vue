@@ -24,21 +24,21 @@
                     data-toggle="tooltip" 
                     data-placement="right" 
                     title="Guardar cotización"
-                    @click="updateQuotationState(0,_id)"
+                    @click="updateQuotationState(1,_id)"
                 />
                 <i 
                     class="fas fa-check aware" 
                     data-toggle="tooltip" 
                     data-placement="right" 
                     title="Adjudicar cotización"
-                    @click="updateQuotationState(1,_id)"
+                    @click="updateQuotationState(2,_id)"
                 />
                 <i 
                     class="fas fa-times delete" 
                     data-toggle="tooltip" 
                     data-placement="right" 
                     title="Deshechar cotización"
-                    @click="updateQuotationState(2,_id)"
+                    @click="updateQuotationState(3,_id)"
                 />
             </div>
     </div>

@@ -48,10 +48,10 @@
         </div>
     </td>   
     <td class="state-icon">
-        <i v-if="status===3 && this.$route.path==='/organizador/allquotations'" class="fas fa-star"></i>
-        <button v-if="status===3 && this.$route.path!=='/organizador/allquotations'" type="button" class="btn btn-primary" :data-target="`#exampleModal`+_id" data-toggle="modal" >Aceptada</button>
-        <button v-if="status=== 2 && this.$route.path!=='/organizador/allquotations'" type="button" class="btn btn-secondary" disabled>Pendiente</button>
-        <button v-if="status===1 && this.$route.path!=='/organizador/allquotations'" type="button" class="btn btn-danger" disabled>Denegada</button>
+        <i v-if="status===1 && this.$route.path==='/organizador/allquotations'" class="fas fa-star"></i>
+        <button v-if="status===2 && this.$route.path!=='/organizador/allquotations'" type="button" class="btn btn-primary" :data-target="`#exampleModal`+_id" data-toggle="modal" >Aceptada</button>
+        <button v-if="status=== 1 && this.$route.path!=='/organizador/allquotations'" type="button" class="btn btn-secondary" disabled>Pendiente</button>
+        <button v-if="status===3 && this.$route.path!=='/organizador/allquotations'" type="button" class="btn btn-danger" disabled>Denegada</button>
     </td>
 </tr>
 </template>

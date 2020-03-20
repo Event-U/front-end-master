@@ -1,7 +1,8 @@
 applications: 
   - name: front-eventu
-    memory: 512M
+    memory: 1024M
     path: ./dist
     buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
     env:
     FORCE_HTTPS: true
+    timeout: 300

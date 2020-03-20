@@ -32,6 +32,7 @@
             :key="service._id"
         >
                 <service-card
+                    class="border-0 s-c"
                     v-bind="service"
                 />
         </div>
@@ -65,6 +66,15 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.s-c{
+    border-radius: 8px!important;
+    box-shadow: 4px 4px 8px #0000002a;
+    transition: .3s ease-in-out;
+}
+.s-c:hover{
+    transition:cubic-bezier(0.445, 0.05, 0.55, 0.95) .3s;
+    box-shadow: 4px 4px 3px #fff70057;
+}
 .row{
     margin:0;
 }

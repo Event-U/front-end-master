@@ -1,12 +1,6 @@
 <template>
   <div>
-    <h1>
-      {{activeEvent.name}}
-    </h1>
-    <h4>
-      {{activeEvent.description}}
-    </h4>
-      <quotation-list/>
+    <quotation-list/>
   </div>
 </template>
 
@@ -30,6 +24,7 @@ export default {
     }),
     mounted () {
        this.$store.commit('change',this.name)
+       this.$store.dispatch('quotation/fetchQuotation')
   },
 }
 </script>

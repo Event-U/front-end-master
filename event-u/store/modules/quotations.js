@@ -18,7 +18,7 @@ const getters = {
 
 // actions
 const actions = {
-    async fetchQuotation({ commit, state }) {
+    async fetchQuotation({ commit }) {
         const quotationsObject = await api.getQuotations()
         commit('SET_QUOTATIONS', quotationsObject)
     },

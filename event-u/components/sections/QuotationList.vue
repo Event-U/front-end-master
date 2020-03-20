@@ -3,10 +3,10 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">
-          {{this.$route.path==='/organizador/allquotations' ? 'Evento' : 'Categoría'}}
+          {{this.$route.path==='/organizador/allquotations' ? 'Necesidad' : 'Categoría'}}
       </th>
       <th scope="col">
-        {{this.$route.path==='/organizador/allquotations' ? 'Necesidad' : 'Servicio'}}
+        {{this.$route.path==='/organizador/allquotations' ? 'Cotización' : 'Servicio'}}
       </th>
       <th scope="col">
           {{this.$route.path==='/organizador/allquotations' ? 'Proveedor' : 'Descripción'}}

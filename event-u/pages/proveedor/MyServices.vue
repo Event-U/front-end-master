@@ -2,7 +2,7 @@
 <div class="mt-3">
     <div class="mt-3 mb-3 cta-new-service d-flex justify-content-center">
         <button 
-            class="btn btn-iconed"
+            class="btn btn-iconed cta-service"
             data-toggle="modal" 
             data-target="#ServiceForm"
         >
@@ -16,13 +16,7 @@
                 />
                 <button 
                     type="button" 
-                    class="btn btn-complementary" 
-                >
-                Crear servicio
-                </button>
-                <button 
-                    type="button" 
-                    class="btn btn-danger" 
+                    class="btn btn-danger mb-3" 
                     data-dismiss="modal"
                 >
                     Cerrar formulario
@@ -74,8 +68,15 @@ export default {
 .row{
     margin:0;
 }
-.btn{
+.cta-service{
     @extend .btn-eventu;
+    font-weight: 400;
+    font-size:1.2em;
+    text-align:center;
+    align-self:center;
+    transition:.3s ease-in-out;
+}
+.btn-danger{
     @extend .h2-font;
     font-weight: 400;
     font-size:1.2em;
@@ -85,7 +86,7 @@ export default {
 }
 .btn:hover{
     box-shadow:5px 3px 11px #00000059;
-    transition:.3s ease-in;
+    transition:.4s ease-in;
     font-size:1.3em;
 }
 </style>

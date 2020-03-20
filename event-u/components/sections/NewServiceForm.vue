@@ -1,6 +1,10 @@
 <template>
-<form class="m-3">
-    <h1>Crea un nuevo servicio</h1>
+<form class="m-3 text-center">
+    <h1
+        class="text-center"
+    >
+        Crea un nuevo servicio
+    </h1>
     <div class="form-group">
         <label for="newServiceName">Nuevo servicio</label>
         <input 
@@ -15,7 +19,7 @@
         <select
             v-model="category"
             class="custom-select" 
-            id="inputGroupSelect01"
+            id="inputGroupSelect0"
         >
             <option selected>Elige una categoría...</option>
                 <option-input
@@ -68,14 +72,12 @@
             v-model="description"
         />
     </div>
-    <div class="form-group form-check">
-    </div>
     <button 
         type="submit" 
         class="btn btn-primary"
         @click="postNewService"
     >
-        Submit
+        Subir servicio
     </button>
 </form>
 </template>
@@ -126,6 +128,30 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss' scoped>
+label{
+    @extend .h4-font;
+}
+.btn{
+    @extend .h2-font;
+    background-color: $complementary;
+    font-weight: 400;
+    font-size:1.2em;
+    text-align:center;
+    align-self:center;
+    transition:.4s ease-in-out;
+}
+.btn:hover{
+    box-shadow:5px 3px 11px #00000059;
+    transition:.3s ease-in;
+    font-size:1.3em;
+}
+h1{
+    @extend .h1-font;
 
+}
+.modal-content{
+    border-radius: 8px;
+    box-shadow: 7px 7px 7px 0px #ffffff4d;
+}
 </style>

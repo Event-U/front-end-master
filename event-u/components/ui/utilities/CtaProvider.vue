@@ -1,7 +1,7 @@
 <template>
 <div class="cta-proveedores">
     <a  
-        class="complementary-label"
+        class="complementary-label cta-pr"
         v-if="quotation.length===0"
         data-toggle="modal" 
         :data-target="`#QuotationForm${_id}`"
@@ -10,7 +10,7 @@
     </a>
     <div class="modal  fade" :id="`QuotationForm${_id}`" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="ariaHidden">
         <div class="modal-dialog" role="document">
-            <div class="modal-content m-3 p3">
+            <div class="modal-content p-3">
                 <new-quotation-form
                     v-if="activeNeed"
                 />
@@ -25,7 +25,7 @@
         </div>
     </div>
     <a  
-        class="green-label"
+        class="green-label cta-pr"
         v-if="quotation.length!==0"
         data-toggle="modal" 
         :data-target="`#QuotationDescription${_id}`"
@@ -40,10 +40,10 @@
                 />
                 <button 
                     type="button" 
-                    class="btn btn-secondary" 
+                    class="btn btn-danger" 
                     data-dismiss="modal"
                 >
-                    Cerrar cotización
+                    Cerrar ventana
                 </button>
             </div>
         </div>
@@ -73,7 +73,12 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-
+.cta-pr{
+    cursor:pointer;
+}
+.btn-danger{
+    background-color:$danger;
+}
 .green-label{
   color:green;  
 }
@@ -97,6 +102,10 @@ export default {
 }
 .need-icon{
     padding-right: 25px;
+}
+.modal-content{
+    border-radius: 8px;
+    box-shadow: 7px 7px 7px 0px #ffffff4d;
 }
 .card-body{
     padding:0;

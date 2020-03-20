@@ -1,6 +1,6 @@
 applications: 
   - name: front-eventu
-    memory: 128M
+    memory: 512M
     path: ./dist
     buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
     env:

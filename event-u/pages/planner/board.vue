@@ -26,6 +26,7 @@
     <div 
       class="task-bg"
       v-if="isTaskOpen"
+      @click.self="close"
     >
       <!-- @click="close" -->
       <nuxt-child
@@ -54,7 +55,7 @@ export default {
   },computed:{
     ...mapState('planner',['board']),
     isTaskOpen(){
-      return this.$route.name==="planner-organizador-id"
+      return this.$route.name==="planner-board-id"
     }
   }, methods:{
     createColumn(){

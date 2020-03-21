@@ -38,7 +38,7 @@ export default {
         }
     },methods:{
         close(){
-            this.$router.push({name:'planner-organizador'})
+            this.$router.push({name:'planner-board'})
          },
          updateTask(e,key){
              this.$store.commit('planner/UPDATE_TASK',{

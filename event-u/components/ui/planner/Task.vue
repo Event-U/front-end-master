@@ -37,7 +37,7 @@ export default {
     methods:{
     goToTask(task){
       this.$router.push({
-          name:"planner-organizador-id", 
+          name:"planner-board-id", 
           params:{id:task.id}
         })
     },

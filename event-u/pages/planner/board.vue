@@ -54,7 +54,7 @@ export default {
   },computed:{
     ...mapState('planner',['board']),
     isTaskOpen(){
-      return this.$route.name==="planner-board-id"
+      return this.$route.name==="planner-board-task-id"
     }
   }, methods:{
     createColumn(){

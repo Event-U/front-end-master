@@ -2,11 +2,9 @@
     <FullCalendar 
         defaultView="dayGridMonth" 
         :plugins="calendarPlugins" 
-        :weekends="false"
-        :events="[
-            { title: 'Event', date: '2019-04-01' },
-            { title: 'event 2', date: '2019-04-02' }
-        ]"
+        :config='config'
+        :locale='config.locale'
+        :weekends="true"
     />
 </template>
 
@@ -17,10 +15,15 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 export default {
     components: {
         FullCalendar
+    },props:{
+        events:[]
     },
     data() {
         return {
-            calendarPlugins: [ dayGridPlugin ]
+            calendarPlugins: [ dayGridPlugin ],
+            config: {
+                locale: 'es-us',
+            },
         }
     }
 }

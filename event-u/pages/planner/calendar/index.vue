@@ -1,7 +1,10 @@
 <template>
-<div>
-    <full-calendar
-    />
+<div class='container-fluid'>
+    <div class="row justify-content-around">
+        <div class="col-md-9">
+            <full-calendar/>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -20,5 +23,10 @@ export default {
 </script>
 
 <style lang='scss'>
-
+.container-fluid{
+    margin:0!important;
+}
+.calendar{
+    max-width:50%;
+}
 </style>

@@ -4,18 +4,7 @@
     <div class="form-row mt-3">
         <div class="form-grop col-md-4 animated fadeInRight">
             <label for="eventDate">Fecha de tu evento</label>
-            <datetime 
-                v-model="date" 
-                @input="setSpecificEventInfo"
-                type='datetime'
-            >
-                <template slot="button-cancel">
-                    Cancelar
-                </template>
-                <template slot="button-confirm" class=" animated fadeIn">
-                    Confirmar
-                </template>
-            </datetime>
+            <input type="text" v-model="date">
         </div>
         <div class="form-grop col-md-4 animated fadeInRight">
             <label  for="addressEvent">
@@ -49,14 +38,8 @@
 </template>
 
 <script>
-import { Datetime } from 'vue-datetime'
-import 'vue-datetime/dist/vue-datetime.css'
-
 export default {
     name:'EventSpecificInfo',
-    components:{
-        Datetime
-    },
     data(){
         return{
             date:null,

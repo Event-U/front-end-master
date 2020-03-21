@@ -57,4 +57,6 @@ module.exports = {
             './style/_variables.scss'
         ]
     },
+    plugins: [{ src: '~/plugins/full-calendar', ssr: false }],
+
 }

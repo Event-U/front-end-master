@@ -1,6 +1,11 @@
 <template>
   <div>
-      
+      <button>
+        Go to Board
+      </button>
+      <button>
+        Go to calendar
+      </button>
   </div>
 </template>
 

@@ -26,7 +26,6 @@
     <div 
       class="task-bg"
       v-if="isTaskOpen"
-      @click.self="close"
     >
       <!-- @click="close" -->
       <nuxt-child

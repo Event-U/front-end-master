@@ -14,11 +14,10 @@ export default {
         }
     },
     methods: {
-        moveTaskOrColumn(e, toTasks, toColumnIndex, toTaskIndex) {
+        moveTaskOrColumn(e, toTasks, toColumnIndex) {
             const type = e.dataTransfer.getData('type')
-
             if (type === 'task') {
-                this.moveTask(e, toTasks, toTaskIndex !== undefined ? toTaskIndex : toTasks.length)
+                this.moveTask(e, toTasks)
             } else {
                 this.moveColumn(e, toColumnIndex)
             }
@@ -27,8 +26,7 @@ export default {
             const fromColumnIndex = e.dataTransfer.getData('from-column-index')
             const fromTasks = this.board.columns[fromColumnIndex].tasks
             const fromTaskIndex = e.dataTransfer.getData('from-task-index')
-
-            this.$store.commit('MOVE_TASK', {
+            this.$store.commit('planner/MOVE_TASK', {
                 fromTasks,
                 fromTaskIndex,
                 toTasks,
@@ -37,11 +35,10 @@ export default {
         },
         moveColumn(e, toColumnIndex) {
             const fromColumnIndex = e.dataTransfer.getData('from-column-index')
-
-            this.$store.commit('MOVE_COLUMN', {
+            this.$store.commit('planner/MOVE_COLUMN', {
                 fromColumnIndex,
                 toColumnIndex
             })
-        }
+        },
     }
 }

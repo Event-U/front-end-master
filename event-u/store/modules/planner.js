@@ -5,13 +5,7 @@ import defaultBoard from '@/lib/default-board'
 const state = {
     board: defaultBoard,
     changeBoard: {},
-    activeTask: {
-        name: 'Ejemplooo',
-        description: 'Éste es un ejemplo',
-        column: {
-            name: 'Por hacer'
-        }
-    },
+    activeTask: {}
 }
 
 const getters = {

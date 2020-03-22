@@ -1,5 +1,6 @@
 import api from '@/lib/api.js'
 import event from '@/store/modules/events.js'
+const urlBase = 'https://event-uback.mybluemix.net'
 
 const state = {
     needs: [],
@@ -33,8 +34,9 @@ const actions = {
         const updatedEvent = await api.updateEvent(eventId, needsIds)
         commit('CLEAN_NEED_ID_ARRAY')
     },
-    async postNeed({ commit }, need) {
+    async postNeed({ commit, dispatch }, need) {
         const newNeedObject = await api.createNeed(need)
+        dispatch('task/createTaskFromNeed', newNeedObject, { root: true })
         commit('SET_NEW_NEED', newNeedObject)
         return 'ready'
     },

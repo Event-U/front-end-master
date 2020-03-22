@@ -177,7 +177,7 @@ export default {
             // console.log(jsonBody)
         if (!response.ok) throw new Error('Ocurrió un error al obtener los usuarios')
 
-        return jsonBody
+        return jsonBody.data.event
     },
     async updateEvent(id, needs) {
         // console.log(event)

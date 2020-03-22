@@ -4,6 +4,9 @@ import quotations from './modules/quotations'
 import services from './modules/services'
 import needs from './modules/needs'
 import planner from './modules/planner'
+import board from './modules/board'
+import task from './modules/task'
+import columns from './modules/columns'
 
 const createStore = () => {
     return new Vuex.Store({
@@ -12,7 +15,10 @@ const createStore = () => {
             quotation: quotations,
             service: services,
             need: needs,
-            planner: planner
+            planner: planner,
+            board: board,
+            task: task,
+            columns: columns,
         },
         state: {
             activePage: '',

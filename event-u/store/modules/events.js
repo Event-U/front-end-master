@@ -19,8 +19,9 @@ const actions = {
         const allEvents = await api.getEvent()
         commit('SET_EVENTS', allEvents)
     },
-    async postEvent({ commit }, newEventObject) {
+    async postEvent({ commit, dispatch }, newEventObject) {
         const newEvent = await api.createEvent(newEventObject)
+        dispatch('board/createBoard', newEvent, { root: true })
         commit('SET_NEW_EVENT', newEvent)
     }
 }

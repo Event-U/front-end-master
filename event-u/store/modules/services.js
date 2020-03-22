@@ -28,10 +28,11 @@ const getters = {
 
 // actions
 const actions = {
-    async postService(state, service) {
+    async postService({ dispatch, commit }, service) {
         const newService = await api.createServices(service)
-        state.newService = newService
-
+        await console.log(newService)
+        dispatch('board/createServiceBoard', newService, { root: true })
+        commit('SET_NEW_SERVICE', newService)
     },
     async fetchServices({ commit }) {
         const allServices = await api.getServices()
@@ -57,6 +58,9 @@ const mutations = {
     },
     SET_ACTIVE_NEED_SERVICE(state, service) {
         state.activeNeedService = service
+    },
+    SET_NEW_SERVICE(state, newService) {
+        state.newService = newService
     }
 
 }

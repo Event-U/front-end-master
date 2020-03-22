@@ -75,7 +75,7 @@
     <button 
         type="submit" 
         class="btn btn-primary"
-        @click="postNewService"
+        @click.prevent="postNewService"
     >
         Subir servicio
     </button>

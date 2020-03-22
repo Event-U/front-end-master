@@ -27,7 +27,7 @@ export default {
 
         if (!response.ok) throw new Error('Ocurrió un error al crear los servicios')
 
-        return jsonBody.data
+        return jsonBody.service
     },
     async getServiceById(id) {
         const response = await fetch(`${UrlBase}/services/${id}`)

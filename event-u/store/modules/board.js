@@ -6,7 +6,8 @@ const state = {
     newBoard: {},
     activeBoard: {},
     tasksIds: [],
-    columnIds: []
+    columnIds: [],
+    newServiceBoard: []
 }
 
 // getters
@@ -26,7 +27,18 @@ const actions = {
         })
 
         commit('SET_NEW_EVENT_BOARD', newBoard.data.data.board)
+        commit('columns/CLEAN_COLUMNS_ID', { root: true })
         return 'ready'
+    },
+    async createServiceBoard({ commit, rootState, dispatch }, newService) {
+        await dispatch('columns/createDefaultServiceColumns', newService, { root: true })
+        const newServiceBoard = await axios.post(`${urlBase}/board`, {
+            service: newService._id,
+            columns: rootState.columns.newBoardDefaultColumns,
+            event: null
+        })
+        commit('SET_NEW_EVENT_BOARD', newServiceBoard.data.data.board)
+        commit('columns/CLEAN_COLUMNS_ID', newServiceBoard, { root: true })
     }
 }
 
@@ -37,6 +49,9 @@ const mutations = {
     },
     PUSH_COLUMN_ID(state, columnId) {
         state.columnIds.push(columnId)
+    },
+    SET_NEW_SERVICE_BOARD(state, newServiceBoard) {
+        state.newServiceBoard = newServiceBoard
     }
 }
 export default {

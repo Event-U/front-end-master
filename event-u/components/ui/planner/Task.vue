@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {mapMutations,mapState} from 'vuex'
+import {mapMutations,mapState,mapActions} from 'vuex'
 import plannerMixin from '@/mixins/planner'
 
 export default {
@@ -36,9 +36,10 @@ export default {
     mixins:[plannerMixin],
     methods:{
     goToTask(task){
+      this.$store.dispatch('task/setActiveTask',task)
       this.$router.push({
-          name:"planner-board-task-id", 
-          params:{id:task.id}
+          name:"planner-board-event-task-id", 
+          params:{id:task._id}
         })
     },
     pickTask(e,$taskIndex,fromColumnIndex){

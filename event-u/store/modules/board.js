@@ -7,12 +7,15 @@ const state = {
     activeBoard: {},
     tasksIds: [],
     columnIds: [],
-    newServiceBoard: []
+    newServiceBoard: [],
+    allBoards: []
 }
 
 // getters
 const getters = {
-
+    getEventBoard: state => id => {
+        return state.allBoards.find(board => board.event ? board.event._id === id : console.log(board))
+    },
 }
 
 // actions
@@ -39,6 +42,13 @@ const actions = {
         })
         commit('SET_NEW_EVENT_BOARD', newServiceBoard.data.data.board)
         commit('columns/CLEAN_COLUMNS_ID', newServiceBoard, { root: true })
+    },
+    async getEventBoard({ commit, getters }, activeEventId) {
+        const allBoards = await axios.get(`${urlBase}/board`)
+        commit('SET_FETCH_BOARDS', allBoards.data.data.board)
+        console.log(activeEventId)
+        const eventBoard = await getters.getEventBoard(activeEventId)
+        commit('SET_ACTIVE_BOARD', eventBoard)
     }
 }
 
@@ -52,6 +62,18 @@ const mutations = {
     },
     SET_NEW_SERVICE_BOARD(state, newServiceBoard) {
         state.newServiceBoard = newServiceBoard
+    },
+    SET_FETCH_BOARDS(state, boards) {
+        state.allBoards = boards
+    },
+    SET_ACTIVE_BOARD(state, board) {
+        state.activeBoard = board
+    },
+    PUSH_NEW_COLUMN(state, newColumn) {
+        state.activeBoard.columns.push(newColumn)
+    },
+    PUSH_NEW_TASK(state, taskObject) {
+        state.activeBoard.columns[taskObject.columnIndex].tasks.push(taskObject.taskObj)
     }
 }
 export default {

@@ -44,9 +44,11 @@ export default {
   mixins:[plannerMixin],
   methods:{
     createTask(tasks,e){
-      this.$store.commit('planner/CREATE_TASK', {
+      this.$store.dispatch('task/createNewTask', {
         tasks,
         name:e.target.value,
+        columnIndex:this.columnIndex,
+        columnId:this.column._id
       })
       e.target.value=''
     },

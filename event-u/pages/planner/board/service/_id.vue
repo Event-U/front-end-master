@@ -48,12 +48,12 @@ export default {
     },
     data(){
         return{
-            name:'Planificador',
+            name:'Planificador servicios',
             newColumnName:''
         }
     },
     beforeCreate(){
-        this.$store.dispatch('board/getEventBoard',this.$route.params.id)
+        this.$store.dispatch('board/getServiceBoard',this.$route.params.id)
     },
     mounted(){
         this.$store.commit('change', this.name)

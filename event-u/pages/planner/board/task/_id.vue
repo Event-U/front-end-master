@@ -44,10 +44,7 @@ export default {
     }
     ,methods:{
         close(){
-            this.$router.push({
-                name:'planner-board-event-id',
-                params:{id:this.$store.state.board.activeBoard.event._id}
-            })
+            this.$router.go(-1)
             if(this.edited===true){
                 this.$store.dispatch('task/updateTask',{
                      _id:this.task._id,

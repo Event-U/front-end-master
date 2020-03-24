@@ -8,13 +8,17 @@ const state = {
     tasksIds: [],
     columnIds: [],
     newServiceBoard: [],
-    allBoards: []
+    allBoards: [],
+    boardType: ''
 }
 
 // getters
 const getters = {
     getEventBoard: state => id => {
         return state.allBoards.find(board => board.event ? board.event._id === id : console.log(board))
+    },
+    getServiceBoard: state => id => {
+        return state.allBoards.find(board => board.service ? board.service._id === id : console.log(board))
     },
 }
 
@@ -49,7 +53,15 @@ const actions = {
         console.log(activeEventId)
         const eventBoard = await getters.getEventBoard(activeEventId)
         commit('SET_ACTIVE_BOARD', eventBoard)
-    }
+    },
+    async getServiceBoard({ commit, getters }, activeServiceId) {
+        const allBoards = await axios.get(`${urlBase}/board`)
+        commit('SET_FETCH_BOARDS', allBoards.data.data.board)
+        console.log(activeServiceId)
+        const serviceBoard = await getters.getServiceBoard(activeServiceId)
+        commit('SET_ACTIVE_BOARD', serviceBoard)
+    },
+
 }
 
 // mutations
@@ -74,6 +86,9 @@ const mutations = {
     },
     PUSH_NEW_TASK(state, taskObject) {
         state.activeBoard.columns[taskObject.columnIndex].tasks.push(taskObject.taskObj)
+    },
+    SET_BOARD_TYPE(state, routeName) {
+        state.boardType = routeName
     }
 }
 export default {

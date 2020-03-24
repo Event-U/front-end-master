@@ -36,10 +36,11 @@ export default {
     mixins:[plannerMixin],
     methods:{
     goToTask(task){
+      this.$store.commit('board/SET_BOARD_TYPE', this.$route.name)
       this.$store.dispatch('task/setActiveTask',task)
       this.$router.push({
-          name:"planner-board-event-task-id", 
-          params:{id:task._id}
+          name:"planner-board-task-id", 
+          params:{id:task._id},
         })
     },
     pickTask(e,$taskIndex,fromColumnIndex){

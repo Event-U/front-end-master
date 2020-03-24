@@ -4,7 +4,7 @@ const urlBase = 'https://event-uback.mybluemix.net'
 const state = {
     tasksIdsFromNeed: [],
     activeTask: {},
-    tasksIds: []
+    tasksIds: [],
 }
 
 // getters
@@ -52,7 +52,8 @@ const actions = {
             name: taskObject.name,
             description: taskObject.description,
         })
-    }
+    },
+
 }
 
 // mutations

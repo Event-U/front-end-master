@@ -3,7 +3,8 @@ const urlBase = 'https://event-uback.mybluemix.net'
     // const actualBoard = state.changeBoard ? changeBoard : defaultBoard
 
 const state = {
-    newBoardDefaultColumns: []
+    newBoardDefaultColumns: [],
+    activeColumns: []
 }
 
 const getters = {
@@ -63,6 +64,9 @@ const mutations = {
     },
     CLEAN_COLUMNS_ID(state) {
         state.newBoardDefaultColumns = []
+    },
+    SET_ACTIVE_COLUMNS(state, activeColumns) {
+        state.activeColumns = activeColumns
     }
 }
 export default {

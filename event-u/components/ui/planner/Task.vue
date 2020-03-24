@@ -5,7 +5,7 @@
     @dragstart="pickTask($event,taskIndex, columnIndex)"
     @dragover.prevent
     @dragenter.prevent
-    @drop.stop="moveTask($event,column.tasks, taskIndex)"
+    @drop.stop="moveTask($event,column.tasks, taskIndex, columnIndex)"
     @click="goToTask(task)"
 >
     <h3>
@@ -29,7 +29,6 @@ export default {
             required: true
         },
         taskIndex: {
-            type: Number,
             required: true
         }
     },

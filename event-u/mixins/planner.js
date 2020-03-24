@@ -15,6 +15,7 @@ export default {
     },
     methods: {
         moveTaskOrColumn(e, toTasks, toColumnIndex) {
+            console.log('MoveTaskOrColumn')
             const type = e.dataTransfer.getData('type')
             if (type === 'task') {
                 this.moveTask(e, toTasks)
@@ -22,18 +23,22 @@ export default {
                 this.moveColumn(e, toColumnIndex)
             }
         },
-        moveTask(e, toTasks, toTaskIndex) {
+        moveTask(e, toTasks, toTaskIndex, toColumnId) {
+            console.log('MoveTask')
             const fromColumnIndex = e.dataTransfer.getData('from-column-index')
             const fromTasks = this.board.columns[fromColumnIndex].tasks
             const fromTaskIndex = e.dataTransfer.getData('from-task-index')
-            this.$store.commit('planner/MOVE_TASK', {
+            this.$store.dispatch('board/moveTask', {
                 fromTasks,
                 fromTaskIndex,
                 toTasks,
-                toTaskIndex
+                toTaskIndex,
+                fromColumnIndex,
+                toColumnId
             })
         },
         moveColumn(e, toColumnIndex) {
+            console.log('moveColumn')
             const fromColumnIndex = e.dataTransfer.getData('from-column-index')
             this.$store.commit('planner/MOVE_COLUMN', {
                 fromColumnIndex,

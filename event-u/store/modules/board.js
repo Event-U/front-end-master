@@ -18,8 +18,21 @@ const getters = {
         return state.allBoards.find(board => board.event ? board.event._id === id : console.log(board))
     },
     getServiceBoard: state => id => {
-        return state.allBoards.find(board => board.service ? board.service._id === id : console.log(board))
+        return state.allBoards.find(board => board.service ? board.service._id === id : console.log('board'))
     },
+    getTasksIds: state => tasks => {
+            return tasks.map(task => task._id)
+        }
+        // getTasksIds(state, tasks) {
+        //     console.log(tasks)
+        //     const taskIds = []
+        //     tasks.forEach(task => {
+        //         taskIds.push(task._id)
+        //         return task
+        //     })
+        //     console.log('tasksIds' + taskIds)
+        //     return taskIds
+        // }
 }
 
 // actions
@@ -53,14 +66,38 @@ const actions = {
         console.log(activeEventId)
         const eventBoard = await getters.getEventBoard(activeEventId)
         commit('SET_ACTIVE_BOARD', eventBoard)
+        commit('columns/SET_ACTIVE_COLUMNS', eventBoard.columns, { root: true })
     },
     async getServiceBoard({ commit, getters }, activeServiceId) {
         const allBoards = await axios.get(`${urlBase}/board`)
         commit('SET_FETCH_BOARDS', allBoards.data.data.board)
-        console.log(activeServiceId)
         const serviceBoard = await getters.getServiceBoard(activeServiceId)
         commit('SET_ACTIVE_BOARD', serviceBoard)
+        commit('columns/SET_ACTIVE_COLUMNS', serviceBoard.columns, { root: true })
     },
+    async moveTask({ commit, state, getters }, {
+        fromTasks,
+        toTasks,
+        fromTaskIndex,
+        toTaskIndex,
+        fromColumnIndex,
+        toColumnId
+    }) {
+        await commit('MOVE_TASK', { fromTasks, toTasks, fromTaskIndex, toTaskIndex, fromColumnIndex, toColumnId })
+        state.activeBoard.columns.forEach(async column => {
+            const columnId = column._id
+            if (column.tasks !== 0) {
+                const tasksIds = await getters.getTasksIds(column.tasks)
+                const updatedColumn = await axios.patch(`${urlBase}/column/${columnId}`, {
+                    tasks: tasksIds
+                })
+            } else {
+                const updatedEmptyColumn = await axios.patch(`${urlBase}/column/${columnId}`, {
+                    tasks: []
+                })
+            }
+        });
+    }
 
 }
 
@@ -89,7 +126,16 @@ const mutations = {
     },
     SET_BOARD_TYPE(state, routeName) {
         state.boardType = routeName
-    }
+    },
+    MOVE_TASK(state, {
+        fromTasks,
+        toTasks,
+        fromTaskIndex,
+        toTaskIndex,
+    }) {
+        const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0]
+        toTasks.splice(toTaskIndex, 0, taskToMove)
+    },
 }
 export default {
     namespaced: true,

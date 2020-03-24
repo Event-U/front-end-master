@@ -37,7 +37,8 @@ const mutations = {
     UPDATE_TASK(state, { task, key, value }) {
         task[key] = value
     },
-    MOVE_TASK(state, { fromTasks, toTasks, fromTaskIndex, toTaskIndex }) {
+    MOVE_TASK(state, { fromTasks, toTasks, fromTaskIndex, toTaskIndex, columnId }) {
+        console.log(toTasks)
         const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0]
         toTasks.splice(toTaskIndex, 0, taskToMove)
     },

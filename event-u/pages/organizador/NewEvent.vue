@@ -2,7 +2,7 @@
   <div>
         <div 
             class="event-preview mt-3" 
-            v-if="currentStepNumber>=4 && formInProgress"
+            v-if="currentStepNumber>=5 && formInProgress"
         >
         <h1 
             class="animated bounce"
@@ -23,7 +23,7 @@
       </div>
         <div 
             class="needs-preview row m-0 mt-3" 
-            v-if="currentStepNumber===3"
+            v-if="currentStepNumber===4"
         >
           <div
             v-for="(need, i) in eventObject.needs"
@@ -44,6 +44,7 @@
                 v-bind="eventObject"
                 @update="update"
                 @newNeed="addNewNeed"
+                @newAdress="addNewAdress"
             />
         </keep-alive>
       </div>
@@ -55,7 +56,7 @@
       <div class="buttons hover-interaction mt-3">
           <button 
             class="btn btn-iconed btn-outlined"
-            v-if='currentStepNumber>1 && currentStepNumber<=3'
+            v-if='currentStepNumber>1 && currentStepNumber<=4'
             @click="lastQuestion"
           >
 
@@ -64,7 +65,7 @@
           </button>
           <button 
           :disabled="!canGoNext"
-          v-if='currentStepNumber<=3'
+          v-if='currentStepNumber<=4'
             class="btn btn-iconed animated"
             @click="nextQuestion"
             >
@@ -72,7 +73,7 @@
             <i class="fas fa-long-arrow-alt-right"></i>
           </button>
             <button 
-            v-if='currentStepNumber>=4 && formInProgress'
+            v-if='currentStepNumber>=5 && formInProgress'
             class="btn btn-iconed"
             @click="lastQuestion"
             >
@@ -80,7 +81,7 @@
               <i class="fas fa-edit"></i>
           </button>
           <button 
-            v-if='currentStepNumber>=4 && formInProgress'
+            v-if='currentStepNumber>=5 && formInProgress'
             class="btn btn-iconed animated wobble"
             @click="submitEvent(eventObject)"
             >
@@ -110,6 +111,7 @@ import EventBasicInfo from '@/components/ui/forms/EventBasicInfo.vue'
 import EventSpecificInfo from '@/components/ui/forms/EventSpecificInfo.vue'
 import EventCard from '@/components/ui/EventCard.vue'
 import EventNeed from '@/components/ui/EventNeed.vue'
+import NewEventAdress from '@/components/sections/NewEventAdress.vue'
 
 export default {
 name:'NewEvent',
@@ -118,7 +120,8 @@ components:{
     EventBasicInfo,
     EventSpecificInfo,
     EventCard,
-    EventNeed
+    EventNeed,
+    NewEventAdress
 },
 data(){
     return{
@@ -126,7 +129,7 @@ data(){
         canGoNext:false,
         name:'Nuevo evento',
         currentStepNumber:1,
-        length:4,
+        length:5,
         eventObject:{
             name:'',
             description:'',
@@ -138,7 +141,8 @@ data(){
         steps:[
             'EventBasicInfo',
             'EventSpecificInfo',
-            'NewNeedForm'
+            'NewEventAdress',
+            'NewNeedForm',
         ],
         bgs:[
             '../../_nuxt/assets/img/new-event-bgs/7.png',
@@ -190,6 +194,10 @@ data(){
                 quotation:[],
                 isNew:true
             })
+        },
+        addNewAdress(e){
+            this.address=this.$store.state.addresses.newAdress
+            this.canGoNext=true
         },
         editEvent(){
             this.currentStepNumber=0

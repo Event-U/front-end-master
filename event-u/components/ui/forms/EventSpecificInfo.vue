@@ -2,23 +2,11 @@
 <div class="mt-3 mb-3">
     <h1 class="animated fadeIn">Ahora la información específica de tu evento</h1>
     <div class="form-row mt-3">
-        <div class="form-grop col-md-4 animated fadeInRight">
+        <div class="form-grop col-md-4 animated fadeInLeft">
             <label for="eventDate">Fecha de tu evento</label>
             <input type="text" v-model="date">
         </div>
-        <div class="form-grop col-md-4 animated fadeInRight">
-            <label  for="addressEvent">
-                Dirección de tu evento
-            </label>
-            <input 
-                @input="setSpecificEventInfo" 
-                v-model="addreses" 
-                class="form-control" 
-                id="addressEvent" 
-                rows="3"
-            >
-        </div>
-        <div class="form-grp col-md-5 animated fadeInLeft">
+        <div class="form-grp col-md-5 animated fadeInRight">
             <label  
                 for="addressEvent"
             >
@@ -43,7 +31,6 @@ export default {
     data(){
         return{
             date:null,
-            addreses:'',
             image:''
         }
     },

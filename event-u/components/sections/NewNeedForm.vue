@@ -69,7 +69,7 @@
         </button>
         <button
         v-if="this.$route.path==='/organizador/newevent'"
-        class="btn btn-iconed mt-3" 
+        class="btn cta-new btn-iconed mt-3" 
         role="button"
             @click.prevent="onSubmitNew"
         >
@@ -137,6 +137,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.cta-new{
+    color:$complementary;
+}
 .hover-interaction{
     @extend .btn-hover-interaction;
     text-align: center;

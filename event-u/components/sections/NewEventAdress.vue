@@ -4,7 +4,7 @@
 		Agrega la dirección del evento
 	</h1>
 	<div class="row m-0 mt-3 slideInLeft animated">
-		<div class="col-md-8 text-center">
+		<div class="col-md-9 text-center">
 			<input 
 				type="text" 
 				class="form-control text-center" 
@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	<div class="row m-0 mt-3 slideInRight animated">
-		<div class="col-md-2 m-0">
+		<div class="col-md-3 m-0">
 			<input 
 				type="text" 
 				class="form-control" 
@@ -30,7 +30,7 @@
 				v-model="adressObject.numberInt"
 			>
 		</div>
-		<div class="col-md-2 m-0">
+		<div class="col-md-4 m-0">
 			<input 
 				type="text" 
 				class="form-control" 
@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="row m-0 mt-3 slideInLeft animated">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<select 
 				v-model="adressObject.state" 
 				class="custom-select" 
@@ -54,7 +54,7 @@
         />
         </select>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<input 
 				type="text" 
 				class="form-control" 
@@ -99,7 +99,7 @@ export default {
 						place:'',
 						state:'',
 						town:'',
-						CP:0,
+						CP:undefined,
 						isFisical:false,
 						isPhisical:true,
 						users:this.$store.state.activeUser

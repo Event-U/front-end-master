@@ -57,6 +57,9 @@ module.exports = {
             './style/_variables.scss'
         ]
     },
-    plugins: [{ src: '~/plugins/full-calendar', ssr: false }],
+    plugins: [
+        { src: '~/plugins/full-calendar', ssr: false },
+        { src: '~/plugins/vuelidate' }
+    ],
 
 }

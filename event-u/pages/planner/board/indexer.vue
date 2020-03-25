@@ -1,69 +1,19 @@
 <template>
-<div 
-  class="board"
->
-  <div 
-    class="d-flex justify-content-between"
-    :class="{blur:isTaskOpen}"
-  >
-    <column
-      v-for="(column,columnIndex) in board.columns"
-      :key="columnIndex"
-      :column="column"
-      :columnIndex="columnIndex"
-      :board="board"
-    />
-  <div class="new-column">
-    <input 
-      type="text" 
-      class='flex-grow border-0 text-center'
-      placeholder="Agregar paso +"
-      v-model="newColumnName"
-      @keyup.enter="createColumn"
-    />
-  </div>
-  </div>
-    <div 
-      class="task-bg"
-      v-if="isTaskOpen"
-    >
-      <!-- @click="close" -->
-      <nuxt-child
-        v-if="isTaskOpen"
-      />
-    </div>
+<div>
+  <new-event-adress/>
 </div>
 </template>
 
 <script>
 import {mapMutations,mapState} from 'vuex'
-import Column from '@/components/ui/planner/Column'
+import NewEventAdress from '@/components/sections/NewEventAdress'
 
 export default {
     name:'organizador',
     components:{
-      Column
+      NewEventAdress,
     },
-    data(){
-        return{
-            name:'Planificador',
-            newColumnName:''
-        }
-    },created() {
-        this.$store.commit('change', this.name)
-  },computed:{
-    ...mapState('planner',['board']),
-    isTaskOpen(){
-      return this.$route.name==="planner-board-task-id"
-    }
-  }, methods:{
-    createColumn(){
-      this.$store.commit('planner/CREATE_COLUMN',{
-        name:this.newColumnName
-      })
-      this.newColumnName=''
-    }
-  },
+ 
 }
 </script>
 

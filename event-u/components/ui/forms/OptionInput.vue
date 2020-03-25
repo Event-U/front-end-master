@@ -1,6 +1,6 @@
 <template>
     <option 
-        :value='_id'
+        :value='_id||name'
         @change="$emit( 'change', $event )"
         @input="$emit( 'input', $event )"
     >
@@ -19,7 +19,6 @@ export default {
         },
         _id:{
             type:String, 
-            required:true
         },
         businessName:{
             type:String,

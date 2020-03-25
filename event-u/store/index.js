@@ -6,6 +6,7 @@ import needs from './modules/needs'
 import board from './modules/board'
 import task from './modules/task'
 import columns from './modules/columns'
+import addresses from './modules/addresses'
 
 const createStore = () => {
     return new Vuex.Store({
@@ -17,6 +18,7 @@ const createStore = () => {
             board: board,
             task: task,
             columns: columns,
+            addresses: addresses,
         },
         state: {
             activePage: '',

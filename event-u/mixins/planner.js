@@ -40,7 +40,7 @@ export default {
         moveColumn(e, toColumnIndex) {
             console.log('moveColumn')
             const fromColumnIndex = e.dataTransfer.getData('from-column-index')
-            this.$store.commit('planner/MOVE_COLUMN', {
+            this.$store.dispatch('board/moveColumn', {
                 fromColumnIndex,
                 toColumnIndex
             })

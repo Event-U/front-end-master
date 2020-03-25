@@ -24,21 +24,21 @@
                     data-toggle="tooltip" 
                     data-placement="right" 
                     title="Guardar cotización"
-                    @click="updateQuotationState(1,_id)"
+                    @click="updateQuotationState(3,_id)"
                 />
                 <i 
                     class="fas fa-check aware" 
                     data-toggle="tooltip" 
                     data-placement="right" 
                     title="Adjudicar cotización"
-                    @click="updateQuotationState(2,_id)"
+                    @click="updateQuotationState(4,_id)"
                 />
                 <i 
                     class="fas fa-times delete" 
                     data-toggle="tooltip" 
                     data-placement="right" 
                     title="Deshechar cotización"
-                    @click="updateQuotationState(3,_id)"
+                    @click="updateQuotationState(2,_id)"
                 />
             </div>
     </div>
@@ -54,10 +54,10 @@ export default {
         provider:Object,
         price:Number,
         image:String,
-        state:Number,
+        status:Number,
         date:String,
         description:String,
-        quotation:{}
+        quotation:{},
     },
     computed: {
         styles() {
@@ -73,7 +73,8 @@ export default {
             console.log(id)
             this.$store.dispatch('quotation/updateQuotation',{
                 status:newState,
-                id:id
+                id:id,
+                provider:this.provider,
                 })
         }
     }

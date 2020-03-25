@@ -35,9 +35,13 @@ const actions = {
         const updatedNeed = await api.updateNeed(needId, quotationsId)
         commit('CLEAN_QUOTATIONS_ID')
     },
-    async updateQuotation({ commit }, { status, id }) {
+    async updateQuotation({ commit, dispatch }, { status, id }) {
         const updatedQuotation = await api.updateQuotation(id, `${status}`)
         commit('SET_UPDATED_QUOTATION', updatedQuotation)
+        if (status === 4) {
+            await dispatch('task/postQuotationEventTask', status, { root: true })
+            await dispatch('task/postQuotationServiceTask', status, { root: true })
+        }
     }
 
 }

@@ -17,8 +17,8 @@ const actions = {
     async createTaskFromNeed({ commit }, newNeed) {
         console.log(newNeed)
         const newTaskObject = await axios.post(`${urlBase}/task`, {
-            name: `Revisar cotizaciones de ${newNeed.description}`,
-            description: `Revisar las cotizaciones de ${newNeed.description}`
+            name: `Revisar cotizaciones de ${newNeed.description.toLowerCase()}`,
+            description: `Revisar las cotizaciones de ${newNeed.description.toLowerCase()}`
         })
         console.log(newTaskObject)
         commit('PUSH_NEW_ID_TASK_FROM_NEED', newTaskObject.data.data.task._id)
@@ -52,6 +52,31 @@ const actions = {
             name: taskObject.name,
             description: taskObject.description,
         })
+    },
+    async postQuotationEventTask({ dispatch, rootState }) {
+        const activeEventId = rootState.event.activeEvent._id
+        console.log(activeEventId)
+        await dispatch('board/getEventBoard', activeEventId, { root: true })
+        const columnToUpdate = rootState.board.activeBoard.columns[0]
+        const activeService = rootState.service.activeNeedService.name
+        const newTaskObject = {
+            name: `Gestionar servicio de ${activeService.toLowerCase()}`,
+            columnId: columnToUpdate._id,
+            tasks: columnToUpdate.tasks
+        }
+        dispatch('createNewTask', newTaskObject)
+    },
+    async postQuotationServiceTask({ dispatch, rootState }) {
+        const activeServiceId = rootState.service.activeNeedService._id
+        await dispatch('board/getServiceBoard', activeServiceId, { root: true })
+        const activeEvent = rootState.event.activeEvent.name
+        const columnToUpdate = rootState.board.activeBoard.columns[0]
+        const newTaskObject = {
+            name: `Cotización aceptada para ${activeEvent.toLowerCase()}`,
+            columnId: columnToUpdate._id,
+            tasks: columnToUpdate.tasks
+        }
+        dispatch('createNewTask', newTaskObject)
     },
 
 }

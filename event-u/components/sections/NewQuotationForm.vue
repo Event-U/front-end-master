@@ -78,7 +78,8 @@ export default {
                 price:price,
                 description:description,
                 image:image,
-                need:this.activeNeed._id
+                need:this.activeNeed._id,
+                status:1
             })
         }
     }

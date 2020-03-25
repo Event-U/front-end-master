@@ -29,9 +29,9 @@ const actions = {
     async createDefaultServiceColumns({ commit }) {
         await commit('CLEAN_COLUMN_ID')
 
-        const toDo = await axios.post(`${urlBase}/column`, { name: 'Por hacer' })
-        const doing = await axios.post(`${urlBase}/column`, { name: 'Haciendo' })
-        const done = await axios.post(`${urlBase}/column`, { name: 'Hecho' })
+        const toDo = await axios.post(`${urlBase}/column`, { name: 'Por preparar' })
+        const doing = await axios.post(`${urlBase}/column`, { name: 'Preparando' })
+        const done = await axios.post(`${urlBase}/column`, { name: 'Entregado' })
 
         await commit('PUSH_COLUMN_ID', toDo.data.data.column._id)
         await commit('PUSH_COLUMN_ID', doing.data.data.column._id)
@@ -55,6 +55,17 @@ const actions = {
         })
 
         commit('board/PUSH_NEW_COLUMN', newColumn.data.data.column, { root: true })
+    },
+    async moveColumn({ commit, state, rootState }, { boardId, columnList }) {
+        console.log('starting db moce column')
+        const columnsIds = []
+        columnList.forEach(column => {
+            columnsIds.push(column._id)
+        });
+        const updatedBoard = await axios.patch(`${urlBase}/board/${boardId}`, {
+            columns: columnsIds
+        })
+        console.log(updatedBoard)
     }
 }
 

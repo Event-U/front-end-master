@@ -21,18 +21,11 @@ const getters = {
         return state.allBoards.find(board => board.service ? board.service._id === id : console.log('board'))
     },
     getTasksIds: state => tasks => {
-            return tasks.map(task => task._id)
-        }
-        // getTasksIds(state, tasks) {
-        //     console.log(tasks)
-        //     const taskIds = []
-        //     tasks.forEach(task => {
-        //         taskIds.push(task._id)
-        //         return task
-        //     })
-        //     console.log('tasksIds' + taskIds)
-        //     return taskIds
-        // }
+        return tasks.map(task => task._id)
+    },
+    getColumnsIds: state => columns => {
+        return columns.map(column => column._id)
+    },
 }
 
 // actions
@@ -65,8 +58,8 @@ const actions = {
         commit('SET_FETCH_BOARDS', allBoards.data.data.board)
         console.log(activeEventId)
         const eventBoard = await getters.getEventBoard(activeEventId)
-        commit('SET_ACTIVE_BOARD', eventBoard)
-        commit('columns/SET_ACTIVE_COLUMNS', eventBoard.columns, { root: true })
+        await commit('SET_ACTIVE_BOARD', eventBoard)
+        await commit('columns/SET_ACTIVE_COLUMNS', eventBoard.columns, { root: true })
     },
     async getServiceBoard({ commit, getters }, activeServiceId) {
         const allBoards = await axios.get(`${urlBase}/board`)
@@ -97,6 +90,19 @@ const actions = {
                 })
             }
         });
+    },
+    async moveColumn({ commit, getters, state, dispatch }, {
+        fromColumnIndex,
+        toColumnIndex
+    }) {
+        console.log('Comenzando función')
+            // await commit('MOVE_COLUMN', { fromColumnIndex, toColumnIndex })
+        const columnList = await state.activeBoard.columns
+        const columnToMove = await columnList.splice(fromColumnIndex, 1)[0]
+        await columnList.splice(toColumnIndex, 0, columnToMove)
+        const boardId = state.activeBoard._id
+        const columnsIds = await getters.getColumnsIds(columnList)
+        await dispatch('columns/moveColumn', { boardId, columnList }, { root: true })
     }
 
 }
@@ -135,6 +141,13 @@ const mutations = {
     }) {
         const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0]
         toTasks.splice(toTaskIndex, 0, taskToMove)
+    },
+    MOVE_COLUMN(state, { fromColumnIndex, toColumnIndex }) {
+        console.log('Comenzando a mover')
+        const columnList = state.activeBoard.columns
+        const columnToMove = columnList.splice(fromColumnIndex, 1)[0]
+        columnList.splice(toColumnIndex, 0, columnToMove)
+        console.log('Terminado de mover', columnList)
     },
 }
 export default {

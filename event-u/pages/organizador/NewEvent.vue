@@ -96,6 +96,12 @@
           <h1>
               ¡Genial, creaste tu evento!
           </h1>
+          <button
+             class="btn btn-iconed animated wobble"
+             @click='goToBoard(newEventId)'
+          >
+            Planificar mi evento
+          </button>
       </div>
 <img 
     :src="bgs[currentStepNumber-1]"
@@ -155,6 +161,7 @@ data(){
         this.$store.commit('change',this.name)
     }, 
     computed:{
+        newEventId:'',
         ...mapState({
             activeUser:state=>state.activeUser
         }),
@@ -203,11 +210,20 @@ data(){
             this.currentStepNumber=0
         },
         submitEvent(eventObject){
+            this.asyncState='pending'
             this.currentStepNumber++
             this.$store.dispatch('event/postEvent',{
                 organizator:this.activeUser,
                 ...eventObject
             })
+            this.asyncState='success'
+            this.newEventId=this.$store.state.event.newEvent._id
+        },
+        goToBoard(id){
+            this.$router.push({
+            name:"planner-board-event-id", 
+            params:{id:id},
+        })
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>
-      {{activeUser}}
+      Bienvenido a Event-u
     </h1>
   </div>
 </template>
@@ -20,10 +20,9 @@ export default {
 }
 </script>
 
-<style>
-.container-fluid {
-  min-height: 100vh;
-  padding:0;
+<style lang='scss' scoped>
+h1{
+  @extend .h1-font;
 }
 
 </style>

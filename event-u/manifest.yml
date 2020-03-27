@@ -1,4 +1,4 @@
 applications: 
   - name: front-eventu
-    memory: 64MB
-    timeout: 180
+    memory: 512MB
+    timeout: 300

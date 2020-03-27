@@ -137,6 +137,9 @@ export default {
 .btn-eventu{
   background-color:$complementary;
   color:white;
+    @extend .h3-font;
+    padding:2% 5%;
+    font-size:.8em;
 }
 .event-categories{
      font-size:.7em;
@@ -217,6 +220,7 @@ export default {
   top: -34px;
   left: 0;
   background: $alpha;
+  border-radius:5px;
   padding: 10px 15px;
   color: #333333;
   font-size: 14px;

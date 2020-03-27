@@ -12,7 +12,6 @@
         <Raitings
             v-bind="number"
         />
-
         <p class="card-text">
             {{description}}
         </p>
@@ -71,6 +70,8 @@ export default {
 .btn-eventu{
     background-color:$complementary;
     color:white;
+    @extend .h3-font;
+    padding:2% 5%;
 }
 h5{
     @extend .h2-font;

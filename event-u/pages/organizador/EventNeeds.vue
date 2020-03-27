@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="title ">
+    <div class="title mt-3">
         <h1>
          {{activeEvent.name}} 
         </h1>

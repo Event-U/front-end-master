@@ -31,13 +31,13 @@
           class="event-categories-wrapper"
           v-if="this.$router.path!=='/organizador/NewEvent'"
         >
-          <span
+          <!-- <span
               v-for="need in needs"
               :key="need._id"
               class='event-categories mr-2'
           >
               {{need.service.category.name}}
-          </span>
+          </span> -->
         </div>
         <h1 class="title">{{name}}</h1>
         <p
@@ -46,7 +46,9 @@
         >
             {{description}}
         </p>
-        <div class="cta-event">
+        <div 
+          class="cta-event"
+        >
           <button 
             class="btn-eventu"
             @click="goToBoard"
@@ -129,6 +131,7 @@ export default {
           params:{id:this._id},
         })
       }
+      
     },
 }
 </script>

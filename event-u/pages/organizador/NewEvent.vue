@@ -1,11 +1,5 @@
 <template>
   <div>
-      <div 
-        class="spinner-border text-center align-center" style="width: 6rem; height: 6rem;" role="status"
-        v-if="asyncState==='pending'"
-    >
-        <span class="sr-only">Loading...</span>
-        </div>
         <div 
             class="event-preview mt-3" 
             v-if="currentStepNumber>=5 && formInProgress"
@@ -97,12 +91,12 @@
     <div v-if="this.asyncState==='pending' && !formInProgress " class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
      <span class="sr-only">Loading...</span>
     </div>
-      <div class="" v-if="this.asyncState==='success'&& !formInProgress">
+      <div class="event-created text-center" v-if="this.asyncState==='success'&& !formInProgress">
           <h1>
-              ¡Genial, creaste tu evento!
+              ¡Felicidades, creaste tu evento!
           </h1>
           <button
-             class="btn btn-iconed text-center"
+             class="btn btn-iconed animated fadeInUp mt-3"
              @click='goToBoard(newEventId)'
           >
             Planificar mi evento
@@ -214,10 +208,10 @@ data(){
         editEvent(){
             this.currentStepNumber=0
         },
-        submitEvent(eventObject){
+        async submitEvent(eventObject){
             this.asyncState='pending'
             this.currentStepNumber++
-            this.$store.dispatch('event/postEvent',{
+           await this.$store.dispatch('event/postEvent',{
                 organizator:this.activeUser,
                 ...eventObject
             })
@@ -229,12 +223,21 @@ data(){
             name:"planner-board-event-id", 
             params:{id:id},
         })
+        
         }
     }
 }
 </script>
 
 <style lang='scss' scoped>
+.btn{
+        @extend .btn-eventu;
+        @extend .h4-font;
+        box-shadow: 0px 0px 10px #ffff0078;
+        font-size:1.2em;
+        transition: .5s cubic-bezier(0.19, 1, 0.22, 1);
+        text-align: center;
+    }
 .need-col{
     border-left: 1px solid #B8B8B8;
 }
@@ -305,6 +308,7 @@ h1{
         transition: .5s cubic-bezier(0.19, 1, 0.22, 1);
     }
 }
+
 // Ken Burns when the input is active::after
 
 

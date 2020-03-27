@@ -76,7 +76,7 @@ export default {
   transition: .3s ease-in-out;
   overflow: auto;
   h3{
-    overflow: hidden;
+    // overflow: hidden;
     margin:0em 1em;
     @extend .h3-font;
     font-size:1em;

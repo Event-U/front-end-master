@@ -5,7 +5,7 @@
     /> 
     <div class="section-title col-4">
         <h1
-        class="animated bounce"
+        class="animated fadeInUp"
         >
         <i 
             class="fas fa-arrow-left mr-3"

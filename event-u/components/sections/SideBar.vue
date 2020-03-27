@@ -116,7 +116,7 @@ export default {
       position: absolute;
       will-change: transform;
       top: -20px!important;
-      left: 19px;
+      left: 39px;
       /* transform: translate3d(9px, 171px, 0px); */
       transform: rotate(90deg) translate3d(40%, -120%, 0px)!important;
       z-index: 1000!important;

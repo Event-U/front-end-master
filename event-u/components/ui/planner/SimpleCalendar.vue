@@ -5,7 +5,7 @@
         :config='config'
         :locale='config.locale'
         :weekends="true"
-        :events="events|getTitle"
+        :events="events"
     />
 </template>
 

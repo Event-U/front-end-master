@@ -27,7 +27,7 @@
         >
             Nuevo
         </div>
-        <!-- <div 
+        <div 
           class="event-categories-wrapper"
           v-if="this.$router.path!=='/organizador/NewEvent'"
         >
@@ -38,7 +38,7 @@
           >
               {{need.service.category.name}}
           </span>
-        </div> -->
+        </div>
         <h1 class="title">{{name}}</h1>
         <p
             class="description animated fadeInUp faster"

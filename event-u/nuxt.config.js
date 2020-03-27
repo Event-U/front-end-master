@@ -21,6 +21,8 @@ module.exports = {
             { src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js' },
             { src: "https://kit.fontawesome.com/767b73986e.js", crossorigin: "anonymous" },
             { src: "https://d3js.org/d3.v5.min.js" },
+            { src: "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" },
+            { src: '<https://unpkg.com/@livelybone/vue-datepicker/lib/umd/<--module-->.js' }
         ]
 
     },

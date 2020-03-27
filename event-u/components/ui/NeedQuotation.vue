@@ -109,7 +109,7 @@ h5{
 .quotation-actions{
     transition:.3s ease-out;
     border: 1px solid $alpha-100;
-    box-shadow: 2px 2px 21px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 17px rgba(0, 0, 0, 0.07);
     border-radius: 8px;
     height: 100px;
     width:100%;
@@ -142,7 +142,7 @@ h5{
 }
 .quotation-actions:hover{
      border: 2px solid $alpha-100;
-    box-shadow: 2px 2px 21px rgba(0, 0, 0, 0.372);
+    box-shadow: 2px 2px 17px rgba(0, 0, 0, 0.187);
     transition:.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 </style>

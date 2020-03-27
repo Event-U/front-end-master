@@ -136,7 +136,7 @@ label{
     @extend .h2-font;
     background-color: $complementary;
     font-weight: 400;
-    font-size:1.2em;
+    font-size:1.5em;
     text-align:center;
     align-self:center;
     transition:.4s ease-in-out;
@@ -144,7 +144,7 @@ label{
 .btn:hover{
     box-shadow:5px 3px 11px #00000059;
     transition:.3s ease-in;
-    font-size:1.3em;
+    // font-size:1.3em;
 }
 h1{
     @extend .h1-font;

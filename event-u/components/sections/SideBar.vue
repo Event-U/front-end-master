@@ -31,12 +31,12 @@
             </a>
           </nuxt-link>
         </div>
-            <nuxt-link 
-              to='/proveedor/events'
-            >
-              <i class="fas fa-clipboard-check"/>
-              Proveedor
-            </nuxt-link>
+        <nuxt-link 
+          to='/proveedor/events'
+        >
+          <i class="fas fa-clipboard-check"/>
+          Proveedor
+        </nuxt-link>
         </li>
         <li
           @mouseover="hoverOrg=true"
@@ -107,7 +107,7 @@ export default {
       transform: rotate(90deg) translate3d(40%, -120%, 0px)!important;
       z-index: 1000!important;
       @extend .h3-font;
-      font-size:.8em;
+      font-size:.7em;
   }
 }
 .d-pr{
@@ -115,13 +115,13 @@ export default {
   .show{
       position: absolute;
       will-change: transform;
-      top: -15px!important;
-      left: -51px;
+      top: -20px!important;
+      left: 19px;
       /* transform: translate3d(9px, 171px, 0px); */
       transform: rotate(90deg) translate3d(40%, -120%, 0px)!important;
       z-index: 1000!important;
       @extend .h3-font;
-      font-size:.8em;
+      font-size:.7em;
   }
 }
 
@@ -161,8 +161,10 @@ ul.nav li {
   float:left;
   height:100%;
   line-height:45px;
-  font-size:1.5em;
+  font-size:1.3em;
   @extend .h3-font;
-
+}
+i{
+  font-size:.9em;
 }
 </style>

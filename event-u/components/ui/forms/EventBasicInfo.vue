@@ -96,18 +96,22 @@ export default {
 
 <style lang="scss" scoped>
 label{
-    @extend .h4-font;
+    @extend .h3-font;
 }
-.input{
+input,textarea{
     transition: .5s cubic-bezier(0.19, 1, 0.22, 1);
     font-size: 1em;
+    border-radius:5px;
+    padding: 2% .75rem;
 }
-.input:focus{
-    border-color:$alpha;
-    box-shadow: 0px 0px 10px #ffff0078;
+input:focus{
+     border:.6px solid grey;
+    box-shadow: 0px 0px 10px #ffff0022;
     transition: .5s cubic-bezier(0.19, 1, 0.22, 1);
-    @extend .h5-font;
-    font-size: 1.3em;
+    @extend .h3-font;
+    padding-right: 30px;
+    border-radius: 6px;
+    font-size:1em;
 }
 .form-group{
     margin-bottom: 1rem;
@@ -127,4 +131,5 @@ h1{
     margin:0;
     justify-content:center;
 }
+
 </style>

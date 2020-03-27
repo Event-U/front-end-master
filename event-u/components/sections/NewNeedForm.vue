@@ -1,6 +1,6 @@
 <template>
-<form class='mt-3'>
-    <div class="title animated fadeInDown">
+<form class='mt-3 animated fadeInUp'>
+    <div class="title ">
         <h3 
             class="mb-3"
         >
@@ -11,7 +11,7 @@
     <div 
         class="input-group mb-3 col"
     >
-            <div class="input-group-prepend animated fadeInDown">
+            <div class="input-group-prepend ">
                 <label 
                     class="input-group-text" 
                     for="inputGroupSelect01"
@@ -33,7 +33,7 @@
             </select>
     </div>
     <div class="input-group mb-3 col">
-        <div class="input-group-prepend animated fadeInDown">
+        <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Servicio</label>
         </div>
         <select v-model="service" class="custom-select" id="inputGroupSelect01">
@@ -58,7 +58,7 @@
     v-model="description"
   ></textarea>
 </div>
-    <div class="hover-interaction animated bounce delay-3s">
+    <div class="hover-interaction animated fadeInUp faster">
         <button
         v-if="this.$route.path==='/organizador/EventNeeds'"
         class="btn btn-iconed mt-3" 
@@ -92,12 +92,13 @@ export default {
         return{
             categoryId:'',
             service:'',
-            description:''
+            description:'', 
         }
     },
     methods:{
-    onSubmit:function(){
-        this.$store.dispatch('need/postNeedToEvent',{
+    onSubmit: async function(){
+
+       await this.$store.dispatch('need/postNeedToEvent',{
                     description:this.description,
                     service:this.service,
                     quotation:[]

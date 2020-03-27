@@ -5,18 +5,18 @@
         :config='config'
         :locale='config.locale'
         :weekends="true"
+        :events="events|getTitle"
     />
 </template>
 
 <script>
+import {mapMutations,mapState} from 'vuex'
 import FullCalendar from '@fullcalendar/vue'
 import dayGridPlugin from '@fullcalendar/daygrid'
 
 export default {
     components: {
         FullCalendar
-    },props:{
-        events:[]
     },
     data() {
         return {
@@ -25,7 +25,19 @@ export default {
                 locale: 'es-us',
             },
         }
-    }
+    },
+    created() {
+        this.$store.dispatch('event/fetchEvents')
+  },
+  computed:mapState('event',['events']),
+  filter:{
+    getTitle:function(events) {
+        return events.map((event)=>({
+            title:event.name,
+            date:event.date,
+        }))
+    },
+  }
 }
 </script>
 

@@ -1,9 +1,11 @@
 <template>
-<form>
+<form
+	class="mb-3"
+>
 	<h1 class="text-center mt-3 animated slideInDown">
 		Agrega la dirección del evento
 	</h1>
-	<div class="row m-0 mt-3 slideInLeft animated">
+	<div class="row m-0 mt-3">
 		<div class="col-md-9 text-center">
 			<input 
 				type="text" 
@@ -13,7 +15,7 @@
 			>
 		</div>
 	</div>
-	<div class="row m-0 mt-3 slideInRight animated">
+	<div class="row m-0 mt-3">
 		<div class="col-md-3 m-0">
 			<input 
 				type="text" 
@@ -39,7 +41,7 @@
 			>
 		</div>
 	</div>
-	<div class="row m-0 mt-3 slideInLeft animated">
+	<div class="row m-0 mt-3">
 		<div class="col-md-4">
 			<select 
 				v-model="adressObject.state" 

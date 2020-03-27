@@ -1,6 +1,7 @@
 <template>
   <div class="classic-layout">
-    <side-bar/>
+    <side-bar
+    class="side-bar"/>
     <menu-bar/>
     <nuxt
       class='main-content'
@@ -29,6 +30,10 @@ export default {
 }
 .main-content{
   margin-left:5%;
+  z-index:0;
+}
+.side-bar{
+  z-index: 2;
 }
 </style>
 

@@ -3,7 +3,7 @@
     <div 
         class="row">
         <div 
-            class="col-md-6" 
+            class="col-md-4 align-center" 
             v-for="(event,i) in events"
             :key="i"
         >

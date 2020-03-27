@@ -60,9 +60,10 @@ export default {
 .task:hover{
   box-shadow: 5px 5px 8px 0px #ffff0036;
   transition:.2s ease-in;
-  font-size:1.1em;
+  // font-size:1.1em;
   cursor:pointer;
   // border:1px solid #ffff00;
+  overflow: auto;
 }
 
 .task{

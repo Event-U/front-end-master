@@ -13,7 +13,7 @@
         >
             <event-need
                 v-bind="need"
-                class='mt-3 need-card'
+                class='mt-3 need-card mb-3'
             />
         </div>
     </div>
@@ -93,10 +93,10 @@ border-bottom:1px solid #CCCCCC;
 transition:.3s ease-out;
 }
 .need-container:hover{
-    border:3px solid #CCCCCC;
+    border:1px solid #CCCCCC;
     transition:.3s ease-in;
     border-radius: 12px;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .row{

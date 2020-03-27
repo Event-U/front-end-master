@@ -7,7 +7,8 @@
         class="
                 need-icon 
                 animated 
-                fadeInLeft"
+                fadeInLeft
+            "
     >
      <i class="fas fa-angle-right"/>
     </div>
@@ -102,7 +103,8 @@ export default {
 .card-body{
     padding:0;
 }
-i{background-color: #ffff00;
+i{
+    background-color: #ffff00;
     padding: 40% 80%;
     border-radius: 50%;
     }

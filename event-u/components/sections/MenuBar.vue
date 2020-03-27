@@ -12,7 +12,7 @@
     </div>
         <div class="icons-navbar col-2">
             <i class="fas fa-search"></i>
-            <i class="far fa-bell"></i>
+            <i class="fas fa-bell"></i>
             <i class="fas fa-cog"></i>
         </div>
 </div>

@@ -2,23 +2,33 @@
 <div class='container-fluid'>
     <div class="row justify-content-around">
         <div class="col-md-9">
-            <full-calendar/>
+            <full-calendar
+                :events='events'
+            />
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import {mapMutations,mapState} from 'vuex'
+
 export default {
     name:'Calendario',
      data(){
         return{
-            name:'Mi calendario'
+            name:'Mi calendario',
         }
     },
     mounted(){
         this.$store.commit('change',this.name)
     },
+    created() {
+        this.$store.commit('change', this.name)
+        this.$store.dispatch('event/fetchEvents')
+        this.$store.dispatch('service/fetchServices')
+  },
+  computed:mapState('event',['events'])
 }
 </script>
 

@@ -9,11 +9,11 @@ class="cta-organizadores"
         No tienes cotizaciones
     </a>
     <div 
-        class="cta animated fadeInUp delay-1s"
+        class="cta animated fadeInUp"
     >
         <nuxt-link 
             to="/organizador/QuotationNeeds" 
-            class="cta-needs animated tada"
+            class="cta-needs"
             v-if="quotation.length!==0"
         > 
             Ver cotizaciones

@@ -1,11 +1,17 @@
 <template>
   <div>
+      <div 
+        class="spinner-border text-center align-center" style="width: 6rem; height: 6rem;" role="status"
+        v-if="asyncState==='pending'"
+    >
+        <span class="sr-only">Loading...</span>
+        </div>
         <div 
             class="event-preview mt-3" 
             v-if="currentStepNumber>=5 && formInProgress"
         >
         <h1 
-            class="animated bounce"
+            class=""
         >
             ¡Éste es tu nuevo evento!
         </h1>
@@ -59,13 +65,12 @@
             v-if='currentStepNumber>1 && currentStepNumber<=4'
             @click="lastQuestion"
           >
-
             <i class="fas fa-long-arrow-alt-left"></i>
               Atrás
           </button>
           <button 
-          :disabled="!canGoNext"
-          v-if='currentStepNumber<=4'
+            :disabled="!canGoNext"
+            v-if='currentStepNumber<=4'
             class="btn btn-iconed animated"
             @click="nextQuestion"
             >
@@ -82,7 +87,7 @@
           </button>
           <button 
             v-if='currentStepNumber>=5 && formInProgress'
-            class="btn btn-iconed animated wobble"
+            class="btn btn-iconed "
             @click="submitEvent(eventObject)"
             >
               Subir evento
@@ -92,12 +97,12 @@
     <div v-if="this.asyncState==='pending' && !formInProgress " class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
      <span class="sr-only">Loading...</span>
     </div>
-      <div class="animated tada" v-if="this.asyncState==='success'&& !formInProgress">
+      <div class="" v-if="this.asyncState==='success'&& !formInProgress">
           <h1>
               ¡Genial, creaste tu evento!
           </h1>
           <button
-             class="btn btn-iconed animated wobble"
+             class="btn btn-iconed text-center"
              @click='goToBoard(newEventId)'
           >
             Planificar mi evento

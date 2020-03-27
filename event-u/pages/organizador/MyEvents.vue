@@ -7,13 +7,13 @@
             v-for="(event,i) in events"
             :key="i"
         >
-            <nuxt-link
+            <!-- <nuxt-link
                 to="/organizador/EventNeeds"
-            >
+            > -->
                 <event-card
                     v-bind="event"
                 />
-            </nuxt-link>
+            <!-- </nuxt-link> -->
         </div>
     </div>
 </div>

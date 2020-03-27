@@ -1,13 +1,13 @@
 <template>
 <div 
     class="eventcard mb-3"
-    @click="setActiveEvent"
+     @mouseover="hoverCard = true"
+      @mouseleave="hoverCard = false"
 >
   <div class="column">
     <div 
-        class="post-module"
-        @mouseover="hoverCard = true"
-        @mouseleave="hoverCard = false"
+        class="post-module" 
+       
     >
       <div class="thumbnail">
         <div class="date">
@@ -46,6 +46,24 @@
         >
             {{description}}
         </p>
+        <div class="cta-event">
+          <button 
+            class="btn-eventu"
+            @click="goToBoard"
+          >
+            Ir al tablero
+          </button>
+          <nuxt-link
+            to="/organizador/EventNeeds"
+          >
+            <button 
+              class="btn btn-eventu"
+              @click="setActiveEvent"
+            >
+              Ver necesidades
+          </button>
+          </nuxt-link>
+        </div>
         <div class="post-meta">
             <span class="timestamp">
                 <i class="fas fa-compass"/>
@@ -104,12 +122,22 @@ export default {
               image:this.image,
               _id:this._id
           })
+      },
+      goToBoard(){
+        this.$router.push({
+          name:"planner-board-event-id", 
+          params:{id:this._id},
+        })
       }
     },
 }
 </script>
 
 <style lang="scss" scoped>
+.btn-eventu{
+  background-color:$complementary;
+  color:white;
+}
 .event-categories{
      font-size:.7em;
     background-color:rgba(223, 221, 221, 0.707);

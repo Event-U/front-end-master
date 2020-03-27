@@ -18,6 +18,9 @@ export default {
     components: {
         FullCalendar
     },
+    props:{
+        events:[]
+    },
     data() {
         return {
             calendarPlugins: [ dayGridPlugin ],
@@ -26,18 +29,18 @@ export default {
             },
         }
     },
-    created() {
-        this.$store.dispatch('event/fetchEvents')
-  },
-  computed:mapState('event',['events']),
-  filter:{
-    getTitle:function(events) {
-        return events.map((event)=>({
-            title:event.name,
-            date:event.date,
-        }))
-    },
-  }
+//     created() {
+//         this.$store.dispatch('event/fetchEvents')
+//   },
+//   computed:mapState('event',['events']),
+//   filter:{
+//     getTitle:function(events) {
+//         return events.map((event)=>({
+//             title:event.name,
+//             date:event.date,
+//         }))
+//     },
+//   }
 }
 </script>
 

@@ -9,7 +9,6 @@
         <h5 class="card-title">
             {{name}}
         </h5>
-
         <Raitings
             v-bind="number"
         />
@@ -23,6 +22,12 @@
                 ${{unitPrice}}
             </small>
         </p>
+        <button
+            class="btn btn-eventu"
+            @click="goToBoard"
+        >
+            Ir al tablero
+        </button>
     </div>
     <div class="card-footer text-left">
         <small class="category">
@@ -51,12 +56,22 @@ export default {
         category:Object,
         number:Number
     },
-    computed:{
-    }
+    methods:{
+        goToBoard(){
+        this.$router.push({
+          name:"planner-board-service-id", 
+          params:{id:this._id},
+        })
+      }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
+.btn-eventu{
+    background-color:$complementary;
+    color:white;
+}
 h5{
     @extend .h2-font;
     font-weight: 400;

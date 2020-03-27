@@ -27,7 +27,7 @@
     </div>
     <div class="service-row row">
         <div 
-            class="col-md-2"
+            class="col-md-3"
             v-for="service in services"
             :key="service._id"
         >

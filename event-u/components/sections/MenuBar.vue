@@ -7,12 +7,21 @@
         <h1
         class="animated bounce"
         >
+        <i 
+            class="fas fa-arrow-left mr-3"
+            @click="goBack"
+        >
+        </i>
             {{activePage}}
         </h1>
     </div>
         <div class="icons-navbar col-2">
             <i class="fas fa-search"></i>
-            <i class="fas fa-bell"></i>
+            <nuxt-link
+                to="/planner/calendar"
+            >
+                <i class="fas fa-calendar-alt"></i>
+            </nuxt-link>
             <i class="fas fa-cog"></i>
         </div>
 </div>
@@ -34,18 +43,31 @@ export default {
     },
     computed: mapState([
         'activePage'
-        ])
-    ,
+    ]),
+    methods:{
+        goBack(){
+            this.$router.go(-1)
+        }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
+.fa-arrow-left{
+    font-size:.8em;
+}
+.fa-arrow-left:hover{
+    cursor: pointer;
+}
+i{
+    color:#333333;
+}
 .navbar{
     z-index:2;
     background-color: $alpha;
     padding:1% 0%;
     border-radius:0px 0px 16px 16px;
-    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.27);
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.235);
 }
 .section-title{
     text-align:center;

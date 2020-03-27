@@ -3,7 +3,7 @@
     <div class="row justify-content-around">
         <div class="col-md-9">
             <full-calendar
-                :events='events'
+                :events='eventss'
             />
         </div>
     </div>
@@ -28,7 +28,16 @@ export default {
         this.$store.dispatch('event/fetchEvents')
         this.$store.dispatch('service/fetchServices')
   },
-  computed:mapState('event',['events'])
+  computed:{
+      eventss(){
+       return this.events.map((event) => ({
+            title: event.name,
+            date: event.date
+        }))
+      },
+      ...mapState('event',['events']),
+      }
+  
 }
 </script>
 

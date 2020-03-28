@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/cloud-builders/npm'
+- name: 'gcr.io/cloud-builders/gsutil'
   args:
   - cp
   - ${_PRODUCTION_CONFIG}
@@ -23,12 +23,12 @@ steps:
   args:
   - run
   - generate
-- name: 'gcr.io/cloud-builders/npm'
+- name: 'gcr.io/cloud-builders/gsutil'
   args:
   - cp
   - ${_APP_YAML_CONFIG}
   - app.yaml
-- name: 'gcr.io/cloud-builders/npm'
+- name: 'gcr.io/cloud-builders/gcloud'
   args:
   - app
   - deploy

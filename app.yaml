@@ -1,1 +1,36 @@
-runtime: nodejs10
+steps:
+- name: 'event-u'
+  args:
+  - cp
+  - ${_PRODUCTION_CONFIG}
+  - config/production.json
+- name: 'event-u'
+  args:
+  - install
+- name: 'event-u'
+  args:
+  - run
+  - lint
+- name: 'event-u'
+  args:
+  - run
+  - test
+- name: 'event-u'
+  args:
+  - run
+  - build
+- name: 'event-u'
+  args:
+  - run
+  - generate
+- name: 'event-u'
+  args:
+  - cp
+  - ${_APP_YAML_CONFIG}
+  - app.yaml
+- name: 'event-u'
+  args:
+  - app
+  - deploy
+  - --no-promote
+timeout: '600s'

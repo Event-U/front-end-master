@@ -6,7 +6,6 @@ steps:
   - config/production.json
 - name: 'https://github.com/Event-U/front-end-master'
   args:
-    -
   - install
 - name: 'https://github.com/Event-U/front-end-master'
   args:

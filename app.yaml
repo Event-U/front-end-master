@@ -3,7 +3,7 @@ steps:
   args:
   - cp
   - ${_PRODUCTION_CONFIG}
-  - production.yml
+  - config/production.json
 - name: 'gcr.io/cloud-builders/npm'
   args:
   - install

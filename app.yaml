@@ -3,7 +3,7 @@ steps:
   args:
   - cp
   - ${_PRODUCTION_CONFIG}
-  - config/production.json
+  - production.yml
 - name: 'https://github.com/Event-U/front-end-master'
   args:
   - install

@@ -1,4 +1,9 @@
 ![](logo-event-u-animation.gif)
+![](desk-vue.gif)
+![](Laptop.gif)
+![](vuex.gif)
 
 # front-end-master
-This is the last Front End
+Front End for Event-U
+
+

@@ -1,34 +1,35 @@
 steps:
-- name: 'event-u'
+- name: 'https://github.com/Event-U/front-end-master'
   args:
   - cp
   - ${_PRODUCTION_CONFIG}
   - config/production.json
-- name: 'event-u'
+- name: 'https://github.com/Event-U/front-end-master'
   args:
+    -
   - install
-- name: 'event-u'
+- name: 'https://github.com/Event-U/front-end-master'
   args:
   - run
   - lint
-- name: 'event-u'
+- name: 'https://github.com/Event-U/front-end-master'
   args:
   - run
   - test
-- name: 'event-u'
+- name: 'https://github.com/Event-U/front-end-master'
   args:
   - run
   - build
-- name: 'event-u'
+- name: 'https://github.com/Event-U/front-end-master'
   args:
   - run
   - generate
-- name: 'event-u'
+- name: 'https://github.com/Event-U/front-end-master'
   args:
   - cp
   - ${_APP_YAML_CONFIG}
   - app.yaml
-- name: 'event-u'
+- name: 'https://github.com/Event-U/front-end-master'
   args:
   - app
   - deploy

@@ -1,12 +1,23 @@
 steps:
-- name: gcr.io/cloud-builders/docker
-  args:
-  [
-    'build',
-    '-f',
-    'dockerfile',
-    '-t',
-    'gcr.io/event-u/front-end',
-  ]
-images:
-  - gcr.io/event-u/images
+  - name: 'gcr.io/cloud-builders/npm'
+    args:
+    - install
+  - name: 'gcr.io/cloud-builders/npm'
+    args:
+    - run
+    - build
+  - name: 'gcr.io/cloud-builders/npm'
+    args:
+    - run
+    - generate
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args:
+    - cp
+    - ${_APP_YAML_CONFIG}
+    - production.yml
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+    - app
+    - deploy
+    - --no-promote
+  timeout: '600s'

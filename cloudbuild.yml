@@ -15,8 +15,4 @@ steps:
     - cp
     - ${_APP_YAML_CONFIG}
     - app.yml
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-    - app
-    - deploy
   timeout: '600s'

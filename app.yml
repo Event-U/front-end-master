@@ -7,7 +7,6 @@ steps:
     'dockerfile',
     '-t',
     'gcr.io/event-u/front-end',
-    '.',
   ]
 images:
   - gcr.io/event-u/images

@@ -1,23 +1,21 @@
-steps:
-  - name: 'gcr.io/cloud-builders/npm'
-    args:
-    - install
-  - name: 'gcr.io/cloud-builders/npm'
-    args:
-    - run
-    - build
-  - name: 'gcr.io/cloud-builders/npm'
-    args:
-    - run
-    - generate
-  - name: 'gcr.io/cloud-builders/gsutil'
-    args:
-    - cp
-    - ${_APP_YAML_CONFIG}
-    - production.yml
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-    - app
-    - deploy
-    - --no-promote
-  timeout: '600s'
+runtime: nodejs10
+
+instance_class: F2
+
+handlers:
+  - url: /_nuxt
+    static_dir: .nuxt/dist/client
+    secure: always
+
+  - url: /(.*\.(gif|png|jpg|ico|txt))$
+    static_files: static/\1
+    upload: static/.*\.(gif|png|jpg|ico|txt)$
+    secure: always
+
+  - url: /.*
+    script: auto
+    secure: always
+
+env_variables:
+  HOST: '0.0.0.0'
+  NODE_ENV: 'production'

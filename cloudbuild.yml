@@ -14,5 +14,5 @@ steps:
     args:
     - cp
     - ${_APP_YAML_CONFIG}
-    - app.yml
+    - app.yaml
   timeout: '600s'

@@ -19,5 +19,4 @@ steps:
     args:
     - app
     - deploy
-    - --no-promote
   timeout: '600s'

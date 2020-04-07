@@ -11,9 +11,8 @@ module.exports = {
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            { rel: "stylesheet", href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", integrity: "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", crossorigin: "anonymous" },
             { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" },
-            { rel: "stylesheet", href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", integrity: "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", crossorigin: "anonymous" }
-
         ],
         script: [
             { src: 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js' },
@@ -23,6 +22,8 @@ module.exports = {
             { src: "https://d3js.org/d3.v5.min.js" },
             { src: "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" },
             { src: 'https://unpkg.com/@livelybone/vue-datepicker/lib/umd/<--module.js' },
+            { src: 'https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js' },
+            { src: 'https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js' }
         ]
 
     },
@@ -48,12 +49,31 @@ module.exports = {
     //         }
     //     }
     // },
-    buildModules: [
+    // generate: {
+    //     async routes() {
+    //         let response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    //         return response.data.map(post => `posts/${post.id}`)
+    //     },
+    // }
+    modules: [
         ['@nuxtjs/google-analytics', {
             id: 'UA-159826239-1'
-        }]
+        }],
+        ['@nuxtjs/style-resources'],
+        ['@nuxtjs/toast']
     ],
-    modules: ['@nuxtjs/style-resources'],
+    toast: {
+        position: 'top-center',
+        register: [ // Register custom toasts
+            {
+                name: 'my-error',
+                message: 'Oops...Something went wrong',
+                options: {
+                    type: 'error'
+                }
+            }
+        ]
+    },
     styleResources: {
         scss: [
             './style/_variables.scss'

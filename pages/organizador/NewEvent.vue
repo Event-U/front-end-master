@@ -102,32 +102,21 @@
             Planificar mi evento
           </button>
       </div>
-<img 
-    :src="bgs[currentStepNumber-1]"
-    alt=""
->
   </div>
 </template>
 
 <script>
 import {mapState} from 'vuex'
-import NewNeedForm from '@/components/sections/NewNeedForm.vue'
-import EventBasicInfo from '@/components/ui/forms/EventBasicInfo.vue'
-import EventSpecificInfo from '@/components/ui/forms/EventSpecificInfo.vue'
-import EventCard from '@/components/ui/EventCard.vue'
-import EventNeed from '@/components/ui/EventNeed.vue'
-import NewEventAdress from '@/components/sections/NewEventAdress.vue'
 
 export default {
 name:'NewEvent',
 components:{
-    NewNeedForm,
-    EventBasicInfo,
-    EventSpecificInfo,
-    EventCard,
-    EventNeed,
-    NewEventAdress
-},
+    NewNeedForm:()=> import(/* webpackChunkName: "NewNeedForm" */'@/components/sections/NewNeedForm.vue'),
+    EventBasicInfo:()=> import(/* webpackChunkName: "EventBasicInfo" */'@/components/ui/forms/EventBasicInfo.vue'),
+    EventSpecificInfo:()=> import(/* webpackChunkName: "EventSpecificInfo" */'@/components/ui/forms/EventSpecificInfo.vue'),
+    EventCard:()=> import(/* webpackChunkName: "EventCard" */'@/components/ui/EventCard.vue'),
+    EventNeed:()=> import(/* webpackChunkName: "EventNeed" */'@/components/ui/EventNeed.vue'),
+    NewEventAdress:()=> import(/* webpackChunkName: "NewEventAdress" */'@/components/sections/NewEventAdress.vue'),},
 data(){
     return{
         asyncState:null,
@@ -148,11 +137,6 @@ data(){
             'EventSpecificInfo',
             'NewEventAdress',
             'NewNeedForm',
-        ],
-        bgs:[
-            '../../_nuxt/assets/img/new-event-bgs/7.png',
-            '../../_nuxt/assets/img/new-event-bgs/7.png',
-            '../../_nuxt/assets/img/new-event-bgs/6.png',
         ],
         }
     },
@@ -211,12 +195,12 @@ data(){
         async submitEvent(eventObject){
             this.asyncState='pending'
             this.currentStepNumber++
-           await this.$store.dispatch('event/postEvent',{
+           await this.$store.dispatch('events/postEvent',{
                 organizator:this.activeUser,
                 ...eventObject
             })
             this.asyncState='success'
-            this.newEventId=this.$store.state.event.newEvent._id
+            this.newEventId=this.$store.state.events.newEvent._id
         },
         goToBoard(id){
             this.$router.push({

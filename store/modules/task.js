@@ -1,19 +1,19 @@
 const axios = require('axios');
 const urlBase = 'https://event-uback.mybluemix.net'
 
-const state = {
+export const state = () => ({
     tasksIdsFromNeed: [],
     activeTask: {},
     tasksIds: [],
-}
+})
 
 // getters
-const getters = {
+export const getters = {
 
 }
 
 // actions
-const actions = {
+export const actions = {
     async createTaskFromNeed({ commit }, newNeed) {
         console.log(newNeed)
         const newTaskObject = await axios.post(`${urlBase}/task`, {
@@ -82,7 +82,7 @@ const actions = {
 }
 
 // mutations
-const mutations = {
+export const mutations = {
     PUSH_NEW_ID_TASK_FROM_NEED(state, newTaskId) {
         state.tasksIdsFromNeed.push(newTaskId)
     },
@@ -95,11 +95,4 @@ const mutations = {
     CLEAN_TASK_IDS(state) {
         state.tasksIds = []
     }
-}
-export default {
-    namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations
 }

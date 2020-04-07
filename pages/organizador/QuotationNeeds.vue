@@ -37,12 +37,12 @@ export default {
         }},
     mounted(){
         this.$store.commit('change',this.name)
-        this.$store.dispatch('quotation/fetchQuotation')
+        this.$store.dispatch('quotations/fetchQuotation')
     }, computed: {
-        ...mapGetters('quotation',['quotationsByNeedId']),
+        ...mapGetters('quotations',['quotationsByNeedId']),
         ...mapState({
-        activeNeed:state=> state.event.activeNeed,
-        needId:state=>state.quotation.needId
+        activeNeed:state=> state.events.activeNeed,
+        needId:state=>state.quotations.needId
     })
     },
 }

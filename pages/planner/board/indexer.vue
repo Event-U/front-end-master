@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import {mapMutations,mapState} from 'vuex'
 import NewEventAdress from '@/components/sections/NewEventAdress'
 
 export default {

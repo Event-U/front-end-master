@@ -20,11 +20,11 @@ export default {
             }
     },
     computed: mapState({
-        activeEvent:state=> state.event.activeEvent
+        activeEvent:state=> state.events.activeEvent
     }),
     mounted () {
        this.$store.commit('change',this.name)
-       this.$store.dispatch('quotation/fetchQuotation')
+       this.$store.dispatch('quotations/fetchQuotation')
   },
 }
 </script>

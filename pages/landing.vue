@@ -149,7 +149,18 @@
 <script>
 export default {
   name: 'Landing',
-  layout:'landing'
+  layout:'landing',
+  head () {
+      return {
+          title: 'Sitio web para organizar eventos en México', 
+          meta: [
+            {'og:title': 'Sitio web para organizar eventos en México'},
+            {'og:type': 'page'},
+            {'og:description': 'Comienza a generar ganancias en el mercado de eventos en México. No importa sí eres organizador, proveedor o inversionista.'},
+            {'og:image': '../assets/landing/images/dashboard.png'}
+          ]
+      }
+  }
 }
 </script>
 

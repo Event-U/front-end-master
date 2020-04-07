@@ -29,7 +29,6 @@
         </div>
         <div 
           class="event-categories-wrapper"
-          v-if="this.$router.path!=='/organizador/NewEvent'"
         >
           <!-- <span
               v-for="need in needs"
@@ -115,7 +114,7 @@ export default {
     },
     methods:{
       setActiveEvent(){
-          this.$store.commit('event/change', {
+          this.$store.commit('events/change', {
               needs:this.needs,
               name:this.name,
               description:this.description,

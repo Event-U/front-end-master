@@ -1,14 +1,14 @@
 import api from '@/lib/api'
 
-const state = {
+export const state = () => ({
     categories: [],
     services: [],
     newService: {},
     activeNeedService: {}
-}
+})
 
 // getters
-const getters = {
+export const getters = {
     servicesByCategoryId: state => id => {
         return state.services.filter(service => service.category._id === id)
     },
@@ -27,7 +27,7 @@ const getters = {
 }
 
 // actions
-const actions = {
+export const actions = {
     async postService({ dispatch, commit }, service) {
         const newService = await api.createServices(service)
         await console.log(newService)
@@ -49,7 +49,7 @@ const actions = {
 }
 
 // mutations
-const mutations = {
+export const mutations = {
     SET_SERVICES(state, services) {
         state.services = services
     },
@@ -63,11 +63,4 @@ const mutations = {
         state.newService = newService
     }
 
-}
-export default {
-    namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations
 }

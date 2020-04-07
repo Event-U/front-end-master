@@ -36,23 +36,22 @@
 <script>
 import {mapState} from 'vuex'
 import EventNeed from '@/components/ui/EventNeed.vue'
-import NewNeedForm from '@/components/sections/NewNeedForm.vue'
 
 export default {
     name:'EventNeeds',
     components:{
         EventNeed,
-        NewNeedForm
-    },
-     data() {
+        NewNeedForm:()=> import(/* webpackChunkName: "NewNeedForm" */'@/components/sections/NewNeedForm.vue')
+    }, data() {
         return{
             addingNeed: false,
             name:'Necesidades evento',
          }
-    },created () {
-           this.$store.commit('change',this.name),
-            this.$store.dispatch('need/fetchNeeds',this.activeEvent._id)
-      },
+    }, created () {
+        this.$store.commit('change',this.name)
+    }, async fetch() {
+       await this.$store.dispatch('needs/fetchNeeds',this.activeEvent._id)
+    },
     computed: mapState({
         activeEvent:state=> state.event.activeEvent,
         needs:state=>state.need.needs
@@ -61,7 +60,7 @@ export default {
     actionNewNeed(e){
         this.addingNeed=true
     },newNeed() {
-        this.$store.dispatch('need/fetchNeeds')
+        this.$store.dispatch('needs/fetchNeeds')
     }
   }}
 

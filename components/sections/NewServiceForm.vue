@@ -120,9 +120,9 @@ export default {
          })
        }
     },created() {
-        this.$store.dispatch('service/fetchCategories')
+        this.$store.dispatch('services/fetchCategories')
   },computed:{
-      ...mapState('service',['categories']),
+      ...mapState('services',['categories']),
       ...mapState('activeUser')
       }
 }

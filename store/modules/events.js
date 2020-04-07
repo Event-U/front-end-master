@@ -1,20 +1,20 @@
 import api from '@/lib/api.js'
 
-const state = {
+export const state = () => ({
     activeEvent: {},
     activeNeed: {},
     newEventObject: {},
     events: [],
     newEvent: {}
-}
+})
 
 // getters
-const getters = {
+export const getters = {
 
 }
 
 // actions
-const actions = {
+export const actions = {
     async fetchEvents({ commit }) {
         const allEvents = await api.getEvent()
         commit('SET_EVENTS', allEvents)
@@ -27,7 +27,7 @@ const actions = {
 }
 
 // mutations
-const mutations = {
+export const mutations = {
     change: (state, name) => {
         state.activeEvent = name
     },
@@ -49,11 +49,4 @@ const mutations = {
     SET_NEW_EVENT(state, event) {
         state.newEvent = event
     }
-}
-export default {
-    namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations,
 }

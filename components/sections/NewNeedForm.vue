@@ -97,8 +97,7 @@ export default {
     },
     methods:{
     onSubmit: async function(){
-
-       await this.$store.dispatch('need/postNeedToEvent',{
+       await this.$store.dispatch('needs/postNeedToEvent',{
                     description:this.description,
                     service:this.service,
                     quotation:[]
@@ -109,7 +108,7 @@ export default {
             this.description=''
     },
     async onSubmitNew(){
-       await this.$store.dispatch('need/postNeed',{
+       await this.$store.dispatch('needs/postNeed',{
             description:this.description,
             service:this.service,
             quotation:[]
@@ -118,20 +117,20 @@ export default {
                 categoryId:this.categoryId,
                 service:this.service,
                 description:this.description,
-                _id:this.$store.state.need.newNeed._id,
+                _id:this.$store.state.needs.newNeed._id,
             })
              this.categoryId=''
             this.serviceId=''
             this.description=''
     } 
     },created(){
-        this.$store.dispatch('service/fetchCategories'),
-        this.$store.dispatch('service/fetchServices')
+        this.$store.dispatch('services/fetchCategories'),
+        this.$store.dispatch('services/fetchServices')
     },
     computed:{ 
-       ...mapGetters('service',['servicesByCategoryId']),
+       ...mapGetters('services',['servicesByCategoryId']),
         ...mapState({
-            categories: state=> state.service.categories,
+            categories: state=> state.services.categories,
         })
     }
 }

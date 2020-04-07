@@ -58,10 +58,10 @@ export default {
     },
      created() {
         this.$store.commit('change', this.name)
-        this.$store.dispatch('service/fetchCategories')
-        this.$store.dispatch('service/fetchServices')
+        this.$store.dispatch('services/fetchCategories')
+        this.$store.dispatch('services/fetchServices')
   },
-  computed:mapState('service',['services'])
+  computed:mapState('services',['services'])
 }
 </script>
 

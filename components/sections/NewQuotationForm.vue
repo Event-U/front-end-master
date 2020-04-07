@@ -62,18 +62,18 @@ export default {
         need:Object
     },
     mounted(){
-        this.$store.dispatch('service/getNameService', this.service)
+        this.$store.dispatch('services/getNameService', this.service)
     },
     computed: {
         ...mapState({
-        activeNeed:state=> state.event.activeNeed,
-        serviceName:state=> state.service.activeNeedService,
+        activeNeed:state=> state.events.activeNeed,
+        serviceName:state=> state.services.activeNeedService,
         activeUser:state=>state.activeUser
          })
     },
     methods:{
         postQuotation({price,description,image}){
-            this.$store.dispatch('quotation/postQuotation',{
+            this.$store.dispatch('quotations/postQuotation',{
                 provider:this.activeUser,
                 price:price,
                 description:description,

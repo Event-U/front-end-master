@@ -1,8 +1,7 @@
-import api from '@/lib/api.js'
 const axios = require('axios');
 const urlBase = 'https://event-uback.mybluemix.net'
 
-const state = {
+export const state = () => ({
     newBoard: {},
     activeBoard: {},
     tasksIds: [],
@@ -10,10 +9,10 @@ const state = {
     newServiceBoard: [],
     allBoards: [],
     boardType: ''
-}
+})
 
 // getters
-const getters = {
+export const getters = {
     getEventBoard: state => id => {
         return state.allBoards.find(board => board.event ? board.event._id === id : console.log(board))
     },
@@ -29,7 +28,7 @@ const getters = {
 }
 
 // actions
-const actions = {
+export const actions = {
     async createBoard({ commit, rootState, dispatch }, newEvent) {
         await dispatch('columns/createDefaultColumns', newEvent, { root: true })
 
@@ -108,7 +107,7 @@ const actions = {
 }
 
 // mutations
-const mutations = {
+export const mutations = {
     SET_NEW_EVENT_BOARD(state, newBoard) {
         state.newBoard = newBoard
     },
@@ -149,11 +148,4 @@ const mutations = {
         columnList.splice(toColumnIndex, 0, columnToMove)
         console.log('Terminado de mover', columnList)
     },
-}
-export default {
-    namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations,
 }

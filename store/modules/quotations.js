@@ -1,23 +1,23 @@
 import api from '@/lib/api'
 
-const state = {
+export const state = () => ({
     quotations: [],
     newQuotation: {},
     quotationsId: [],
     quotationsNeeds: [],
     needId: '',
     updatedQuotation: {}
-}
+})
 
 // getters
-const getters = {
+export const getters = {
     quotationsByNeedId: state => id => {
         return state.quotations.filter(quotation => quotation.need._id === id)
     },
 }
 
 // actions
-const actions = {
+export const actions = {
     async fetchQuotation({ commit }) {
         const quotationsObject = await api.getQuotations()
         commit('SET_QUOTATIONS', quotationsObject)
@@ -47,7 +47,7 @@ const actions = {
 }
 
 // mutations
-const mutations = {
+export const mutations = {
     SET_QUOTATIONS(state, quotations) {
         state.quotations = quotations
     },
@@ -73,11 +73,4 @@ const mutations = {
         state.updatedQuotation = updatedQuotation
     }
 
-}
-export default {
-    namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations
 }

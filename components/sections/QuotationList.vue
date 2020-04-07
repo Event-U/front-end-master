@@ -42,9 +42,9 @@ export default {
       }
     },
     created() {
-      this.$store.dispatch('quotation/fetchQuotation')
+      this.$store.dispatch('quotations/fetchQuotation')
     },
-    computed:mapState('quotation',['quotations'])
+    computed:mapState('quotations',['quotations'])
 }
 </script>
 

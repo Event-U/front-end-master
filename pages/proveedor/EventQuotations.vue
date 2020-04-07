@@ -41,13 +41,13 @@ export default {
         }
     },
     computed: mapState({
-        activeEvent:state=> state.event.activeEvent,
-        needs:state=> state.need.needs
+        activeEvent:state=> state.events.activeEvent,
+        needs:state=> state.needs.needs
     }),
     created () {
        this.$store.commit('change',this.name)
-       this.$store.dispatch('need/fetchNeeds',this.activeEvent._id)
-       this.$store.dispatch('service/fetchServices')
+       this.$store.dispatch('needs/fetchNeeds',this.activeEvent._id)
+       this.$store.dispatch('services/fetchServices')
   },
   methods: {
     actionNewNeed(e){

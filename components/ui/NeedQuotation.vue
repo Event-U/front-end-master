@@ -71,7 +71,7 @@ export default {
     methods:{
         updateQuotationState(newState,id){
             console.log(id)
-            this.$store.dispatch('quotation/updateQuotation',{
+            this.$store.dispatch('quotations/updateQuotation',{
                 status:newState,
                 id:id,
                 provider:this.provider,

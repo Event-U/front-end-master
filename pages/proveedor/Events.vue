@@ -39,11 +39,11 @@ export default {
     },    
     mounted () {
        this.$store.commit('change', this.name)
-        this.$store.dispatch('event/fetchEvents')
-        this.$store.dispatch('service/fetchServices')
+        this.$store.dispatch('events/fetchEvents')
+        this.$store.dispatch('services/fetchServices')
   },
   computed:{
-      ...mapState('event',['events'])
+      ...mapState('events',['events'])
   },
 }
 </script>

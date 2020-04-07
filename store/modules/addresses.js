@@ -2,7 +2,7 @@ import api from '@/lib/api.js'
 const axios = require('axios');
 const urlBase = 'https://event-uback.mybluemix.net'
 
-const state = {
+export const state = () => ({
     estadosDeLaRepublic: [{
             "id": 1,
             "name": "Aguascalientes"
@@ -133,15 +133,15 @@ const state = {
         }
     ],
     newAdress: {}
-}
+})
 
 // getters
-const getters = {
+export const getters = {
 
 }
 
 // actions
-const actions = {
+export const actions = {
     async submitAdress({ commit }, adressObject) {
         const newAdress = await axios.post(`${urlBase}/address`, {
             street: adressObject.street,
@@ -161,15 +161,8 @@ const actions = {
 }
 
 // mutations
-const mutations = {
+export const mutations = {
     SET_NEW_EVENT_ADRESS(state, newAdress) {
         state.newAdress = newAdress
     }
-}
-export default {
-    namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations,
 }

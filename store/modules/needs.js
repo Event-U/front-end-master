@@ -2,20 +2,20 @@ import api from '@/lib/api.js'
 import event from '@/store/modules/events.js'
 const urlBase = 'https://event-uback.mybluemix.net'
 
-const state = {
+export const state = () => ({
     needs: [],
     activeNeed: {},
     newNeed: {},
     needsId: [],
-}
+})
 
 // getters
-const getters = {
+export const getters = {
 
 }
 
 // actions
-const actions = {
+export const actions = {
     async fetchNeeds({ commit, rootState }) {
         const eventId = rootState.event.activeEvent._id
         const eventObject = await api.getEventById(eventId)
@@ -44,7 +44,7 @@ const actions = {
 }
 
 // mutations
-const mutations = {
+export const mutations = {
     SET_NEEDS(state, needs) {
         state.needs = needs
     },
@@ -60,11 +60,4 @@ const mutations = {
     CLEAN_NEED_ID_ARRAY(state) {
         state.needsId = []
     }
-}
-export default {
-    namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations
 }

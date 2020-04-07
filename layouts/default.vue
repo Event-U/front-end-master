@@ -17,9 +17,6 @@ export default {
         MenuBar,
         SideBar
     },
-    mounted(){
-      
-    }
 }
 </script>
 

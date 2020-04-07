@@ -67,7 +67,7 @@ export default {
         _id:String
     },
     computed: mapState({
-        activeNeed:state=> state.event.activeNeed
+        activeNeed:state=> state.events.activeNeed
     })
 }
 </script>

@@ -2,16 +2,16 @@ const axios = require('axios');
 const urlBase = 'https://event-uback.mybluemix.net'
     // const actualBoard = state.changeBoard ? changeBoard : defaultBoard
 
-const state = {
+export const state = () => ({
     newBoardDefaultColumns: [],
     activeColumns: []
+})
+
+export const getters = {
+
 }
 
-const getters = {
-
-}
-
-const actions = {
+export const actions = {
     async createDefaultColumns({ commit, rootState }) {
         await commit('CLEAN_COLUMN_ID')
 
@@ -69,7 +69,7 @@ const actions = {
     }
 }
 
-const mutations = {
+export const mutations = {
     PUSH_COLUMN_ID(state, columnId) {
         state.newBoardDefaultColumns.push(columnId)
     },
@@ -79,11 +79,4 @@ const mutations = {
     SET_ACTIVE_COLUMNS(state, activeColumns) {
         state.activeColumns = activeColumns
     }
-}
-export default {
-    namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations
 }

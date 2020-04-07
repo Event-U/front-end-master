@@ -61,15 +61,15 @@ export default {
   },
   methods:{
       setActiveNeed(){
-        this.$store.dispatch('service/getNameService', this.service)
-        this.$store.commit('event/changeNeed', {
+        this.$store.dispatch('services/getNameService', this.service)
+        this.$store.commit('events/changeNeed', {
             _id:this._id,
             description:this.description,
             service:this.service,
             quotation:this.quotation,
         //   serviceName:this.serviceNameById(this.service)
         })
-        this.$store.commit('quotation/SET_NEED_ID', this._id)
+        this.$store.commit('quotations/SET_NEED_ID', this._id)
       },
     }
 }

@@ -119,7 +119,7 @@ export default {
                 categoryId:this.categoryId,
                 service:this.service,
                 description:this.description,
-                _id:this.$store.state.need.newNeed._id,
+                _id:this.$store.state.needs.newNeed._id,
             })
 			}
 		},

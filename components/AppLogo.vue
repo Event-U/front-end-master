@@ -1,7 +1,7 @@
 <template>
   <img
     class="logo-animate" 
-    src="@/assets/logo/logo-black.png" 
+    src="../assets/logo/logo-black.png" 
     alt="logo-event-u">
 </template>
 

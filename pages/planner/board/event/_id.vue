@@ -30,7 +30,6 @@
       class="task-bg"
       v-if="isTaskOpen"
     >
-      <!-- @click="close" -->
       <nuxt-child
       />
     </div>
@@ -46,6 +45,22 @@ export default {
     components:{
       Column
     },
+    head () {
+      return {
+          title: `Planificador ${this.board.event.name}`, 
+          meta: [
+            {'og:title': 'Sitio web para organizar eventos en México'},
+            {'og:type': 'page'},
+            {'og:description': 'Comienza a generar ganancias en el mercado de eventos en México. No importa sí eres organizador, proveedor o inversionista.'},
+            {'og:image': '../assets/landing/images/dashboard.png'},
+             {
+                  hid: 'description',
+                  name: 'description',
+                  content: `Mi evento ${this.board.event.name} ${this.board.event.description}`
+              }
+          ]
+      }
+  },
     data(){
         return{
             name:'Planificador eventos',

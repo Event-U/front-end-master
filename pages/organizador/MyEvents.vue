@@ -31,15 +31,33 @@ export default {
     },
     data() {
         return{
-            name:'Mis Eventos',
+            name:'Mis eventos',
         }
     },    
-    created() {
-        this.$store.commit('change', this.name)
-        this.$store.dispatch('events/fetchEvents')
-        this.$store.dispatch('services/fetchServices')
+    head () {
+      return {
+          title: 'Mis eventos', 
+          meta: [
+            {'og:title': 'Sitio web para organizar eventos en México'},
+            {'og:type': 'page'},
+            {'og:description': 'Comienza a generar ganancias en el mercado de eventos en México. No importa sí eres organizador, proveedor o inversionista.'},
+            {'og:image': '../assets/landing/images/dashboard.png'},
+             {
+                  hid: 'description',
+                  name: 'description',
+                  content: 'La plataforma #1 para organizar eventos en México'
+              }
+          ]
+      }
   },
-  computed:mapState('events',['events'])
+    created() {
+     this.$store.commit('change', this.name)
+    },
+  async fetch({store}) {
+    await store.dispatch('events/fetchEvents')
+    await store.dispatch('services/fetchServices')
+  },
+  computed: mapState('events',['events'])
 }
 </script>
 

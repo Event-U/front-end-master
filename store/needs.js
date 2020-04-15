@@ -1,5 +1,4 @@
 import api from '@/lib/api.js'
-import event from '@/store/modules/events.js'
 const urlBase = 'https://event-uback.mybluemix.net'
 
 export const state = () => ({

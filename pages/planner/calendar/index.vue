@@ -35,7 +35,7 @@ export default {
             date: event.date
         }))
       },
-      ...mapState('event',['events']),
+      ...mapState('events',['events']),
       }
   
 }

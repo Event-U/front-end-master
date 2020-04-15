@@ -39,6 +39,22 @@ import EventNeed from '@/components/ui/EventNeed.vue'
 
 export default {
     name:'EventNeeds',
+    head () {
+      return {
+          title: 'Necesidade evento', 
+          meta: [
+            {'og:title': 'Necesidades evento Event-u'},
+            {'og:type': 'page'},
+            {'og:description': 'Comienza a generar ganancias en el mercado de eventos en México. No importa sí eres organizador, proveedor o inversionista.'},
+            {'og:image': '../assets/landing/images/dashboard.png'},
+             {
+                  hid: 'description',
+                  name: 'description',
+                  content: 'La plataforma #1 para organizar eventos en México'
+              }
+          ]
+      }
+  },
     components:{
         EventNeed,
         NewNeedForm:()=> import(/* webpackChunkName: "NewNeedForm" */'@/components/sections/NewNeedForm.vue')

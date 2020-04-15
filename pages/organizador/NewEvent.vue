@@ -110,6 +110,22 @@ import {mapState} from 'vuex'
 
 export default {
 name:'NewEvent',
+head () {
+      return {
+          title: 'Nuevo evento', 
+          meta: [
+            {'og:title': 'Sitio web para organizar eventos en México'},
+            {'og:type': 'page'},
+            {'og:description': 'Comienza a generar ganancias en el mercado de eventos en México. No importa sí eres organizador, proveedor o inversionista.'},
+            {'og:image': '../assets/landing/images/dashboard.png'},
+             {
+                  hid: 'description',
+                  name: 'description',
+                  content: 'Comienza a utilizar Event-U y comienza a generar en el mercado de eventos'
+              }
+          ]
+      }
+  },
 components:{
     NewNeedForm:()=> import(/* webpackChunkName: "NewNeedForm" */'@/components/sections/NewNeedForm.vue'),
     EventBasicInfo:()=> import(/* webpackChunkName: "EventBasicInfo" */'@/components/ui/forms/EventBasicInfo.vue'),

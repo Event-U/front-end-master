@@ -37,14 +37,10 @@
 </template>
 
 <script>
-import Raitings from '@/components/ui/utilities/Raitings.vue'
 import {mapState, mapGetters} from 'vuex'
 
 export default {
     name:'ServiceCard', 
-    components:{
-        Raitings
-    },
     props:{
          _id:String,
         name:String,
@@ -67,8 +63,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn-eventu{
-    background-color:$complementary;
+button{
+    background-color: $complementary;
     color:white;
     @extend .h3-font;
     padding:2% 5%;

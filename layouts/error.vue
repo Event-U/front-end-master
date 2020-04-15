@@ -13,6 +13,11 @@
 
 export default {
     name: 'error',
+     head() {
+        return {
+          title: '404 🕵🏻‍♂️',
+        }
+    },
     components: {
         error500:()=> import(/* webpackChunkName: "NewNeedForm" */'@/components/sections/errors/500.vue'),
         error404:()=> import(/* webpackChunkName: "NewNeedForm" */'@/components/sections/errors/404.vue')

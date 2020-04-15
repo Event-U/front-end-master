@@ -12,6 +12,18 @@
 import MenuBar from '../components/sections/MenuBar.vue'
 import SideBar from '@/components/sections/SideBar.vue'
 export default {
+    head() {
+        return {
+          titleTemplate: '%s | Event-u',
+          meta: [
+              {
+                  hid: 'description',
+                  name: 'description',
+                  content: 'Comienza a utilizar Event-U y comienza a generar en el mercado de eventos'
+              }
+          ]
+        }
+    },
     name: 'default',
     components:{
         MenuBar,

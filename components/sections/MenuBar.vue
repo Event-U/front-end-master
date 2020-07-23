@@ -2,7 +2,7 @@
 	<div
 		class="page-enter-active navbar d-flex justify-content-between animated fadeInDown"
 	>
-		<nuxt-link to="/">
+		<nuxt-link to="/app">
 			<app-logo class="logo-menu col-4" />
 		</nuxt-link>
 		<div class="section-title col-4">
@@ -13,7 +13,7 @@
 		</div>
 		<div class="icons-navbar col-2">
 			<i class="fas fa-search"></i>
-			<nuxt-link to="/planner/calendar">
+			<nuxt-link to="/app/planificador/calendario">
 				<i class="fas fa-calendar-alt"></i>
 			</nuxt-link>
 			<i class="fas fa-cog"></i>
@@ -24,18 +24,17 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
 import AppLogo from '../AppLogo.vue';
+
 export default {
 	name: 'MenuBar',
+
 	components: {
 		AppLogo,
 		mapState,
 	},
-	data() {
-		return {
-			// name:getActivePage(),
-		};
-	},
+
 	computed: mapState(['activePage']),
+
 	methods: {
 		goBack() {
 			this.$router.go(-1);

@@ -7,11 +7,23 @@ export const state = () => ({
 	activeColumns: [],
 });
 
-export const getters = {};
+export const mutations = {
+	PUSH_COLUMN_ID(state, columnId) {
+		state.newBoardDefaultColumns.push(columnId);
+	},
+
+	CLEAN_COLUMNS_ID(state) {
+		state.newBoardDefaultColumns = [];
+	},
+
+	SET_ACTIVE_COLUMNS(state, activeColumns) {
+		state.activeColumns = activeColumns;
+	},
+};
 
 export const actions = {
 	async createDefaultColumns({ commit, rootState }) {
-		await commit('CLEAN_COLUMN_ID');
+		await commit('CLEAN_COLUMNS_ID');
 
 		const toDo = await axios.post(`${urlBase}/column`, {
 			name: 'Por hacer',
@@ -24,8 +36,9 @@ export const actions = {
 		await commit('PUSH_COLUMN_ID', doing.data.data.column._id);
 		await commit('PUSH_COLUMN_ID', done.data.data.column._id);
 	},
+
 	async createDefaultServiceColumns({ commit }) {
-		await commit('CLEAN_COLUMN_ID');
+		await commit('CLEAN_COLUMNS_ID');
 
 		const toDo = await axios.post(`${urlBase}/column`, {
 			name: 'Por preparar',
@@ -37,46 +50,18 @@ export const actions = {
 		await commit('PUSH_COLUMN_ID', doing.data.data.column._id);
 		await commit('PUSH_COLUMN_ID', done.data.data.column._id);
 	},
-	async createNewColumn({ commit, rootState, state }, newColumnObject) {
-		await commit('CLEAN_COLUMNS_ID');
 
-		const columnObjects = rootState.board.activeBoard.columns;
-		columnObjects.forEach(async (column) => {
-			await commit('PUSH_COLUMN_ID', column._id);
-		});
-
+	async createNewColumn({ dispatch }, newColumnObject) {
 		const newColumn = await axios.post(`${urlBase}/column`, newColumnObject);
 
-		commit('PUSH_COLUMN_ID', newColumn.data.data.column._id);
-
-		const boardId = rootState.board.activeBoard._id;
-		const updateBoard = await axios.patch(`${urlBase}/board/${boardId}`, {
-			columns: state.newBoardDefaultColumns,
-		});
-
-		commit('board/PUSH_NEW_COLUMN', newColumn.data.data.column, { root: true });
+		dispatch('board/pushNewColumn', newColumn.data.data.column, { root: true });
 	},
-	async moveColumn({ commit, state, rootState }, { boardId, columnList }) {
-		console.log('starting db moce column');
-		const columnsIds = [];
-		columnList.forEach((column) => {
-			columnsIds.push(column._id);
-		});
-		const updatedBoard = await axios.patch(`${urlBase}/board/${boardId}`, {
+
+	async moveColumn(_, { boardId, columnList }) {
+		const columnsIds = columnList.filter((column) => column._id);
+
+		await axios.patch(`${urlBase}/board/${boardId}`, {
 			columns: columnsIds,
 		});
-		console.log(updatedBoard);
-	},
-};
-
-export const mutations = {
-	PUSH_COLUMN_ID(state, columnId) {
-		state.newBoardDefaultColumns.push(columnId);
-	},
-	CLEAN_COLUMNS_ID(state) {
-		state.newBoardDefaultColumns = [];
-	},
-	SET_ACTIVE_COLUMNS(state, activeColumns) {
-		state.activeColumns = activeColumns;
 	},
 };

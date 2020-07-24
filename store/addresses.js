@@ -136,25 +136,25 @@ export const state = () => ({
 	newAdress: {},
 });
 
-// getters
-export const getters = {};
-
 // actions
 export const actions = {
-	async submitAdress({ commit }, adressObject) {
+	async submitAdress(
+		{ commit },
+		{ street, numberExt, numberInt, place, state, CP, town, users }
+	) {
 		const newAdress = await axios.post(`${urlBase}/address`, {
-			street: adressObject.street,
-			numberExt: adressObject.numberExt,
-			numberInt: adressObject.numberInt,
-			place: adressObject.place,
-			state: adressObject.state,
-			CP: adressObject.CP,
-			town: adressObject.town,
+			street,
+			numberExt,
+			numberInt,
+			place,
+			state,
+			CP,
+			town,
 			isFisical: false,
 			isPhisical: true,
-			users: adressObject.users,
+			users,
 		});
-		console.log(newAdress);
+
 		commit('SET_NEW_EVENT_ADRESS', newAdress.data.data.address);
 	},
 };

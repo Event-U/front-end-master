@@ -50,6 +50,7 @@ export default {
       });
       e.target.value = '';
     },
+
     pickColumn(e, fromColumnIndex) {
       e.dataTransfer.effectAllowed = 'move';
       e.dataTransfer.dropEffect = 'move';

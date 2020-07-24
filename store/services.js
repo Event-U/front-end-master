@@ -7,6 +7,25 @@ export const state = () => ({
 	activeNeedService: {},
 });
 
+// mutations
+export const mutations = {
+	SET_SERVICES(state, services) {
+		state.services = services;
+	},
+
+	SET_CATEGORIES(state, categories) {
+		state.categories = categories;
+	},
+
+	SET_ACTIVE_NEED_SERVICE(state, service) {
+		state.activeNeedService = service;
+	},
+
+	SET_NEW_SERVICE(state, newService) {
+		state.newService = newService;
+	},
+};
+
 // getters
 export const getters = {
 	servicesByCategoryId: (state) => (id) => {
@@ -26,14 +45,18 @@ export const getters = {
 		const nate = state.services.find((service) => service._id === id);
 		return nate.name;
 	},
+
+	getNameService: (state) => (id) =>
+		state.services.find((service) => service._id === id),
 };
 
 // actions
 export const actions = {
 	async postService({ dispatch, commit }, service) {
 		const newService = await api.createServices(service);
-		await console.log(newService);
+
 		dispatch('board/createServiceBoard', newService, { root: true });
+
 		commit('SET_NEW_SERVICE', newService);
 	},
 
@@ -47,27 +70,8 @@ export const actions = {
 		commit('SET_CATEGORIES', allCategories);
 	},
 
-	async getNameService({ commit, state }, id) {
-		const serviceObject = state.services.find((service) => service._id === id);
+	async getNameService({ commit, state, getters }, id) {
+		const serviceObject = getters.getNameService(id);
 		commit('SET_ACTIVE_NEED_SERVICE', serviceObject);
-	},
-};
-
-// mutations
-export const mutations = {
-	SET_SERVICES(state, services) {
-		state.services = services;
-	},
-
-	SET_CATEGORIES(state, categories) {
-		state.categories = categories;
-	},
-
-	SET_ACTIVE_NEED_SERVICE(state, service) {
-		state.activeNeedService = service;
-	},
-
-	SET_NEW_SERVICE(state, newService) {
-		state.newService = newService;
 	},
 };

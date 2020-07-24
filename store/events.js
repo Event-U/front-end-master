@@ -12,9 +12,6 @@ export const state = () => ({
 	newEvent: {},
 });
 
-// getters
-export const getters = {};
-
 // actions
 export const actions = {
 	async fetchEvents({ commit }) {

@@ -16,22 +16,23 @@ export const getters = {};
 export const actions = {
 	async fetchNeeds({ commit, rootState }) {
 		const eventId = rootState.events.activeEvent._id;
-		const eventObject = await api.getEventById(eventId);
-		const needsObjects = eventObject.needs;
+		const { needs: needsObjects } = await api.getEventById(eventId);
+
 		commit('SET_NEEDS', needsObjects);
 	},
 
 	async postNeedToEvent({ state, commit, rootState }, need) {
 		const newNeedObject = await api.createNeed(need);
+
 		commit('SET_NEW_NEED', newNeedObject);
 		commit('ADDING_NEW_NEED', newNeedObject);
-		state.needs.forEach((need) => {
-			commit('PUSH_NEED_ID', need._id);
-		});
 
+		const needsIds = state.needs.filter((need) => {
+			return need.id;
+		});
 		const eventId = rootState.events.activeEvent._id;
-		const needsIds = state.needsId;
-		const updatedEvent = await api.updateEvent(eventId, needsIds);
+
+		await api.updateEvent(eventId, needsIds);
 		commit('CLEAN_NEED_ID_ARRAY');
 	},
 

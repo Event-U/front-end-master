@@ -1,9 +1,11 @@
 import api from '@/lib/api.js';
+import axios from 'axios';
+const urlBase = 'http://localhost:9000';
 
 export const state = () => ({
-	activeEvent: {},
+	activeEvent: null,
 
-	activeNeed: {},
+	activeNeed: null,
 
 	newEventObject: {},
 
@@ -19,6 +21,16 @@ export const actions = {
 		commit('SET_EVENTS', allEvents);
 	},
 
+	async findEvent({ commit }, eventId) {
+		const {
+			data: {
+				data: { event },
+			},
+		} = await axios.get(`${urlBase}/event/${eventId}`);
+
+		commit('SET_ACTIVE_EVENT', event);
+	},
+
 	async postEvent({ commit, dispatch }, newEventObject) {
 		const newEvent = await api.createEvent(newEventObject);
 		dispatch('board/createBoard', newEvent, { root: true });
@@ -28,27 +40,18 @@ export const actions = {
 
 // mutations
 export const mutations = {
-	change: (state, name) => {
+	SET_ACTIVE_EVENT: (state, name) => {
 		state.activeEvent = name;
 	},
 
-	changeNeed: (state, payload) => {
-		state.activeNeed = payload;
+	ADDING_NEW_NEED(state, need) {
+		const needs = state.activeEvent.needs;
+		needs.push(need);
+		state.activeEvent.needs = needs;
 	},
 
-	setNewBasics: (state, { name, description }) => {
-		state.newEventObject['name'] = name;
-		state.newEventObject['description'] = description;
-	},
-
-	setNewSpecific: (state, { date, addreses, image }) => {
-		state.newEventObject['date'] = date;
-		state.newEventObject['addreses'] = addreses;
-		state.newEventObject['image'] = image;
-	},
-
-	SET_EVENTS(state, eventss) {
-		state.events = eventss;
+	SET_EVENTS(state, events) {
+		state.events = events;
 	},
 
 	SET_NEW_EVENT(state, event) {

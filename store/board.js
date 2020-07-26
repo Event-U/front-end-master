@@ -2,39 +2,19 @@ const axios = require('axios');
 const urlBase = 'http://localhost:9000';
 
 export const state = () => ({
-	newBoard: {},
-	activeBoard: {},
-	tasksIds: [],
-	columnIds: [],
-	newServiceBoard: [],
-	allBoards: [],
+	activeBoard: null,
+
 	boardType: '',
 });
 
 // getters
 export const getters = {
-	getEventBoard: (state) => (id) => {
-		return state.allBoards.find((board) =>
-			board.event ? board.event._id === id : console.log(board)
-		);
-	},
-
-	getServiceBoard: (state) => (id) => {
-		return state.allBoards.find((board) =>
-			board.service ? board.service._id === id : console.log('board')
-		);
-	},
-
-	getTasksIds: (state) => (tasks) => {
-		return tasks.filter((task) => task._id);
-	},
-
-	getColumnsIds: (state) => (columns) => {
-		return columns.filter((column) => column._id);
+	getTasksIds: () => (tasks) => {
+		return tasks.map((task) => task._id);
 	},
 
 	getBoardColumns: (state) => {
-		return state.activeBoard.columns.filter((column) => column._id);
+		return state.activeBoard.columns.map((column) => column._id);
 	},
 };
 
@@ -49,7 +29,6 @@ export const actions = {
 			service: null,
 		});
 
-		commit('SET_NEW_EVENT_BOARD', newBoard.data.data.board);
 		commit('columns/CLEAN_COLUMNS_ID', { root: true });
 	},
 
@@ -75,7 +54,6 @@ export const actions = {
 			event: null,
 		});
 
-		commit('SET_NEW_EVENT_BOARD', newServiceBoard.data.data.board);
 		commit('columns/CLEAN_COLUMNS_ID', newServiceBoard, { root: true });
 	},
 
@@ -87,10 +65,6 @@ export const actions = {
 		} = await axios.get(`${urlBase}/board/event/${activeEventId}`);
 
 		await commit('SET_ACTIVE_BOARD', board);
-
-		await commit('columns/SET_ACTIVE_COLUMNS', board.columns, {
-			root: true,
-		});
 	},
 
 	async getServiceBoard({ commit }, activeServiceId) {
@@ -101,7 +75,6 @@ export const actions = {
 		} = await axios.get(`${urlBase}/board/service/${activeServiceId}`);
 
 		commit('SET_ACTIVE_BOARD', board);
-		commit('columns/SET_ACTIVE_COLUMNS', board.columns, { root: true });
 	},
 
 	async moveTask(
@@ -145,15 +118,12 @@ export const actions = {
 		});
 	},
 
-	async moveColumn(
-		{ commit, getters, state, dispatch },
-		{ fromColumnIndex, toColumnIndex }
-	) {
+	async moveColumn({ state, dispatch }, { fromColumnIndex, toColumnIndex }) {
 		const columnList = await state.activeBoard.columns;
 		const columnToMove = await columnList.splice(fromColumnIndex, 1)[0];
 		await columnList.splice(toColumnIndex, 0, columnToMove);
 		const boardId = state.activeBoard._id;
-		const columnsIds = await getters.getColumnsIds(columnList);
+
 		await dispatch(
 			'columns/moveColumn',
 			{ boardId, columnList },
@@ -164,18 +134,6 @@ export const actions = {
 
 // mutations
 export const mutations = {
-	SET_NEW_EVENT_BOARD(state, newBoard) {
-		state.newBoard = newBoard;
-	},
-
-	PUSH_COLUMN_ID(state, columnId) {
-		state.columnIds.push(columnId);
-	},
-
-	SET_NEW_SERVICE_BOARD(state, newServiceBoard) {
-		state.newServiceBoard = newServiceBoard;
-	},
-
 	SET_FETCH_BOARDS(state, boards) {
 		state.allBoards = boards;
 	},
@@ -198,7 +156,7 @@ export const mutations = {
 		state.boardType = routeName;
 	},
 
-	MOVE_TASK(state, { fromTasks, toTasks, fromTaskIndex, toTaskIndex }) {
+	MOVE_TASK(_, { fromTasks, toTasks, fromTaskIndex, toTaskIndex }) {
 		const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0];
 		toTasks.splice(toTaskIndex, 0, taskToMove);
 	},

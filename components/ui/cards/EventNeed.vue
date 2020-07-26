@@ -4,15 +4,14 @@
       <i class="fas fa-angle-right" />
     </div>
     <div class="card-body">
-      <h5 v-if="service" class="card-title">{{ serviceNameById(service) }}</h5>
+      <h5 v-if="service" class="card-title">{{ service.name }}</h5>
       <p class="card-text">{{ description }}</p>
-      <div class="ctas-needs" v-if="this.$route.path !== '/organizador/NewEvent'">
+
+      <div class="ctas-needs" v-if="this.$route.path !== '/app/organizador/nuevo-evento'">
         <cta-organizers
-          v-if="
-						this.$route.path === '/organizador/EventNeeds' &&
-							this.$route.path !== '/organizador/newevent'
-					"
+          v-if="this.$route.path.includes('organizador')"
           :quotation="quotation"
+          :need="_id"
           @click="setActiveNeed"
         />
         <cta-provider :_id="_id" :quotation="quotation" v-else @click="setActiveNeed" />
@@ -24,7 +23,7 @@
 <script>
 import CtaOrganizers from '@/components/ui/utilities/CtaOrganizers.vue';
 import CtaProvider from '@/components/ui/utilities/CtaProvider.vue';
-import { mapState, mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 const stringDefault = {
   type: String,
@@ -37,7 +36,7 @@ export default {
   props: {
     _id: stringDefault,
     description: stringDefault,
-    service: String,
+    service: Object,
     quotation: Array,
   },
 
@@ -46,19 +45,13 @@ export default {
     CtaProvider,
   },
 
-  computed: {
-    ...mapGetters('services', ['serviceNameById']),
-  },
-
   methods: {
     setActiveNeed() {
-      this.$store.dispatch('services/getNameService', this.service);
-      this.$store.commit('events/changeNeed', {
+      this.$store.commit('needs/SET_ACTIVE_NEED', {
         _id: this._id,
         description: this.description,
         service: this.service,
         quotation: this.quotation,
-        //   serviceName:this.serviceNameById(this.service)
       });
       this.$store.commit('quotations/SET_NEED_ID', this._id);
     },

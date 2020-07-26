@@ -2,7 +2,7 @@
   <tr>
     <th scope="row">
       {{
-      this.$route.path === '/organizador/allquotations'
+      isOrganizador
       ? need.description
       : need.service.category.name
       }}
@@ -10,13 +10,13 @@
     <td>{{ need.service.name }}</td>
     <td>
       {{
-      this.$route.path === '/organizador/allquotations'
+      isOrganizador
       ? provider.bussinesName
       : need.description
       }}
     </td>
-    <td v-if="this.$route.path === '/organizador/allquotations'">${{ price }}mxn</td>
-    <td v-if="this.$route.path === '/organizador/allquotations'">
+    <td v-if="isOrganizador">${{ price }}mxn</td>
+    <td v-if="isOrganizador">
       <button
         type="button"
         @click="ariaHidden = false"
@@ -30,7 +30,8 @@
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
-        :aria-hidden="ariaHidden"
+        v-if="ariaHiden"
+        :aria-hidden="ariaHiden"
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -39,7 +40,6 @@
               :provider="provider"
               :price="price"
               :image="image"
-              :state="state"
               :date="date"
               :description="description"
             />
@@ -51,25 +51,23 @@
       </div>
     </td>
     <td class="state-icon">
-      <i
-        v-if="status === 1 && this.$route.path === '/organizador/allquotations'"
-        class="fas fa-star"
-      ></i>
+      <i v-if="status === 2 && isOrganizador" class="fas fa-star"></i>
+      <i v-if="status === 3 && isOrganizador" class="fas fa-times"></i>
       <button
-        v-if="status === 2 && this.$route.path !== '/organizador/allquotations'"
+        v-if="status === 2 && !isOrganizador"
         type="button"
         class="btn btn-primary"
         :data-target="`#exampleModal` + _id"
         data-toggle="modal"
       >Aceptada</button>
       <button
-        v-if="status === 1 && this.$route.path !== '/organizador/allquotations'"
+        v-if="status === 1 && !isOrganizador"
         type="button"
         class="btn btn-secondary"
         disabled
       >Pendiente</button>
       <button
-        v-if="status === 3 && this.$route.path !== '/organizador/allquotations'"
+        v-if="status === 3 && !isOrganizador"
         type="button"
         class="btn btn-danger"
         disabled
@@ -79,8 +77,6 @@
 </template>
 
 <script>
-import NeedQuotation from '@/components/ui/cards/NeedQuotation.vue';
-
 const stringDefault = {
   required: true,
   type: String,
@@ -96,7 +92,7 @@ export default {
   },
 
   components: {
-    NeedQuotation,
+    NeedQuotation: () => import('@/components/ui/cards/NeedQuotation.vue'),
   },
 
   props: {
@@ -109,6 +105,7 @@ export default {
     status: Number,
     event: Object,
     date: String,
+    isOrganizador: Boolean,
   },
 };
 </script>

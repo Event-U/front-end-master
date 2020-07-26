@@ -2,11 +2,7 @@
   <div id="main-wrapper" class="list-services-content">
     <div class="row">
       <div class="col-md-4 align-center" v-for="(event, i) in events" :key="i">
-        <!-- <nuxt-link
-                to="/organizador/EventNeeds"
-        >-->
         <event-card v-bind="event" />
-        <!-- </nuxt-link> -->
       </div>
     </div>
   </div>
@@ -33,6 +29,7 @@ export default {
   head() {
     return {
       title: 'Mis eventos',
+
       meta: [
         { 'og:title': 'Sitio web para organizar eventos en México' },
         { 'og:type': 'page' },
@@ -58,10 +55,11 @@ export default {
   created() {
     this.$store.commit('change', this.name);
   },
+
   async fetch({ store }) {
     await store.dispatch('events/fetchEvents');
-    await store.dispatch('services/fetchServices');
   },
+
   computed: mapState('events', ['events']),
 };
 </script>

@@ -14,7 +14,7 @@
           :formatDate="formatDate"
           :selectableYearRange="{from: 2020, to: 2021}"
           :isDateDisabled="isNonFutureDay"
-          :weekdays="[weekdays]"
+          :weekdays="weekdays"
           :months="months"
         />
       </div>

@@ -22,7 +22,7 @@ export default {
   },
 
   props: {
-    events: [],
+    events: Array,
   },
 
   data() {

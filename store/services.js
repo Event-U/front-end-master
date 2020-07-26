@@ -2,9 +2,10 @@ import api from '@/lib/api';
 
 export const state = () => ({
 	categories: [],
+
 	services: [],
+
 	newService: {},
-	activeNeedService: {},
 });
 
 // mutations
@@ -62,6 +63,7 @@ export const actions = {
 
 	async fetchServices({ commit }) {
 		const allServices = await api.getServices();
+
 		commit('SET_SERVICES', allServices);
 	},
 

@@ -11,20 +11,14 @@
         </div>
         <div class="post-content">
           <div class="category animated fadeInLeft">Nuevo</div>
-          <div class="event-categories-wrapper">
-            <!-- <span
-              v-for="need in needs"
-              :key="need._id"
-              class='event-categories mr-2'
-          >
-              {{need.service.category.name}}
-            </span>-->
-          </div>
+          <div class="event-categories-wrapper"></div>
           <h1 class="title">{{ name }}</h1>
           <p class="description animated fadeInUp faster" v-if="hoverCard">{{ description }}</p>
           <div class="cta-event">
-            <button class="btn-eventu" @click="goToBoard">Ir al tablero</button>
-            <nuxt-link to="/app/organizador/necesidades-de-evento">
+            <button v-if="isOrganizador" class="btn-eventu" @click="goToBoard">Ir al tablero</button>
+            <nuxt-link
+              :to="isOrganizador ? `/app/organizador/evento/${_id}/necesidades` : `/app/proveedor/evento/${_id}/necesidades`"
+            >
               <button class="btn btn-eventu" @click="setActiveEvent">Ver necesidades</button>
             </nuxt-link>
           </div>
@@ -80,9 +74,15 @@ export default {
     },
   },
 
+  computed: {
+    isOrganizador() {
+      return this.$route.path.includes('organizador');
+    },
+  },
+
   methods: {
     setActiveEvent() {
-      this.$store.commit('events/change', {
+      this.$store.commit('events/SET_ACTIVE_EVENT', {
         needs: this.needs,
         name: this.name,
         description: this.description,
@@ -93,7 +93,9 @@ export default {
       });
     },
 
-    goToBoard() {
+    async goToBoard() {
+      await this.$store.dispatch('boards/getEventBoard', this._id);
+
       this.$router.push({
         name: 'app-planificador-tablero-evento-id',
         params: { id: this._id },

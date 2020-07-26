@@ -11,8 +11,7 @@
       :id="`QuotationForm${_id}`"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="ariaHidden"
+      aria-labelledby="exampleModalLabels"
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content p-3">
@@ -34,7 +33,6 @@
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
-      aria-hidden="ariaHidden"
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -49,7 +47,6 @@
 <script>
 import { mapState } from 'vuex';
 import NewQuotationForm from '@/components/sections/forms/NewQuotationForm.vue';
-import NeedQuotation from '@/components/ui/cards/NeedQuotation.vue';
 
 export default {
   name: 'CtaProvider',
@@ -61,11 +58,11 @@ export default {
 
   components: {
     NewQuotationForm,
-    NeedQuotation,
+    NeedQuotation: () => import('@/components/ui/cards/NeedQuotation.vue'),
   },
 
   computed: mapState({
-    activeNeed: (state) => state.events.activeNeed,
+    activeNeed: (state) => state.needs.activeNeed,
   }),
 };
 </script>

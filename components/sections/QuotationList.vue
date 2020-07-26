@@ -4,38 +4,43 @@
       <tr>
         <th scope="col">
           {{
-          this.$route.path === '/app/organizador/mis-cotizaciones'
+          isOrganizador
           ? 'Necesidad'
           : 'Categoría'
           }}
         </th>
         <th scope="col">
           {{
-          this.$route.path === '/app/organizador/mis-cotizaciones'
+          isOrganizador
           ? 'Cotización'
           : 'Servicio'
           }}
         </th>
         <th scope="col">
           {{
-          this.$route.path === '/app/organizador/mis-cotizaciones'
+          isOrganizador
           ? 'Proveedor'
           : 'Descripción'
           }}
         </th>
         <th scope="col">
           {{
-          this.$route.path === '/app/organizador/mis-cotizaciones'
+          isOrganizador
           ? 'Precio'
           : 'Estado'
           }}
         </th>
-        <th v-if="this.$route.path === '/app/organizador/mis-cotizaciones'" scope="col"></th>
-        <th v-if="this.$route.path === '/app/organizador/mis-cotizaciones'" scope="col"></th>
+        <th v-if="isOrganizador" scope="col"></th>
+        <th v-if="isOrganizador" scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <quotation-list-row v-for="quotation in quotations" v-bind="quotation" :key="quotation._id" />
+      <quotation-list-row
+        v-for="quotation in quotations"
+        v-bind="quotation"
+        :isOrganizador="isOrganizador"
+        :key="quotation._id"
+      />
     </tbody>
   </table>
 </template>
@@ -55,7 +60,13 @@ export default {
     this.$store.dispatch('quotations/fetchQuotation');
   },
 
-  computed: mapState('quotations', ['quotations']),
+  computed: {
+    isOrganizador() {
+      return this.$route.path.includes('organizador');
+    },
+
+    ...mapState('quotations', ['quotations']),
+  },
 };
 </script>
 

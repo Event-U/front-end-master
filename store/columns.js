@@ -4,20 +4,11 @@ const urlBase = 'http://localhost:9000';
 
 export const state = () => ({
 	newBoardDefaultColumns: [],
-	activeColumns: [],
 });
 
 export const mutations = {
 	PUSH_COLUMN_ID(state, columnId) {
 		state.newBoardDefaultColumns.push(columnId);
-	},
-
-	CLEAN_COLUMNS_ID(state) {
-		state.newBoardDefaultColumns = [];
-	},
-
-	SET_ACTIVE_COLUMNS(state, activeColumns) {
-		state.activeColumns = activeColumns;
 	},
 };
 

@@ -1,7 +1,12 @@
 <template>
   <div class="mt-3">
     <div class="mt-3 mb-3 cta-new-service d-flex justify-content-center">
-      <button class="btn btn-iconed cta-service" data-toggle="modal" data-target="#ServiceForm">
+      <button
+        @click="ariaHidden= false"
+        class="btn btn-iconed cta-service"
+        data-toggle="modal"
+        data-target="#ServiceForm"
+      >
         <i class="fas fa-arrow-alt-circle-up" />
         Agregar servicio
       </button>
@@ -11,7 +16,8 @@
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="ariaHidden"
+        :aria-hidden="ariaHidden"
+        v-if="!ariaHidden"
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content m-3 p3">
@@ -31,7 +37,6 @@
 
 <script>
 import ServiceCard from '@/components/ui/cards/ServiceCard.vue';
-import NewServiceForm from '@/components/sections/forms/NewServiceForm.vue';
 import { mapState } from 'vuex';
 
 export default {
@@ -39,19 +44,19 @@ export default {
 
   components: {
     ServiceCard,
-    NewServiceForm,
+    NewServiceForm: () =>
+      import('@/components/sections/forms/NewServiceForm.vue'),
   },
 
   data() {
     return {
       name: 'Mis servicios',
+      ariaHidden: true,
     };
   },
 
   created() {
     this.$store.commit('change', this.name);
-
-    this.$store.dispatch('services/fetchCategories');
 
     this.$store.dispatch('services/fetchServices');
   },

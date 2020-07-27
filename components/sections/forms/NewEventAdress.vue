@@ -82,9 +82,6 @@ export default {
     submitAdress(adressObject) {
       this.$store.dispatch('addresses/submitAdress', adressObject);
       this.$emit('newAdress', {
-        categoryId: this.categoryId,
-        service: this.service,
-        description: this.description,
         _id: this.$store.state.addresses.newAdress._id,
       });
     },

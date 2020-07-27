@@ -155,6 +155,8 @@ export const actions = {
 			users,
 		});
 
+		console.log(newAdress);
+
 		commit('SET_NEW_EVENT_ADRESS', newAdress.data.data.address);
 	},
 };

@@ -94,7 +94,7 @@ export default {
     },
 
     async goToBoard() {
-      await this.$store.dispatch('boards/getEventBoard', this._id);
+      await this.$store.dispatch('board/getEventBoard', this._id);
 
       this.$router.push({
         name: 'app-planificador-tablero-evento-id',

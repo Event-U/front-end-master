@@ -7,8 +7,6 @@ export const state = () => ({
 
 	activeNeed: null,
 
-	newEventObject: {},
-
 	events: [],
 
 	newEvent: {},
@@ -33,8 +31,18 @@ export const actions = {
 
 	async postEvent({ commit, dispatch }, newEventObject) {
 		const newEvent = await api.createEvent(newEventObject);
+
 		dispatch('board/createBoard', newEvent, { root: true });
+
 		commit('SET_NEW_EVENT', newEvent);
+	},
+
+	async addingNewQuotation({ commit, rootState }, { quotation }) {
+		const newQuotation = await api.getQuotationById(quotation._id);
+		commit('ADDING_NEW_QUOTATION', {
+			needId: rootState.needs.activeNeed._id,
+			quotation: newQuotation,
+		});
 	},
 };
 
@@ -42,6 +50,18 @@ export const actions = {
 export const mutations = {
 	SET_ACTIVE_EVENT: (state, name) => {
 		state.activeEvent = name;
+	},
+
+	ADDING_NEW_QUOTATION(state, { needId, quotation }) {
+		const needs = state.activeEvent.needs.map((need) => {
+			if (need._id === needId) {
+				need['quotation'].push(quotation);
+				return need;
+			} else {
+				return need;
+			}
+		});
+		state.activeEvent.needs = needs;
 	},
 
 	ADDING_NEW_NEED(state, need) {

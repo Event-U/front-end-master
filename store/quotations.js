@@ -10,6 +10,13 @@ export const state = () => ({
 	updatedQuotation: {},
 });
 
+export const getters = {
+	awaredQuotations: (state) =>
+		state.quotations.filter(
+			(quotation) => quotation.status === 4 || quotation.status === 2
+		),
+};
+
 // mutations
 export const mutations = {
 	SET_QUOTATIONS(state, quotations) {
@@ -23,6 +30,18 @@ export const mutations = {
 	SET_NEED_QUOTATION(state, filteredQuotations) {
 		state.quotationsNeeds = filteredQuotations;
 	},
+
+	UPDATE_QUOTATION(state, { id, status }) {
+		console.log('[MUtation] Update, quotation:', id, status);
+		state.quotations.map((quotation) => {
+			if (quotation._id === id) {
+				quotation.status = status;
+				return quotation;
+			} else {
+				return quotation;
+			}
+		});
+	},
 };
 
 // actions
@@ -34,24 +53,31 @@ export const actions = {
 
 	async fetchNewQuotation({ commit }, id) {
 		const newQuotation = await api.getQuotationById(id);
+
 		commit('events/ADDING_NEW_QUOTATION', newQuotation, { root: true });
 	},
 
-	async postQuotation({ commit, rootState, state }, newQuotObj) {
-		commit('SET_QUOTATIONS', rootState.events.activeNeed.quotation);
+	async postQuotation({ commit, rootState, state, dispatch }, newQuotObj) {
+		commit('SET_QUOTATIONS', rootState.needs.activeNeed.quotation);
 		const newQuotationObject = await api.createQuotation(newQuotObj);
 
-		const quotationsId = state.quotations.map((quotation) => {
+		let quotationsId = state.quotations.map((quotation) => {
 			return quotation._id;
 		});
 
-		const needId = rootState.events.activeNeed._id;
+		let needId = rootState.needs.activeNeed._id;
 
-		await api.updateNeed(needId, quotationsId);
+		await api.updateNeed(needId, [newQuotationObject._id, ...quotationsId]);
+		dispatch(
+			'events/addingNewQuotation',
+			{ quotation: newQuotationObject },
+			{ root: true }
+		);
 	},
 
 	async updateQuotation({ commit, dispatch }, { status, id }) {
-		const updatedQuotation = await api.updateQuotation(id, `${status}`);
+		await api.updateQuotation(id, status);
+		commit('UPDATE_QUOTATION', { status, id });
 
 		if (status === 4) {
 			await dispatch('task/postQuotationEventTask', status, { root: true });

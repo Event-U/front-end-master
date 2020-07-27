@@ -40,8 +40,9 @@ export default {
   },
 
   methods: {
-    goToBoard() {
-      this.$store.dispatch('boards/getServiceBoard', this._id);
+    async goToBoard() {
+      await this.$store.dispatch('board/getServiceBoard', this._id);
+
       this.$router.push({
         name: 'app-planificador-tablero-servicio-id',
         params: { id: this._id },

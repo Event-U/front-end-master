@@ -33,14 +33,15 @@ export const actions = {
 		const needsIds = rootState.events.activeEvent.needs.map((need) => need._id);
 		const eventId = rootState.events.activeEvent._id;
 
-		await api.updateEvent(eventId, needsIds);
+		await api.updateEvent(eventId, [...needsIds, state.newNeed._id]);
 		dispatch('fetchNewNeed', state.newNeed._id);
 	},
 
 	async postNeed({ commit, dispatch }, need) {
 		const newNeedObject = await api.createNeed(need);
 
-		dispatch('task/createTaskFromNeed', newNeedObject, { root: true });
+		commit('SET_NEW_NEED', newNeedObject);
+		await dispatch('task/createTaskFromNeed', newNeedObject, { root: true });
 	},
 };
 
@@ -48,5 +49,9 @@ export const actions = {
 export const mutations = {
 	SET_ACTIVE_NEED(state, need) {
 		state.activeNeed = need;
+	},
+
+	SET_NEW_NEED(state, need) {
+		state.newNeed = need;
 	},
 };

@@ -9,7 +9,7 @@
           <h5 class="card-title">{{provider.bussinesName}}</h5>
           <p class="card-text">{{description}}</p>
           <h5 class="card-text">
-            <small class="text-muted">{{date}}</small>
+            <small class="text-muted">{{status | statusText}}</small>
           </h5>
         </div>
       </div>
@@ -20,13 +20,16 @@
         title="Guardar cotización"
         v-if="this.$route.path.includes('organizador')"
       >
-        <div class="quotation-actions d-flex flex-column justify-content-around text-center">
+        <div
+          data-dismiss="modal"
+          class="quotation-actions d-flex flex-column justify-content-around text-center"
+        >
           <i
             class="fas fa-star save"
             data-toggle="tooltip"
             data-placement="right"
             title="Guardar cotización"
-            @click="updateQuotationState(3,_id)"
+            @click="updateQuotationState(2,_id)"
           />
           <i
             class="fas fa-check aware"
@@ -40,7 +43,7 @@
             data-toggle="tooltip"
             data-placement="right"
             title="Deshechar cotización"
-            @click="updateQuotationState(2,_id)"
+            @click="updateQuotationState(3,_id)"
           />
         </div>
       </div>
@@ -61,7 +64,30 @@ export default {
     description: String,
     quotation: {},
   },
+
+  filters: {
+    statusText(status) {
+      switch (status) {
+        case 4:
+          return 'Adjudicada';
+
+        case 3:
+          return 'Eliminada';
+
+        case 2:
+          return 'Favorita';
+
+        default:
+          return 'Qlo';
+      }
+    },
+  },
+
   computed: {
+    myQuotations() {
+      return this.$route.path.includes('mis-cotizaciones');
+    },
+
     styles() {
       return {
         'background-image': `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59.37%, #000000 100%), url(${this.image})`,
@@ -72,11 +98,11 @@ export default {
   },
 
   methods: {
-    updateQuotationState(newState, id) {
+    updateQuotationState(status, id) {
+      console.log(status, id);
       this.$store.dispatch('quotations/updateQuotation', {
-        status: newState,
-        id: id,
-        provider: this.provider,
+        status,
+        id,
       });
     },
   },

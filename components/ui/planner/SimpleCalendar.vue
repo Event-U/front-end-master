@@ -1,12 +1,12 @@
 <template>
-  <FullCalendar
-    defaultView="dayGridMonth"
-    :plugins="calendarPlugins"
-    :config="config"
-    :locale="config.locale"
-    :weekends="true"
-    :events="events"
-  />
+	<FullCalendar
+		defaultView="dayGridMonth"
+		:plugins="calendarPlugins"
+		:config="config"
+		:locale="config.locale"
+		:weekends="true"
+		:events="events"
+	/>
 </template>
 
 <script>
@@ -15,36 +15,33 @@ import FullCalendar from '@fullcalendar/vue';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
 export default {
-  name: 'FullCalendar',
+	name: 'FullCalendarsas',
 
-  components: {
-    FullCalendar,
-  },
+	components: {
+		FullCalendar,
+	},
 
-  props: {
-    events: Array,
-  },
+	props: {
+		events: Array,
+	},
 
-  data() {
-    return {
-      calendarPlugins: [dayGridPlugin],
-      config: {
-        locale: 'es-us',
-      },
-    };
-  },
-  //     created() {
-  //         this.$store.dispatch('event/fetchEvents')
-  //   },
-  //   computed:mapState('event',['events']),
-  //   filter:{
-  //     getTitle:function(events) {
-  //         return events.map((event)=>({
-  //             title:event.name,
-  //             date:event.date,
-  //         }))
-  //     },
-  //   }
+	data() {
+		return {
+			calendarPlugins: [dayGridPlugin],
+			config: {
+				locale: 'es-us',
+			},
+		};
+	},
+
+	computed: {
+		eventsWithTitle() {
+			return this.events.map((event) => ({
+				title: event.name,
+				date: event.date,
+			}));
+		},
+	},
 };
 </script>
 

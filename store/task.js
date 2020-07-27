@@ -12,6 +12,7 @@ export const mutations = {
 	PUSH_NEW_ID_TASK_FROM_NEED(state, newTaskId) {
 		state.tasksIdsFromNeed.push(newTaskId);
 	},
+
 	SET_ACTIVE_TASK(state, activeTask) {
 		state.activeTask = activeTask;
 	},
@@ -25,7 +26,7 @@ export const actions = {
 				data: { task },
 			},
 		} = await axios.post(`${urlBase}/task`, {
-			name: `Revisar cotizaciones de ${newNeed.description.toLowerCase()}`,
+			name: `${newNeed.description.toLowerCase()}`,
 			description: `Revisar las cotizaciones de ${newNeed.description.toLowerCase()}`,
 		});
 
@@ -37,8 +38,6 @@ export const actions = {
 	},
 
 	async createNewTask({ commit, state }, taskObject) {
-		commit('CLEAN_TASK_IDS');
-
 		const tasksIds = taskObject.tasks.map((task) => task._id);
 
 		const {
@@ -76,10 +75,12 @@ export const actions = {
 	},
 
 	async postQuotationEventTask({ dispatch, rootState }) {
-		const activeEventId = rootState.event.activeEvent._id;
+		const activeEventId = rootState.events.activeEvent._id;
 		await dispatch('board/getEventBoard', activeEventId, { root: true });
+
 		const columnToUpdate = rootState.board.activeBoard.columns[0];
-		const activeService = rootState.service.activeNeedService.name;
+		const activeService = rootState.needs.activeNeed.service.name;
+
 		const newTaskObject = {
 			name: `Gestionar servicio de ${activeService.toLowerCase()}`,
 			columnId: columnToUpdate._id,
@@ -89,15 +90,18 @@ export const actions = {
 	},
 
 	async postQuotationServiceTask({ dispatch, rootState }) {
-		const activeServiceId = rootState.service.activeNeedService._id;
+		const activeServiceId = rootState.needs.activeNeed.service._id;
 		await dispatch('board/getServiceBoard', activeServiceId, { root: true });
-		const activeEvent = rootState.event.activeEvent.name;
+
+		const activeEvent = rootState.events.activeEvent.name;
 		const columnToUpdate = rootState.board.activeBoard.columns[0];
+
 		const newTaskObject = {
 			name: `Cotización aceptada para ${activeEvent.toLowerCase()}`,
 			columnId: columnToUpdate._id,
 			tasks: columnToUpdate.tasks,
 		};
+
 		dispatch('createNewTask', newTaskObject);
 	},
 };

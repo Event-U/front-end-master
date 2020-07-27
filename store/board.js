@@ -58,11 +58,13 @@ export const actions = {
 	},
 
 	async getEventBoard({ commit }, activeEventId) {
+		console.log('board');
 		const {
 			data: {
 				data: { board },
 			},
 		} = await axios.get(`${urlBase}/board/event/${activeEventId}`);
+		console.log(board);
 
 		await commit('SET_ACTIVE_BOARD', board);
 	},
@@ -73,7 +75,7 @@ export const actions = {
 				data: { board },
 			},
 		} = await axios.get(`${urlBase}/board/service/${activeServiceId}`);
-
+		console.log(board);
 		commit('SET_ACTIVE_BOARD', board);
 	},
 

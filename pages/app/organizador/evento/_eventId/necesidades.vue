@@ -22,7 +22,7 @@
         <i class="fas fa-angle-right"></i>
         <span class="spn">Agregar necesidades</span>
       </button>
-      <new-need-form v-if="addingNeed" @newNeed="newNeed" />
+      <new-need-form v-if="addingNeed" />
     </div>
   </div>
 </template>

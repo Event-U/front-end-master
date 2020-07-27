@@ -1,8 +1,6 @@
 <template>
-  <div class="board">
-    <h1>
-      <!-- {{board.event.name}} -->
-    </h1>
+  <div class="board mt-4 text-center">
+    <h1>{{board.event.name}}</h1>
     <div class="d-flex justify-content-between" :class="{ blur: isTaskOpen }">
       <column
         v-for="(column, columnIndex) in board.columns"
@@ -39,7 +37,12 @@ export default {
   },
 
   async fetch() {
-    if (!this.$store.state.board.activeBoard) {
+    if (
+      !this.$store.state.board.activeBoard ||
+      !this.$store.state.board.activeBoard.event._id ===
+        this.$route.params.id ||
+      this.$store.state.board.activeBoard.event
+    ) {
       await this.$store.dispatch('board/getEventBoard', this.$route.params.id);
     }
   },

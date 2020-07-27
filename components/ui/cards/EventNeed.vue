@@ -53,7 +53,6 @@ export default {
         service: this.service,
         quotation: this.quotation,
       });
-      this.$store.commit('quotations/SET_NEED_ID', this._id);
     },
   },
 };

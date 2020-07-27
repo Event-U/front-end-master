@@ -36,7 +36,9 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <need-quotation
+              v-if="ariaHiden"
               :_id="_id"
+              :status="status"
               :provider="provider"
               :price="price"
               :image="image"
@@ -51,8 +53,8 @@
       </div>
     </td>
     <td class="state-icon">
-      <i v-if="status === 2 && isOrganizador" class="fas fa-star"></i>
-      <i v-if="status === 3 && isOrganizador" class="fas fa-times"></i>
+      <i v-if="status === 2 && isOrganizador" class="fas fa-star text-primary"></i>
+      <i v-if="status === 4 && isOrganizador" class="fas fa-check text-success"></i>
       <button
         v-if="status === 2 && !isOrganizador"
         type="button"

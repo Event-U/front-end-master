@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 import QuotationListRow from '@/components/ui/QuotationListRow.vue';
 
 export default {
@@ -56,16 +56,14 @@ export default {
     QuotationListRow,
   },
 
-  created() {
-    this.$store.dispatch('quotations/fetchQuotation');
-  },
-
   computed: {
     isOrganizador() {
       return this.$route.path.includes('organizador');
     },
 
-    ...mapState('quotations', ['quotations']),
+    ...mapGetters({
+      quotations: 'quotations/awaredQuotations',
+    }),
   },
 };
 </script>

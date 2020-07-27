@@ -1,8 +1,6 @@
 <template>
-  <div class="board">
-    <h1>
-      <!-- {{board.event.name}} -->
-    </h1>
+  <div class="board mt-4 text-center">
+    <h1>{{board.service.name}}</h1>
     <div class="d-flex justify-content-between" :class="{ blur: isTaskOpen }">
       <column
         v-for="(column, columnIndex) in board.columns"
@@ -22,7 +20,6 @@
       </div>
     </div>
     <div class="task-bg" v-if="isTaskOpen">
-      <!-- @click="close" -->
       <nuxt-child />
     </div>
   </div>
@@ -47,7 +44,12 @@ export default {
   },
 
   async fetch() {
-    if (!this.$store.state.board.activeBoard) {
+    if (
+      !this.$store.state.board.activeBoard ||
+      !this.$store.state.board.activeBoard.service._id ===
+        this.$route.params.id ||
+      this.$store.state.board.activeBoard.service
+    ) {
       await this.$store.dispatch(
         'board/getServiceBoard',
         this.$route.params.id
@@ -63,6 +65,7 @@ export default {
     ...mapState({
       board: (state) => state.board.activeBoard,
     }),
+
     isTaskOpen() {
       return this.$route.name === 'app-planificador-tablero-tarea-id';
     },

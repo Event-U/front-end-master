@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row justify-content-around">
       <div class="col-md-9">
-        <full-calendar :events="events" />
+        <full-calendar :events="eventsWithTitle" />
       </div>
     </div>
   </div>
@@ -18,18 +18,33 @@ export default {
       name: 'Mi calendario',
     };
   },
+
   mounted() {
     this.$store.commit('change', this.name);
   },
+
   created() {
     this.$store.commit('change', this.name);
 
     this.$store.dispatch('events/fetchEvents');
   },
+
   computed: {
     ...mapState({
       events: (state) => state.events.events,
     }),
+
+    eventsWithTitle() {
+      return this.events.map((event) => {
+        return { title: event.name, date: event.date };
+      });
+    },
+  },
+
+  head() {
+    return {
+      title: 'Calendario eventos',
+    };
   },
 };
 </script>

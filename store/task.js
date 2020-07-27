@@ -76,6 +76,7 @@ export const actions = {
 
 	async postQuotationEventTask({ dispatch, rootState }) {
 		const activeEventId = rootState.events.activeEvent._id;
+
 		await dispatch('board/getEventBoard', activeEventId, { root: true });
 
 		const columnToUpdate = rootState.board.activeBoard.columns[0];
@@ -86,11 +87,13 @@ export const actions = {
 			columnId: columnToUpdate._id,
 			tasks: columnToUpdate.tasks,
 		};
+
 		dispatch('createNewTask', newTaskObject);
 	},
 
 	async postQuotationServiceTask({ dispatch, rootState }) {
 		const activeServiceId = rootState.needs.activeNeed.service._id;
+		console.log(activeServiceId);
 		await dispatch('board/getServiceBoard', activeServiceId, { root: true });
 
 		const activeEvent = rootState.events.activeEvent.name;

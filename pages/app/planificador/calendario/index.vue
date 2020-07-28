@@ -1,57 +1,58 @@
 <template>
-	<div class="container-fluid">
-		<div class="row justify-content-around">
-			<div class="col-md-9">
-				<full-calendar :events="eventsWithTitle" />
-			</div>
-		</div>
-	</div>
+  <div class="container-fluid">
+    <div class="row justify-content-around mt-4">
+      <div class="col-md-9 col-12">
+        <full-calendar :events="eventsWithTitle" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
 export default {
-	name: 'Calendario',
-	data() {
-		return {
-			name: 'Mi calendario',
-		};
-	},
+  name: 'Calendario',
 
-	mounted() {
-		this.$store.commit('change', this.name);
-	},
+  data() {
+    return {
+      name: 'Mi calendario',
+    };
+  },
 
-	async fetch({ store }) {
-		await store.dispatch('events/fetchEvents');
-	},
+  mounted() {
+    this.$store.commit('change', this.name);
+  },
 
-	computed: {
-		...mapState({
-			events: (state) => state.events.events,
-		}),
+  async fetch({ store }) {
+    await store.dispatch('events/fetchEvents');
+  },
 
-		eventsWithTitle() {
-			return this.events.map((event) => {
-				return { title: event.name, date: event.date };
-			});
-		},
-	},
+  computed: {
+    ...mapState({
+      events: (state) => state.events.events,
+    }),
 
-	head() {
-		return {
-			title: 'Calendario eventos',
-		};
-	},
+    eventsWithTitle() {
+      return this.events.map((event) => {
+        return { title: event.name, date: event.date };
+      });
+    },
+  },
+
+  head() {
+    return {
+      title: 'Calendario eventos',
+    };
+  },
 };
 </script>
 
 <style lang="scss">
 .container-fluid {
-	margin: 0 !important;
+  margin: 0 !important;
 }
 .calendar {
-	max-width: 50%;
+  max-width: 50%;
 }
 </style>

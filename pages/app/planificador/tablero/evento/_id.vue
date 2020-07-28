@@ -1,7 +1,12 @@
 <template>
-	<div class="board mt-4 text-center">
+	<div
+		class="align-items-center mt-4 text-center container-fluid justify-content-around"
+	>
 		<h1>{{ board.event.name }}</h1>
-		<div class="d-flex justify-content-between" :class="{ blur: isTaskOpen }">
+		<div
+			class="board d-flex justify-content-between "
+			:class="{ blur: isTaskOpen }"
+		>
 			<column
 				v-for="(column, columnIndex) in board.columns"
 				:key="columnIndex"
@@ -101,6 +106,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container-fluid {
+	min-height: 100vh;
+	align-items: center;
+	justify-content: center;
+}
+
 body::-webkit-scrollbar {
 	width: 1em;
 }

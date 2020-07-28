@@ -1,6 +1,6 @@
 <template>
-	<div class="mt-3">
-		<div class="mt-3 mb-3 cta-new-service d-flex justify-content-center">
+	<div class="mt-3 container-fluid">
+		<div class="mt-3 mb-3 m-0 row  d-flex justify-content-center">
 			<button
 				@click="ariaHidden = false"
 				class="btn btn-iconed cta-service"
@@ -20,7 +20,7 @@
 				v-if="!ariaHidden"
 			>
 				<div class="modal-dialog" role="document">
-					<div class="modal-content m-3 p3">
+					<div class="modal-content m-lg-3 p-3">
 						<new-service-form />
 						<button
 							type="button"
@@ -34,7 +34,11 @@
 			</div>
 		</div>
 		<div class="service-row row">
-			<div class="col-md-3" v-for="service in services" :key="service._id">
+			<div
+				class="col-md-3 col-12 mt-3"
+				v-for="service in services"
+				:key="service._id"
+			>
 				<service-card class="border-0 s-c" v-bind="service" />
 			</div>
 		</div>

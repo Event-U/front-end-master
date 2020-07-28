@@ -1,5 +1,5 @@
 <template>
-	<table class="table">
+	<table class="table text-center">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">
@@ -8,7 +8,7 @@
 				<th scope="col">
 					{{ isOrganizador ? 'Cotización' : 'Servicio' }}
 				</th>
-				<th scope="col">
+				<th scope="col" class=" d-lg-block d-none">
 					{{ isOrganizador ? 'Proveedor' : 'Descripción' }}
 				</th>
 				<th scope="col">

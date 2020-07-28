@@ -1,11 +1,11 @@
 <template>
-	<div>
-		<div class="title mt-3">
+	<div class="container-fluid">
+		<div class="title mt-3 ">
 			<h1>{{ activeEvent.name }}</h1>
 		</div>
-		<div class="row needs-row mt-3">
+		<div class="row needs-row m-0">
 			<div
-				class="col-sm-5 mt-3 need-container"
+				class="col-12 col-lg-3  mt-3 need-container"
 				v-for="(need, indexNeed) in activeEvent.needs"
 				:key="indexNeed"
 			>
@@ -95,6 +95,11 @@ export default {
 	text-align: center;
 	@extend .btn-hover-interaction;
 }
+
+.container-fluid {
+	min-height: 100vh;
+}
+
 .btn {
 	padding: 1% 2%;
 	border-radius: 8px;
@@ -104,17 +109,23 @@ export default {
 	text-align: center;
 	transition: 0.3s ease-out;
 }
+
 .btn:hover {
 	@extend .btn-eventu;
 	transition: 0.7s cubic-bezier(0.77, 0, 0.175, 1);
 }
-.need-container:nth-of-type(2n) {
-	border-left: 1px solid #cccccc;
+
+@media (min-width: 800px) {
+	.need-container:nth-of-type(2n) {
+		border-left: 1px solid #cccccc;
+	}
 }
+
 .need-container {
 	border-bottom: 1px solid #cccccc;
 	transition: 0.3s ease-out;
 }
+
 .need-container:hover {
 	border: 1px solid #cccccc;
 	transition: 0.3s ease-in;
@@ -125,6 +136,7 @@ export default {
 .row {
 	margin: 0;
 }
+
 h1 {
 	@extend .h2-font;
 	font-size: 3em;

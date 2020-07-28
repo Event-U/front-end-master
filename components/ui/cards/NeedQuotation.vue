@@ -1,14 +1,13 @@
 <template>
-	<div class="card b-none animated fadeInUp" style="max-width: 540px;">
-		<div class="row no-gutters">
-			<div class="col-md-4 image-bg ml-3" :style="styles">
-				<h6 class="text-center">${{ price }}</h6>
-			</div>
-			<div class="col-md-6">
+	<div class="card animated fadeInUp" style="max-width: 540px;">
+		<div class="d-flex no-gutters">
+			<div class="col-md-4 col-5 image-bg ml-3" :style="styles"></div>
+			<div class="col-md-6 col-6">
 				<div class="card-body">
 					<h5 class="card-title">{{ provider.bussinesName }}</h5>
 					<p class="card-text">{{ description }}</p>
 					<h5 class="card-text">
+						<span class="d-block">${{ price }}</span>
 						<small class="text-muted">{{ status | statusText }}</small>
 					</h5>
 				</div>
@@ -90,7 +89,7 @@ export default {
 
 		styles() {
 			return {
-				'background-image': `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59.37%, #000000 100%), url(${this.image})`,
+				'background-image': `url(${this.image})`,
 				'background-repeat': 'no-repeat',
 				'background-size': 'cover',
 			};
@@ -132,6 +131,7 @@ h5 {
 }
 .card {
 	border: none;
+	width: 100%;
 }
 .quotation-actions {
 	transition: 0.3s ease-out;

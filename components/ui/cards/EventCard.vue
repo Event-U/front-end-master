@@ -1,49 +1,45 @@
 <template>
 	<div
-		class="eventcard mb-3"
+		class="eventcard card mb-3"
 		@mouseover="hoverCard = true"
 		@mouseleave="hoverCard = false"
 	>
-		<div class="column">
-			<div class="post-module">
-				<div class="thumbnail">
-					<div class="date">
-						<div class="day">{{ date | dayNumber }}</div>
-						<div class="month">{{ date | monthNumber }}</div>
-					</div>
-					<img class="img-fluid" :src="image" />
+		<div class="post-module">
+			<div class="thumbnail">
+				<div class="date">
+					<div class="day">{{ date | dayNumber }}</div>
+					<div class="month">{{ date | monthNumber }}</div>
 				</div>
-				<div class="post-content">
-					<div class="category animated fadeInLeft">Nuevo</div>
-					<div class="event-categories-wrapper"></div>
-					<h1 class="title">{{ name }}</h1>
-					<p class="description animated fadeInUp faster" v-if="hoverCard">
-						{{ description }}
-					</p>
-					<div v-if="!isNewEvent" class="cta-event">
-						<button v-if="isOrganizador" class="btn-eventu" @click="goToBoard">
-							Ir al tablero
+				<img class="img-fluid" :src="image" />
+			</div>
+			<div class="post-content">
+				<div class="category animated fadeInLeft">Nuevo</div>
+				<div class="event-categories-wrapper"></div>
+				<h1 class="title">{{ name }}</h1>
+				<p class="description animated fadeInUp faster" v-if="hoverCard">
+					{{ description }}
+				</p>
+				<div v-if="!isNewEvent" class="cta-event">
+					<button v-if="isOrganizador" class="btn-eventu" @click="goToBoard">
+						Ir al tablero
+					</button>
+					<nuxt-link
+						:to="
+							isOrganizador
+								? `/app/organizador/evento/${_id}/necesidades`
+								: `/app/proveedor/evento/${_id}/necesidades`
+						"
+					>
+						<button class="btn btn-eventu" @click="setActiveEvent">
+							Ver necesidades
 						</button>
-						<nuxt-link
-							:to="
-								isOrganizador
-									? `/app/organizador/evento/${_id}/necesidades`
-									: `/app/proveedor/evento/${_id}/necesidades`
-							"
-						>
-							<button class="btn btn-eventu" @click="setActiveEvent">
-								Ver necesidades
-							</button>
-						</nuxt-link>
-					</div>
-					<div class="post-meta">
-						<span class="timestamp">
-							<i class="fas fa-compass" />
-							{{
-								address ? `${address.state} - ${address.place} ` : 'Tonalá 10'
-							}}
-						</span>
-					</div>
+					</nuxt-link>
+				</div>
+				<div class="post-meta">
+					<span class="timestamp">
+						<i class="fas fa-compass" />
+						{{ address ? `${address.state} - ${address.place} ` : 'Tonalá 10' }}
+					</span>
 				</div>
 			</div>
 		</div>
@@ -148,7 +144,6 @@ export default {
 	z-index: 1;
 	display: block;
 	background: #ffffff;
-	min-width: 270px;
 	height: 470px;
 	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
 	transition: 0.7s cubic-bezier(0.37, 0.75, 0.61, 1.05);
@@ -272,7 +267,7 @@ export default {
 	transition: 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05);
 }
 
-.eventcard .column .demo-title {
+.demo-title {
 	margin: 0 0 15px;
 	color: #666666;
 	font-size: 1em;
@@ -281,7 +276,6 @@ export default {
 	transition: 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05);
 }
 .eventcard .info {
-	width: 300px;
 	margin: 50px auto;
 	text-align: center;
 	transition: 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05);

@@ -4,7 +4,7 @@
 			{{ isOrganizador ? need.description : need.service.category.name }}
 		</th>
 		<td>{{ need.service.name }}</td>
-		<td>
+		<td class="d-lg-block d-none">
 			{{ isOrganizador ? provider.bussinesName : need.description }}
 		</td>
 		<td v-if="isOrganizador">${{ price }}mxn</td>
@@ -140,6 +140,12 @@ tr:hover {
 }
 tr {
 	transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+th,
+td {
+	vertical-align: middle;
+	text-align: center;
 }
 .modal-content {
 	border-radius: 8px;

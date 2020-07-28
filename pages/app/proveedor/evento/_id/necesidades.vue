@@ -1,11 +1,11 @@
 <template>
-	<div>
+	<div class="container-fluid">
 		<div class="title mt-3">
 			<h1>{{ activeEvent.name }}</h1>
 		</div>
 		<div class="row needs-row mt-3">
 			<div
-				class="col-sm-5 mt-3 need-container"
+				class="col-12 col-lg-3 5 mt-3 need-container"
 				v-for="(need, indexNeed) in activeEvent.needs"
 				:key="indexNeed"
 			>

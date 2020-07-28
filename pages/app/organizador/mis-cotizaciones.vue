@@ -1,6 +1,8 @@
 <template>
-	<div>
-		<quotation-list />
+	<div class="container-fluid  p-0 m-0">
+		<div class="overflow-auto">
+			<quotation-list />
+		</div>
 	</div>
 </template>
 

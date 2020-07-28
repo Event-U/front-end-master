@@ -1,12 +1,12 @@
 <template>
-	<div>
-		<div class="title mt-3 animated fadeInUp">
+	<div class="container-fluid">
+		<div class="row  m-0 flex-column title mt-3 animated fadeInUp">
 			<h4>{{ activeNeed.service.name }}</h4>
 			<h6>{{ activeNeed.description }}</h6>
 		</div>
-		<div class="row needs-row mt-3">
+		<div class="row needs-row mt-3 justify-content-center">
 			<div
-				class="col-sm-5 mt-3 quotation-container animated fadeInDown"
+				class="col-12 col-lg-5 mt-3 quotation-container animated fadeInDown"
 				v-for="(quotation, i) in activeNeed.quotation"
 				:key="i"
 			>
@@ -88,8 +88,12 @@ export default {
 		font-size: 1em;
 	}
 }
-.quotation-container:nth-of-type(n) {
-	border-left: 0.5px solid #cccccc;
+
+@media (min-width: 800px) {
+	.quotation-container:nth-of-type(n) {
+		border-left: 0.5px solid #cccccc;
+		border-right: 0.5px solid #cccccc;
+	}
 }
 .quotation-container {
 	border-bottom: 0.1px solid #cccccc;

@@ -3,7 +3,7 @@ import api from '@/lib/api';
 export const state = () => ({
 	categories: [],
 
-	services: [],
+	services: null,
 
 	newService: {},
 });

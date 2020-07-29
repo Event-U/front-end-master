@@ -1,202 +1,224 @@
 <template>
-	<div class="container">
-		<h1 class="welcome">
-			Bienvenido a Event-u
-		</h1>
-	</div>
+  <div class="container-fluid text-center">
+    <h1 class="welcome mt-4">Bienvenido a Event-u</h1>
+    <h2 class="mb-4">Encuentra al proveedor ideal para tu evento</h2>
+    <div
+      class="row justify-content-lg-between justify-content-center d-flex text-center m-0 m-lg-5"
+    >
+      <div
+        style=" background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%, #000000 100%), url(/banner-1.png);"
+        class="animated fadeInDown mb-5 banner-index"
+      >
+        <h1>
+          50% de descuento en
+          banquetes familiares
+          👪
+        </h1>
+        <button class="btn btn-eventu faster animated fadeInUp">
+          <nuxt-link to="/app/organizador/mis-eventos">Ir ahora</nuxt-link>
+        </button>
+      </div>
+      <div
+        style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%, #000000 100%), url(/banner-2.png);"
+        class="banner-index slower animated fadeInUp"
+      >
+        <h2>
+          2x1
+          Bartenders
+        </h2>
+        <button class="btn btn-eventu faster animated fadeInUp">
+          <nuxt-link to="/app/organizador/mis-eventos">Ir ahora</nuxt-link>
+        </button>
+      </div>
+      <div
+        style=" background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%, #000000 100%), url(/banner-3.png);"
+        class="animated fadeInUp slower banner-index mt-5 m-lg-0"
+      >
+        <h2>-10% bandas de rock</h2>
+        <button class="btn btn-eventu faster animated fadeInUp">
+          <nuxt-link to="/app/organizador/mis-eventos">Ir ahora</nuxt-link>
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
 export default {
-	name: 'Inicio',
+  name: 'Inicio',
 
-	created() {
-		this.$store.commit('change', '¡Comencemos!');
-	},
+  created() {
+    this.$store.commit('change', '¡Comencemos!');
+  },
 
-	computed: {
-		...mapState(['activeUser']),
-	},
+  computed: {
+    ...mapState(['activeUser']),
+  },
 
-	head() {
-		return {
-			title: 'Inicio',
-			meta: [
-				{
-					hid: 'description',
-					name: 'description',
-					content:
-						'Comienza a utilizar Event-U y no pierdas la oportunidad de posicionarte en el mejor mercado de eventos',
-				},
-			],
-		};
-	},
+  head() {
+    return {
+      title: 'Inicio',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Comienza a utilizar Event-U y no pierdas la oportunidad de posicionarte en el mejor mercado de eventos',
+        },
+      ],
+    };
+  },
 };
 </script>
 
 <style lang="scss">
+.banner-index {
+  :link {
+    color: #333;
+  }
+
+  border-radius: 16px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease-in-out;
+  background-position: center;
+  flex-flow: column;
+  color: white;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  text-align: center;
+  justify-content: center;
+  height: 336px;
+
+  h1,
+  h2 {
+    max-width: 10em;
+    margin: 0.5em;
+  }
+
+  h1 {
+    @extend .h2-font;
+  }
+
+  h2 {
+    @extend .h2-font;
+  }
+
+  .btn-eventu {
+    display: none;
+    transition: 5s ease-in-out;
+  }
+
+  &:nth-of-type(1) {
+    flex-basis: 100%;
+    @media screen and (min-width: 800px) {
+      flex-basis: 100%;
+    }
+    &:hover {
+      .btn-eventu {
+        display: block;
+      }
+    }
+  }
+
+  &:nth-of-type(2),
+  &:nth-of-type(3) {
+    flex-basis: 100%;
+    height: 230px;
+
+    h2 {
+      max-width: 6em;
+    }
+
+    &:hover {
+      .btn-eventu {
+        display: block;
+      }
+    }
+
+    @media screen and (min-width: 800px) {
+      flex-basis: 48%;
+      height: 336px;
+    }
+  }
+}
+
 .welcome {
-	@extend .h1-font;
-}
-@font-face {
-	font-family: 'futura';
-	src: url('~@/assets/fonts/futura-bold-03-webfont.woff2') format('woff2'),
-		url('~@/assets/fonts/futura-bold-03-webfont.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'futura';
-	src: url('~@/assets/fonts/futura-medium-01-webfont.woff2') format('woff2'),
-		url('~@/assets/fonts/futura-medium-01-webfont.woff') format('woff');
-	font-weight: normal;
-	font-style: bold;
-}
-@font-face {
-	font-family: 'lato';
-	src: url('~@/assets/fonts/lato-regular-webfont.woff2') format('woff2'),
-		url('~@/assets/fonts/lato-regular-webfont.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
+  @extend .h1-font;
 }
 
 @font-face {
-	font-family: 'Bw Modelica';
-	src: url('~@/assets/fonts/bwmodelica-bold-webfont.woff2') format('woff2'),
-		url('~@/assets/fonts/bwmodelica-bold-webfont.woff') format('woff');
-	font-weight: normal;
-	font-style: bolder;
+  font-family: 'futura';
+  src: url('~@/assets/fonts/futura-bold-03-webfont.woff2') format('woff2'),
+    url('~@/assets/fonts/futura-bold-03-webfont.woff') format('woff');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'futura';
+  src: url('~@/assets/fonts/futura-medium-01-webfont.woff2') format('woff2'),
+    url('~@/assets/fonts/futura-medium-01-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: bold;
+}
+@font-face {
+  font-family: 'lato';
+  src: url('~@/assets/fonts/lato-regular-webfont.woff2') format('woff2'),
+    url('~@/assets/fonts/lato-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: 'Bw Modelica';
-	src: url('~@/assets/fonts/bwmodelica-bolditalic-webfont.woff2')
-			format('woff2'),
-		url('~@/assets/fonts/bwmodelica-bolditalic-webfont.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'Bw Modelica';
+  src: url('~@/assets/fonts/bwmodelica-bold-webfont.woff2') format('woff2'),
+    url('~@/assets/fonts/bwmodelica-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: bolder;
 }
 
 @font-face {
-	font-family: 'Bw Modelica';
-	src: url('~@/assets/fonts/bwmodelica-extrabold-webfont.woff2') format('woff2'),
-		url('~@/assets/fonts/bwmodelica-extrabold-webfont.woff') format('woff');
-	font-weight: normal;
-	font-style: bold;
+  font-family: 'Bw Modelica';
+  src: url('~@/assets/fonts/bwmodelica-bolditalic-webfont.woff2')
+      format('woff2'),
+    url('~@/assets/fonts/bwmodelica-bolditalic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: 'Bw Modelica';
-	src: url('~@/assets/fonts/bwmodelica-extrabolditalic-webfont.woff2')
-			format('woff2'),
-		url('~@/assets/fonts/bwmodelica-extrabolditalic-webfont.woff')
-			format('woff');
-	font-weight: normal;
-	font-style: bold italic;
+  font-family: 'Bw Modelica';
+  src: url('~@/assets/fonts/bwmodelica-extrabold-webfont.woff2') format('woff2'),
+    url('~@/assets/fonts/bwmodelica-extrabold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: bold;
 }
 
 @font-face {
-	font-family: 'Bw Modelica';
-	src: url('~@/assets/fonts/bwmodelica-medium-webfont.woff2') format('woff2'),
-		url('~@/assets/fonts/bwmodelica-medium-webfont.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'Bw Modelica';
+  src: url('~@/assets/fonts/bwmodelica-extrabolditalic-webfont.woff2')
+      format('woff2'),
+    url('~@/assets/fonts/bwmodelica-extrabolditalic-webfont.woff')
+      format('woff');
+  font-weight: normal;
+  font-style: bold italic;
 }
 
 @font-face {
-	font-family: 'Bw Modelica';
-	src: url('~@/assets/fonts/bwmodelica-regular-webfont.woff2') format('woff2'),
-		url('~@/assets/fonts/bwmodelica-regular-webfont.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-.btn-eventu {
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	background: $alpha;
-	padding: 1% 2%;
-	border-radius: 6px;
-	color: #333333;
-	border: none;
+  font-family: 'Bw Modelica';
+  src: url('~@/assets/fonts/bwmodelica-medium-webfont.woff2') format('woff2'),
+    url('~@/assets/fonts/bwmodelica-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-$alpha: #ffff00; // Primary color */
-$alpha-100: #ffff39;
-$alpha-200: #ffff64;
-$complementary: #1144aa; // Complementary color
-$complementary-200: #577ac0;
-$complementary200: #082867;
-$danger: #ff0d00;
-.h1-font {
-	font-family: Futura;
-	font-weight: bold;
-}
-
-.h2-font {
-	font-family: Futura;
-	font-weight: normal;
-}
-
-.h3-font {
-	font-family: Bw Modelica;
-	font-style: Bold;
-	font-weight: 500;
-}
-
-.h4-font {
-	font-family: Bw Modelica;
-	font-weight: Bold;
-}
-
-.h5-font {
-	font-family: Bw Modelica;
-	font-style: semi-bold;
-	font-weight: 300;
-}
-
-.h6-font {
-	font-family: Bw Modelica;
-	font-style: Bold;
-	font-weight: 300;
-}
-
-.body-font {
-	font-family: Bw Modelica;
-	font-style: normal;
-	font-weight: normal;
-}
-
-.btn-hover-interaction {
-	// Starting wht micro-interactions
-	/** Icons Classes **/
-	/** -- Open Iconic and Font Awesome -- **/
-	.btn-iconed [class~='fas'] {
-		opacity: 0;
-		-webkit-transform-origin: left right;
-		transform-origin: left right;
-		-webkit-transform: translateX(-10px) scale(1.25);
-		transform: translateX(-10px) scale(1.25);
-		transition: 0.15s ease-out;
-	}
-	/** Span Class **/
-	.btn-iconed [class='spn'] {
-		position: relative;
-		left: -9px;
-		transform-origin: left right;
-		transform-origin: left right;
-		transform: translateX(-9px);
-		transform: translateX(-9px);
-		transition: 0.2s ease-in-out;
-	}
-	.btn-iconed:hover [class~='fas'] {
-		opacity: 1;
-		transform: translateX(0px) scale(0.75);
-		transform: translateX(0px) scale(0.75);
-	}
-	/** -- Span on Hover properties -- **/
-	.btn-iconed:hover [class='spn'] {
-		left: 0px;
-	}
+@font-face {
+  font-family: 'Bw Modelica';
+  src: url('~@/assets/fonts/bwmodelica-regular-webfont.woff2') format('woff2'),
+    url('~@/assets/fonts/bwmodelica-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 </style>

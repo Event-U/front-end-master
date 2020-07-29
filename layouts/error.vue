@@ -8,9 +8,10 @@
 <script>
 export default {
   name: 'error',
+
   head() {
     return {
-      title: 'Error 👻',
+      title: `Error ${this.error.statusCode} 👻`,
     };
   },
 

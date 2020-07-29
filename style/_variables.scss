@@ -1,87 +1,133 @@
-$alpha: #FFFF00; // Primary color */
-$alpha-100: #FFFF39;
-$alpha-200: #FFFF64;
-$complementary: #1144AA; // Complementary color
-$complementary-200: #577AC0;
+$alpha: #ffff00; // Primary color */
+$alpha-100: #ffff39;
+$alpha-200: #ffff64;
+$complementary: #3770e1; // Complementary color
+$complementary-200: #577ac0;
 $complementary200: #082867;
-$danger: #FF0D00;
+$danger: #e86464;
+
+:root {
+	--base-font-size: 1em;
+	--type-scale: 1.15;
+	--h5: calc(var(--base-font-size) * var(--type-scale));
+	--h4: calc(var(--h5) * var(--type-scale));
+	--h3: calc(var(--h4) * var(--type-scale));
+	--h2: calc(var(--h3) * var(--type-scale));
+	--h1: calc(var(--h2) * var(--type-scale));
+}
+
+h1 {
+	font-size: var(--h1);
+}
+
+h2 {
+	font-size: var(--h2);
+}
+
+h3 {
+	font-size: var(--h3);
+}
+
+h4 {
+	font-size: var(--h4);
+}
+
+h5 {
+	font-size: var(--h5);
+}
+
+@media screen and (min-width: 768px) {
+	:root {
+		--base-font-size: 1.3em;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	:root {
+		--base-font-size: 1.7em;
+	}
+}
+
 .btn-eventu {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background: $alpha;
-    padding: 1% 2%;
-    border-radius: 6px;
-    color: #333333;
-    border: none;
+	font-size: var(--base-font-size);
+	@extend .h3-font;
+	border-radius: 16px;
+
+	background: $alpha;
+	padding: calc(var(--base-font-size) * 0.1) calc(var(--base-font-size) * 1);
+	box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.27);
+	color: #333333;
+	border: none;
+}
+:link {
+	color: #333333;
 }
 
 .h1-font {
-    font-family: Futura;
-    font-weight: bold;
+	font-family: Futura;
+	font-weight: bold;
 }
 
 .h2-font {
-    font-family: Futura;
-    font-weight: normal;
+	font-family: Futura;
+	font-weight: normal;
 }
 
 .h3-font {
-    font-family: Bw Modelica;
-    font-style: Bold;
-    font-weight: 500;
+	font-family: Bw Modelica;
+	font-style: Bold;
+	font-weight: 500;
 }
 
 .h4-font {
-    font-family: Bw Modelica;
-    font-weight: Bold;
+	font-family: Bw Modelica;
+	font-weight: Bold;
 }
 
 .h5-font {
-    font-family: Bw Modelica;
-    font-style: semi-bold;
-    font-weight: 300;
+	font-family: Bw Modelica;
+	font-weight: 300;
 }
 
 .h6-font {
-    font-family: Bw Modelica;
-    font-style: Bold;
-    font-weight: 300;
+	font-family: Bw Modelica;
+	font-weight: 300;
 }
 
 .body-font {
-    font-family: Bw Modelica;
-    font-style: normal;
-    font-weight: normal;
+	font-family: Bw Modelica;
+	font-weight: normal;
 }
 
 .btn-hover-interaction {
-    // Starting wht micro-interactions
-    /** Icons Classes **/
-    /** -- Open Iconic and Font Awesome -- **/
-    .btn-iconed [class~=fas] {
-        opacity: 0;
-        -webkit-transform-origin: left right;
-        transform-origin: left right;
-        -webkit-transform: translateX(-10px) scale(1.25);
-        transform: translateX(-10px) scale(1.25);
-        transition: .15s ease-out;
-    }
-    /** Span Class **/
-    .btn-iconed [class=spn] {
-        position: relative;
-        left: -9px;
-        transform-origin: left right;
-        transform-origin: left right;
-        transform: translateX(-9px);
-        transform: translateX(-9px);
-        transition: .20s ease-in-out;
-    }
-    .btn-iconed:hover [class~=fas] {
-        opacity: 1;
-        transform: translateX(0px) scale(0.75);
-        transform: translateX(0px) scale(0.75);
-    }
-    /** -- Span on Hover properties -- **/
-    .btn-iconed:hover [class=spn] {
-        left: 0px;
-    }
+	// Starting wht micro-interactions
+	/** Icons Classes **/
+	/** -- Open Iconic and Font Awesome -- **/
+	.btn-iconed [class~='fas'] {
+		opacity: 0;
+		-webkit-transform-origin: left right;
+		transform-origin: left right;
+		-webkit-transform: translateX(-10px) scale(1.25);
+		transform: translateX(-10px) scale(1.25);
+		transition: 0.15s ease-out;
+	}
+	/** Span Class **/
+	.btn-iconed [class='spn'] {
+		position: relative;
+		left: -9px;
+		transform-origin: left right;
+		transform-origin: left right;
+		transform: translateX(-9px);
+		transform: translateX(-9px);
+		transition: 0.2s ease-in-out;
+	}
+	.btn-iconed:hover [class~='fas'] {
+		opacity: 1;
+		transform: translateX(0px) scale(0.75);
+		transform: translateX(0px) scale(0.75);
+	}
+	/** -- Span on Hover properties -- **/
+	.btn-iconed:hover [class='spn'] {
+		left: 0px;
+	}
 }

@@ -1,7 +1,10 @@
 <template>
   <div class="card">
-    <img :src="image" class="card-img-top" :alt="`service-${name}`" />
     <div class="card-body">
+      <div
+        class="img-bg"
+        :style="`background-image: url(${image}); background-repeat: no-repeat; background-size:cover;`"
+      />
       <h5 class="card-title">{{ name }}</h5>
       <Raitings v-bind="number" />
       <p class="card-text">{{ description }}</p>
@@ -53,6 +56,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.img-bg {
+  padding: 4em 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.card {
+  min-height: 100%;
+}
 button {
   background-color: $complementary;
   color: white;

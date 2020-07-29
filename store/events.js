@@ -7,7 +7,7 @@ export const state = () => ({
 
 	activeNeed: null,
 
-	events: [],
+	events: null,
 
 	newEvent: {},
 });

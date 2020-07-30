@@ -56,7 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 .fadeInDown {
-	animation-delay: 0.5s;
+	animation-delay: 0.1s;
 }
 input {
 	@extend .h2-font;

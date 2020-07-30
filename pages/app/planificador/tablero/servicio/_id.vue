@@ -2,10 +2,10 @@
 	<div
 		class="align-items-center mt-4 text-center container-fluid justify-content-around"
 	>
-		<h1>{{ board.service.name }}</h1>
+		<h1 :class="{ blur: isTaskOpen }">{{ board.service.name }}</h1>
 		<div
-			class="board d-flex justify-content-between"
 			:class="{ blur: isTaskOpen }"
+			class="board d-flex justify-content-between"
 		>
 			<column
 				v-for="(column, columnIndex) in board.columns"
@@ -129,7 +129,7 @@ h1 {
 }
 .blur {
 	filter: blur(3px);
-	transition: cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.3s;
+	transition: cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.2s;
 }
 .board,
 .row {

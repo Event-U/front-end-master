@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="eventcard card mb-3 text-right text-lg-left"
+		class="eventcard card mb-3  text-lg-left"
 		@mouseover="hoverCard = true"
 		@mouseleave="hoverCard = false"
 	>

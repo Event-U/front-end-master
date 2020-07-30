@@ -1,5 +1,6 @@
 <template>
 	<div
+		v-if="!openTask"
 		class="col-lg-3 col-md-4 col-7 m-3 column animated fadeInUp d-flex flex-column"
 		draggable
 		@dragstart.self="pickColumn($event, columnIndex)"
@@ -12,6 +13,7 @@
 		</div>
 		<div class="list-reset column-cards">
 			<task
+				@clickTask="openModalTask(task)"
 				v-for="(task, taskIndex) in column.tasks"
 				:key="taskIndex"
 				:task="task"
@@ -38,11 +40,22 @@ import { mapMutations, mapState } from 'vuex';
 import plannerMixin from '@/mixins/planner';
 
 export default {
-	components: { Task },
+	components: {
+		Task,
+	},
 
 	mixins: [plannerMixin],
 
 	methods: {
+		async openModalTask(task) {
+			await this.$store.dispatch('task/setActiveTask', task);
+			this.$emit('openModalTask', task);
+		},
+
+		closeModalTask() {
+			this.openTask = false;
+		},
+
 		createTask(tasks, e) {
 			this.$store.dispatch('task/createNewTask', {
 				tasks,

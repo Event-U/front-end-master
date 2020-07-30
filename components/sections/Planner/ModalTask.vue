@@ -1,7 +1,6 @@
 <template>
-	<div class="task-view container animated fadeIn">
+	<div @click.self="close" class="task-view container animated fadeIn">
 		<div
-			@click.self="close"
 			class="col-6 
                 d-flex 
                 flex-column 
@@ -27,7 +26,7 @@
 import { mapState, mapGetters } from 'vuex';
 
 export default {
-	name: 'Task',
+	name: 'ModalTask',
 
 	computed: {
 		...mapState({

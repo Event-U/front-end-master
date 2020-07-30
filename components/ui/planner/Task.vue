@@ -6,7 +6,7 @@
 		@dragover.prevent
 		@dragenter.prevent
 		@drop.stop="moveTask($event, column.tasks, taskIndex, columnIndex)"
-		@click="goToTask(task)"
+		@click="openTask(task)"
 	>
 		<h3>{{ task.name }}</h3>
 		<p>{{ task.description }}</p>
@@ -40,6 +40,10 @@ export default {
 				name: 'app-planificador-tablero-tarea-id',
 				params: { id: task._id },
 			});
+		},
+
+		openTask(task) {
+			this.$emit('clickTask', task);
 		},
 
 		pickTask(e, $taskIndex, fromColumnIndex) {

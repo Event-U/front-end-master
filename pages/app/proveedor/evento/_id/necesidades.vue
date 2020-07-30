@@ -1,18 +1,18 @@
 <template>
-	<div class="container-fluid">
-		<div class="title mt-3">
-			<h1>{{ activeEvent.name }}</h1>
-		</div>
-		<div class="row needs-row mt-3">
-			<div
-				class="col-12 col-lg-3 5 mt-3 need-container"
-				v-for="(need, indexNeed) in activeEvent.needs"
-				:key="indexNeed"
-			>
-				<event-need v-bind="need" class="mt-3 need-card mb-3" />
-			</div>
-		</div>
-	</div>
+  <div class="container-fluid">
+    <div class="title mt-3">
+      <h1>{{ activeEvent.name }}</h1>
+    </div>
+    <div class="row needs-row mt-3">
+      <div
+        class="col-12 col-lg-3 5 mt-3 need-container"
+        v-for="(need, indexNeed) in activeEvent.needs"
+        :key="indexNeed"
+      >
+        <event-need v-bind="need" class="mt-3 need-card mb-3" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -20,107 +20,106 @@ import { mapState } from 'vuex';
 import EventNeed from '@/components/ui/cards/EventNeed.vue';
 
 export default {
-	name: 'EventNeedsProvider',
+  name: 'EventNeedsProvider',
 
-	components: {
-		EventNeed,
-		NewNeedForm: () =>
-			import(
-				/* webpackChunkName: "NewNeedForm" */ '@/components/sections/forms/NewNeedForm.vue'
-			),
-	},
+  components: {
+    EventNeed,
+    NewNeedForm: () =>
+      import(
+        /* webpackChunkName: "NewNeedForm" */ '@/components/sections/forms/NewNeedForm.vue'
+      ),
+  },
 
-	data() {
-		return {
-			addingNeed: false,
-			name: 'Necesidades evento',
-		};
-	},
+  data() {
+    return {
+      addingNeed: false,
+      name: 'Necesidades evento',
+    };
+  },
 
-	created() {
-		this.$store.commit('change', this.name);
-	},
+  created() {
+    this.$store.commit('change', this.name);
+  },
 
-	async fetch({ store, params }) {
-		if (!store.state.events.activeEvent) {
-			await store.dispatch('events/findEvent', params.id);
-		}
-	},
+  async fetch({ store, params }) {
+    if (!store.state.events.activeEvent) {
+      await store.dispatch('events/findEvent', params.id);
+    }
+  },
 
-	computed: mapState({
-		activeEvent: (state) => state.events.activeEvent,
-	}),
+  computed: mapState({
+    activeEvent: (state) => state.events.activeEvent,
+  }),
 
-	methods: {
-		actionNewNeed(e) {
-			this.addingNeed = true;
-		},
-	},
+  methods: {
+    actionNewNeed(e) {
+      this.addingNeed = true;
+    },
+  },
 
-	head() {
-		return {
-			title: 'Necesidades evento',
-			meta: [
-				{ 'og:title': 'Necesidades evento Event-u' },
-				{ 'og:type': 'page' },
-				{
-					'og:description':
-						'Comienza a generar ganancias en el mercado de eventos en México. No importa sí eres organizador, proveedor o inversionista.',
-				},
-				{ 'og:image': '../assets/landing/images/dashboard.png' },
-				{
-					hid: 'description',
-					name: 'description',
-					content: 'La plataforma #1 para organizar eventos en México',
-				},
-			],
-		};
-	},
+  head() {
+    return {
+      title: 'Necesidades evento',
+      meta: [
+        { 'og:title': 'Necesidades evento Event-u' },
+        { 'og:type': 'page' },
+        {
+          'og:description':
+            'Comienza a generar ganancias en el mercado de eventos en México. No importa sí eres organizador, proveedor o inversionista.',
+        },
+        { 'og:image': '../assets/landing/images/dashboard.png' },
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'La plataforma #1 para organizar eventos en México',
+        },
+      ],
+    };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .new-need-container {
-	text-align: center;
-	@extend .btn-hover-interaction;
+  text-align: center;
+  @extend .btn-hover-interaction;
 }
 .btn {
-	padding: 1% 2%;
-	border-radius: 8px;
-	border: 1.5px solid #333333;
-	@extend .h3-font;
-	font-size: 1.5em;
-	text-align: center;
-	transition: 0.3s ease-out;
+  padding: 1% 2%;
+  border-radius: 8px;
+  border: 1.5px solid #333333;
+  @extend .h3-font;
+  font-size: 1.5em;
+  text-align: center;
+  transition: 0.3s ease-out;
 }
 .btn:hover {
-	@extend .btn-eventu;
-	transition: 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  @extend .btn-eventu;
 }
 .need-container:nth-of-type(2n) {
-	border-left: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
 }
 .need-container {
-	border-bottom: 1px solid #cccccc;
-	transition: 0.3s ease-out;
+  border-bottom: 1px solid #cccccc;
+  transition: 0.3s ease-out;
 }
 .need-container:hover {
-	border: 1px solid #cccccc;
-	transition: 0.3s ease-in;
-	border-radius: 12px;
-	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #cccccc;
+  transition: 0.3s ease-in;
+  border-radius: 12px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .row {
-	margin: 0;
+  margin: 0;
 }
 h1 {
-	@extend .h2-font;
-	font-size: 3em;
-	text-align: center;
+  @extend .h2-font;
+  font-size: 3em;
+  text-align: center;
 }
 
 .needs-row {
-	justify-content: center;
+  justify-content: center;
 }
 </style>

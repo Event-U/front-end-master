@@ -1,6 +1,6 @@
 <template>
 	<tr>
-		<th scope="row">
+		<th class="important" scope="row">
 			{{ isOrganizador ? need.description : need.service.category.name }}
 		</th>
 		<td>{{ need.service.name }}</td>
@@ -12,7 +12,7 @@
 			<button
 				type="button"
 				@click="ariaHidden = false"
-				class="btn"
+				class="btn btn-secondary"
 				data-toggle="modal"
 				:data-target="`#exampleModal` + _id"
 			>
@@ -28,7 +28,7 @@
 				:aria-hidden="ariaHiden"
 			>
 				<div class="modal-dialog" role="document">
-					<div class="modal-content">
+					<div class="modal-content pt-3">
 						<need-quotation
 							v-if="ariaHiden"
 							:_id="_id"
@@ -40,12 +40,8 @@
 							:description="description"
 						/>
 						<div class="modal-footer">
-							<button
-								type="button"
-								class="btn btn-secondary"
-								data-dismiss="modal"
-							>
-								Cerrar cotización
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								Cerrar
 							</button>
 						</div>
 					</div>
@@ -53,46 +49,26 @@
 			</div>
 		</td>
 		<td class="state-icon">
-			<i
-				v-if="status === 2 && isOrganizador"
-				class="fas fa-star text-primary"
-			></i>
-			<i
-				v-if="status === 4 && isOrganizador"
-				class="fas fa-check text-success"
-			></i>
-			<button
+			<i v-if="status === 2 && isOrganizador" class="fas fa-star" />
+			<i v-if="status === 4 && isOrganizador" class="fas fa-check" />
+			<span
 				v-if="status === 4 && !isOrganizador"
 				type="button"
 				class="btn btn-success"
 				:data-target="`#exampleModal` + _id"
 				data-toggle="modal"
+				>Aceptada</span
 			>
-				Aceptada
-			</button>
-			<button
-				v-if="status === 2 && !isOrganizador"
-				type="button"
-				class="btn btn-primary"
+			<span v-if="status === 2 && !isOrganizador" class="btn btn-complementary"
+				>Guardada</span
 			>
-				Guardada
-			</button>
-			<button
-				v-if="status === 1"
-				type="button"
-				class="btn btn-secondary"
-				disabled
-			>
-				Pendiente
-			</button>
-			<button
+			<span v-if="status === 1" class="btn pending" disabled>Pendiente</span>
+			<span
 				v-if="status === 3 && !isOrganizador"
-				type="button"
 				class="btn btn-danger"
 				disabled
+				>Denegada</span
 			>
-				Denegada
-			</button>
 		</td>
 	</tr>
 </template>
@@ -132,12 +108,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.important {
+	font-weight: 900;
+}
+
 tr:hover {
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.166);
+	box-shadow: $box-shadow-hover;
 	border-radius: 8px !important;
 	transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 	border: 1px solid #cccccc;
 }
+
 tr {
 	transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -155,9 +136,5 @@ td {
 .state-icon {
 	color: $complementary;
 	font-size: 1.5em;
-}
-button {
-	background-color: $complementary;
-	color: white;
 }
 </style>

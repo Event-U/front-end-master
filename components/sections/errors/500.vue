@@ -34,11 +34,7 @@ export default {
 <style lang="scss" scoped>
 button {
   @extend .btn-eventu;
-  padding: 2% 10%;
-  color: #333333;
   font-size: 2em;
-  font-weight: 300;
-  @extend .h1-font;
 }
 h1 {
   @extend .h3-font;

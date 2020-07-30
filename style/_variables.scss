@@ -1,10 +1,26 @@
+// Colors
 $alpha: #ffff00; // Primary color */
 $alpha-100: #ffff39;
 $alpha-200: #ffff64;
-$complementary: #3770e1; // Complementary color
+$complementary: #6490e8; // Complementary color
 $complementary-200: #577ac0;
 $complementary200: #082867;
 $danger: #e86464;
+// Interactions
+$box-shadow-static: 4px 4px 14px rgba(45, 45, 45, 0.27);
+$box-shadow-hover: 4px 4px 8px #0000002a;
+
+.btn-complementary {
+	@extend .h3-font;
+	background-color: $complementary;
+	color: #eee;
+}
+
+input {
+	font-size: 1em !important;
+	border: 2px solid #b8b8b8;
+	@extend .h3-font;
+}
 
 :root {
 	--base-font-size: 1em;
@@ -14,6 +30,8 @@ $danger: #e86464;
 	--h3: calc(var(--h4) * var(--type-scale));
 	--h2: calc(var(--h3) * var(--type-scale));
 	--h1: calc(var(--h2) * var(--type-scale));
+	--padding-button: calc(var(--base-font-size) * 0.35)
+		calc(var(--base-font-size) * 1.6);
 }
 
 h1 {
@@ -48,17 +66,53 @@ h5 {
 	}
 }
 
-.btn-eventu {
-	font-size: var(--base-font-size);
-	@extend .h3-font;
-	border-radius: 16px;
+a:active,
+a:link {
+	color: #333;
+}
 
+.btn-eventu {
+	@media screen and(min-width: 1200px) {
+		font-size: calc(var(--base-font-size) * 0.75);
+	}
+	@extend .h3-font;
+	font-size: var(--base-font-size);
+	border-radius: 10px;
 	background: $alpha;
-	padding: calc(var(--base-font-size) * 0.1) calc(var(--base-font-size) * 1);
+	padding: var(--padding-button);
 	box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.27);
 	color: #333333;
 	border: none;
+	&:link {
+		color: #eee;
+	}
+	// &:hover {
+	// 	background-color: $complementary200;
+	// 	transition: 0.8s ease-in-out;
+	// }
 }
+
+.btn-border {
+	font-weight: bolder !important;
+	@extend .h3-font;
+	border-radius: 8px;
+	border: 2px solid #333333;
+}
+
+.btn-secondary,
+.btnnn {
+	@extend .h3-font;
+	border-radius: 8px;
+	background-color: $complementary;
+	color: #eee;
+}
+
+.btn-danger {
+	@extend .h3-font;
+	color: #eee;
+	background-color: $danger;
+}
+
 :link {
 	color: #333333;
 }
@@ -76,7 +130,7 @@ h5 {
 .h3-font {
 	font-family: Bw Modelica;
 	font-style: Bold;
-	font-weight: 500;
+	font-weight: 900;
 }
 
 .h4-font {

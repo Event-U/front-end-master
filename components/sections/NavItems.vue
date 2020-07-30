@@ -2,28 +2,32 @@
   <div class="navbar-collapse mr-lg-3">
     <ul class="navbar-nav align-items-center">
       <li
-        @click="openMenu('planificador')"
-        class="nav-item"
-        @mouseover="hoverItem('planificador')"
+        @click="openMenu('organizador')"
+        class="nav-item aling-stretch align-center"
+        @mouseover="hoverItem('organizador')"
         :class="{
-					activeItem: isPlanner,
+					activeItem: isOrganizador,
 				}"
       >
-        <i class="fas fa-calendar-alt" />
-        <span class="item-name" v-if="hoverPlanificador">Planificador</span>
+        <i class="fas fa-boxes" />
+        <span class="item-name" v-if="hoverOrganizador">Organizador</span>
       </li>
       <ul
-        class="submenu submenu-items text-right"
-        v-if="collapsePlanificador"
         @mouseleave="closeCollapse"
+        class="submenu submenu-items text-right"
+        v-if="collapseOrganizador"
       >
         <li>
-          <nuxt-link to="/app/planificador/calendario">Calendario</nuxt-link>
+          <nuxt-link to="/app/organizador/mis-eventos">Mis eventos</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/app/planificador/tablero">Tableros</nuxt-link>
+          <nuxt-link to="/app/organizador/nuevo-evento">Nuevo evento</nuxt-link>
+        </li>
+        <li>
+          <nuxt-link to="/app/organizador/mis-cotizaciones">Mis cotizaciones</nuxt-link>
         </li>
       </ul>
+
       <li
         @mouseover="hoverItem('proveedor')"
         @click="openMenu('proveedor')"
@@ -51,29 +55,26 @@
         </li>
       </ul>
       <li
-        @click="openMenu('organizador')"
-        class="nav-item aling-stretch align-center"
-        @mouseover="hoverItem('organizador')"
+        @click="openMenu('planificador')"
+        class="nav-item"
+        @mouseover="hoverItem('planificador')"
         :class="{
-					activeItem: isOrganizador,
+					activeItem: isPlanner,
 				}"
       >
-        <i class="fas fa-boxes" />
-        <span class="item-name" v-if="hoverOrganizador">Organizador</span>
+        <i class="fas fa-calendar-alt" />
+        <span class="item-name" v-if="hoverPlanificador">Planificador</span>
       </li>
       <ul
-        @mouseleave="closeCollapse"
         class="submenu submenu-items text-right"
-        v-if="collapseOrganizador"
+        v-if="collapsePlanificador"
+        @mouseleave="closeCollapse"
       >
         <li>
-          <nuxt-link to="/app/organizador/mis-eventos">Mis eventos</nuxt-link>
+          <nuxt-link to="/app/planificador/calendario">Calendario</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/app/organizador/nuevo-evento">Nuevo evento</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link to="/app/organizador/mis-cotizaciones">Mis cotizaciones</nuxt-link>
+          <nuxt-link to="/app/planificador/tablero">Tableros</nuxt-link>
         </li>
       </ul>
     </ul>
@@ -202,11 +203,11 @@ export default {
   border-radius: 0px 0px 16px 16px;
   position: absolute;
   margin: 0;
-  animation: goUp 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: goUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 .item-name {
-  animation: goLeft 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: goLeft 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 @keyframes goLeft {

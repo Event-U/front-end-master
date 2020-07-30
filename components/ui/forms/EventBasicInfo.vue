@@ -112,8 +112,10 @@ textarea {
 	transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 	font-size: 1em;
 	border-radius: 5px;
+	border: 2px solid #b8b8b8;
 	padding: 2% 0.75rem;
 }
+
 input:focus {
 	border: 0.6px solid grey;
 	box-shadow: 0px 0px 10px #ffff0022;

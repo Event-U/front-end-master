@@ -38,7 +38,7 @@ export default {
 
   data() {
     return {
-      name: 'Planificador servicios',
+      name: 'Planificador tablero',
       newColumnName: '',
     };
   },
@@ -89,6 +89,10 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
+}
+
+h1 {
+  @extend .h1-font;
 }
 
 .new-column {

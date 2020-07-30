@@ -20,9 +20,8 @@
 			<span
 				v-if="$v.name.$error && !$v.name.required"
 				class="invalid-feedback animated fadeInLeft faster"
+				>El nombre es requerido</span
 			>
-				El nombre es requerido
-			</span>
 			<span
 				v-if="$v.name.$error && !$v.name.maxLength"
 				class="invalid-feedback animated fadeInLeft faster"
@@ -49,7 +48,7 @@
 				class="custom-select"
 				id="inputGroupSelect0"
 			>
-				<option value="">Elige una categoría...</option>
+				<option value>Elige una categoría...</option>
 				<option-input
 					v-for="option in categories"
 					:key="option._id"
@@ -59,9 +58,8 @@
 			<span
 				v-if="$v.category.$error && !$v.category.required"
 				class="invalid-feedback animated fadeInLeft faster"
+				>Debes seleccionar una categoría</span
 			>
-				Debes seleccionar una categoría
-			</span>
 		</div>
 		<div class="form-group">
 			<select
@@ -74,7 +72,7 @@
 				class="custom-select"
 				id="inputGroupSelect01"
 			>
-				<option value="">Precio por unidad</option>
+				<option value>Precio por unidad</option>
 				<option value="Metro">Metro</option>
 				<option value="Persona">Persona</option>
 				<option value="Unidad">Unidad</option>
@@ -83,9 +81,8 @@
 			<span
 				v-if="$v.measurementUnit.$error && !$v.measurementUnit.required"
 				class="invalid-feedback animated fadeInLeft faster"
+				>Debes seleccionar una unidad de medida</span
 			>
-				Debes seleccionar una unidad de medida
-			</span>
 		</div>
 		<div class="form-group">
 			<label for="newServiceName">Precio por medida</label>
@@ -104,15 +101,14 @@
 				<span
 					v-if="$v.unitPrice.$error && !$v.unitPrice.required"
 					class="invalid-feedback animated fadeInLeft faster"
+					>Debes poner una unidad de precio</span
 				>
-					Debes poner una unidad de precio
-				</span>
 				<span
 					v-if="$v.unitPrice.$error && !$v.unitPrice.notZero"
 					class="invalid-feedback animated fadeInLeft faster"
+					>No puedes poner menos de $10 como precio por unidad de tu
+					servicio</span
 				>
-					No puedes poner menos de $10 como precio por unidad de tu servicio
-				</span>
 			</div>
 		</div>
 		<div class="form-group">
@@ -130,21 +126,19 @@
 			<span
 				v-if="$v.image.$error && !$v.image.required"
 				class="invalid-feedback animated fadeInLeft faster"
+				>Necesitas seleccionar al menos una imagen para tu servicio</span
 			>
-				Necesitas seleccionar al menos una imagen para tu servicio
-			</span>
 			<span
 				v-if="$v.image.$error && !$v.image.supportedImageFile"
 				class="invalid-feedback animated fadeInLeft faster"
+				>La imagen de tu servicio tiene que ser un formato válido de
+				imagen</span
 			>
-				La imagen de tu servicio tiene que ser un formato válido de imagen
-			</span>
 			<span
 				v-if="$v.image.$error && !$v.image.url"
 				class="invalid-feedback animated fadeInLeft faster"
+				>Inserta una URL válida</span
 			>
-				Inserta una URL válida
-			</span>
 		</div>
 		<div class="form-group">
 			<label for="description">Descripción</label>
@@ -175,8 +169,8 @@
 			</span>
 		</div>
 		<button
-			type="submit"
-			class="btn btn-primary"
+			type="button"
+			class="btn btnnn "
 			data-dismiss="modal"
 			@click.prevent="postNewService"
 		>
@@ -295,16 +289,10 @@ label {
 	@extend .h4-font;
 }
 .btn {
-	@extend .h2-font;
-	background-color: $complementary;
-	font-weight: 400;
-	font-size: 1.5em;
-	text-align: center;
-	align-self: center;
-	transition: 0.4s ease-in-out;
+	width: 100%;
 }
 .btn:hover {
-	box-shadow: 5px 3px 11px #00000059;
+	box-shadow: $box-shadow-hover;
 	transition: 0.3s ease-in;
 	// font-size:1.3em;
 }
@@ -313,6 +301,6 @@ h1 {
 }
 .modal-content {
 	border-radius: 8px;
-	box-shadow: 7px 7px 7px 0px #ffffff4d;
+	box-shadow: $box-shadow-static;
 }
 </style>

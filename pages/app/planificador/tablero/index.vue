@@ -47,10 +47,11 @@ export default {
   @extend .h3-font;
   @extend .btn-eventu;
   font-size: 1em;
+  transition: 0.3s ease-out;
 }
 
 .non-active {
-  box-shadow: 0 0 0 0 !important;
+  box-shadow: none;
 }
 
 h1 {

@@ -2,18 +2,18 @@
 	<div class="card animated fadeInUp" style="max-width: 540px;">
 		<div class="d-flex no-gutters">
 			<div class="col-md-4 col-5 image-bg ml-3" :style="styles"></div>
-			<div class="col-md-6 col-6">
-				<div class="card-body">
+			<div class="col-md-6 col-5">
+				<div class="card-body text-left">
 					<h5 class="card-title">{{ provider.bussinesName }}</h5>
 					<p class="card-text">{{ description }}</p>
-					<h5 class="card-text">
+					<h6 class="card-text">
 						<span class="d-block">${{ price }}</span>
-						<small class="text-muted">{{ status | statusText }}</small>
-					</h5>
+						<small :class="`status-${status}`">{{ status | statusText }}</small>
+					</h6>
 				</div>
 			</div>
 			<div
-				class="col-md-1 justify-content-center align-self-center animated fadeInRight delay-1s"
+				class="col-md-1 col-1 justify-content-center align-self-center animated fadeInRight delay-1s"
 				data-toggle="tooltip"
 				data-placement="right"
 				title="Guardar cotización"
@@ -75,9 +75,6 @@ export default {
 
 				case 2:
 					return 'Favorita';
-
-				default:
-					return 'Qlo';
 			}
 		},
 	},
@@ -108,6 +105,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.status-4 {
+	color: $complementary;
+}
+
+.status-3 {
+	color: $danger;
+}
+
+.status-2 {
+	color: $alpha;
+}
+
 i:hover {
 	cursor: pointer;
 }
@@ -115,8 +124,7 @@ p {
 	@extend .body-font;
 }
 h5 {
-	@extend .h4-font;
-	font-size: 1.3em;
+	@extend .h2-font;
 }
 .image-bg {
 	display: flex;
@@ -126,7 +134,6 @@ h5 {
 	h6 {
 		color: #b8b8b8;
 		text-align: left;
-		font-size: 1.2em;
 	}
 }
 .card {

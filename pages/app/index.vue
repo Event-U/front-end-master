@@ -82,7 +82,7 @@ export default {
   border-radius: 16px;
   background-repeat: no-repeat;
   background-size: cover;
-  transition: 0.5s ease-in-out;
+  transition: 0.8s ease-in-out;
   background-position: center;
   flex-flow: column;
   color: white;
@@ -109,7 +109,6 @@ export default {
 
   .btn-eventu {
     display: none;
-    transition: 5s ease-in-out;
   }
 
   &:nth-of-type(1) {

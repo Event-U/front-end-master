@@ -8,10 +8,7 @@
       <div class="card">
         <div class="card-body d-flex justify-content-between align-items-center">
           <h5>{{service.name}}</h5>
-          <nuxt-link
-            :to="`/app/planificador/tablero/servicio/${service._id}`"
-            class="btn btn-primary"
-          >
+          <nuxt-link :to="`/app/planificador/tablero/servicio/${service._id}`">
             <i class="fas fa-external-link-alt"></i>
           </nuxt-link>
         </div>
@@ -43,5 +40,8 @@ export default {
 <style lang="scss" scoped>
 :link {
   color: white;
+}
+i {
+  color: $complementary;
 }
 </style>

@@ -12,7 +12,7 @@
             <small class="d-block">{{event.date | fromNow}}</small>
           </h5>
 
-          <nuxt-link :to="`/app/planificador/tablero/evento/${event._id}`" class="btn btn-primary">
+          <nuxt-link :to="`/app/planificador/tablero/evento/${event._id}`">
             <i class="fas fa-external-link-alt"></i>
           </nuxt-link>
         </div>
@@ -49,6 +49,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+small {
+  font-size: calc(var(--base-font-size) * 0.45);
+}
+i {
+  color: $complementary;
+}
 .badge {
   background-color: red;
 }

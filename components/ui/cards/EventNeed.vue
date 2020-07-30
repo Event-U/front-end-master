@@ -3,11 +3,15 @@
     <div class="need-icon animated fadeInLeft">
       <i class="fas fa-angle-right" />
     </div>
+
     <div class="card-body">
       <h5 v-if="service" class="card-title">{{ service.name }}</h5>
       <p class="card-text">{{ description }}</p>
 
-      <div class="ctas-needs" v-if="this.$route.path !== '/app/organizador/nuevo-evento'">
+      <div
+        class="ctas-needs align-self-end animated fadeInUp"
+        v-if="this.$route.path !== '/app/organizador/nuevo-evento'"
+      >
         <cta-organizers
           v-if="this.$route.path.includes('organizador')"
           :quotation="quotation"
@@ -69,7 +73,7 @@ export default {
   color: $danger;
 }
 .inactive:hover::after {
-  content: ':(';
+  content: ' :(';
   transition: 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   color: $danger;
 }

@@ -1,23 +1,25 @@
 <template>
-  <div class="card">
-    <div class="card-body">
-      <div
-        class="img-bg"
-        :style="`background-image: url(${image}); background-repeat: no-repeat; background-size:cover;`"
-      />
-      <h5 class="card-title">{{ name }}</h5>
-      <Raitings v-bind="number" />
-      <p class="card-text">{{ description }}</p>
-
-      <p class="card-text text-left">
-        <small class="text-muted">${{ unitPrice }}</small>
-      </p>
-      <button class="btn btn-eventu" @click="goToBoard">Ir al tablero</button>
-    </div>
-    <div class="card-footer text-left">
-      <small class="category">{{ category.name }}</small>
-    </div>
-  </div>
+	<div class="card">
+		<div
+			class="img-bg"
+			:style="
+				`background-image: url(${image}); background-repeat: no-repeat; background-size:cover;`
+			"
+		/>
+		<div
+			class="card-body d-flex flex-column text-lg-left justify-content-between"
+		>
+			<div>
+				<h4 class="card-title">{{ name }}</h4>
+				<small class="category mb-4">{{ category.name }}</small>
+				<p class="card-text">{{ description }}</p>
+				<small>${{ unitPrice }}</small>
+			</div>
+			<div class="cta-service">
+				<button class="btn btn-eventu" @click="goToBoard">Ir al tablero</button>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -25,66 +27,68 @@ import { mapState, mapGetters } from 'vuex';
 import Raitings from '@/components/ui/utilities/Raitings.vue';
 
 export default {
-  name: 'ServiceCard',
+	name: 'ServiceCard',
 
-  components: {
-    Raitings,
-  },
+	components: {
+		Raitings,
+	},
 
-  props: {
-    _id: String,
-    description: String,
-    measurementUnit: String,
-    unitPrice: Number,
-    image: String,
-    name: String,
-    category: Object,
-    number: Number,
-  },
+	props: {
+		_id: String,
+		description: String,
+		measurementUnit: String,
+		unitPrice: Number,
+		image: String,
+		name: String,
+		category: Object,
+		number: Number,
+	},
 
-  methods: {
-    async goToBoard() {
-      await this.$store.dispatch('board/getServiceBoard', this._id);
+	methods: {
+		async goToBoard() {
+			await this.$store.dispatch('board/getServiceBoard', this._id);
 
-      this.$router.push({
-        name: 'app-planificador-tablero-servicio-id',
-        params: { id: this._id },
-      });
-    },
-  },
+			this.$router.push({
+				name: 'app-planificador-tablero-servicio-id',
+				params: { id: this._id },
+			});
+		},
+	},
 };
 </script>
 
 <style lang="scss" scoped>
+.btn {
+	background-color: $complementary;
+	color: white;
+	font-size: 0.8em;
+}
 .img-bg {
-  padding: 4em 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+	padding: 4em 0;
+	background-repeat: no-repeat;
+	border-radius: 16px 16px 0 0;
+	background-size: cover;
+	background-position: center;
 }
 .card {
-  min-height: 100%;
+	min-height: 100%;
+	border-radius: 16px;
 }
-button {
-  background-color: $complementary;
-  color: white;
-  @extend .h3-font;
-  padding: 2% 5%;
-}
-h5 {
-  @extend .h2-font;
-  font-weight: 400;
+
+h4 {
+	@extend .h2-font;
+	font-weight: 400;
 }
 p {
-  @extend .body-font;
+	@extend .body-font;
 }
 small {
-  @extend .h3-font;
+	@extend .h3-font;
 }
 .category {
-  background-color: $alpha;
-  border-radius: 8px 5px 0px 5px;
-  padding: 1% 5%;
-  color: #333;
+	background-color: $alpha;
+	border-radius: 8px 5px 0px 5px;
+	padding: 1% 5%;
+	color: #333;
 }
 </style>

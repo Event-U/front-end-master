@@ -100,6 +100,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  @extend .h1-font;
+}
 .container-fluid {
   min-height: 100vh;
   align-items: center;

@@ -1,62 +1,57 @@
-import api from '@/lib/api.js'
-const urlBase = 'https://event-uback.mybluemix.net'
+import api from '@/lib/api.js';
+
+const urlBase = 'https://api.event-u.site';
 
 export const state = () => ({
-    needs: [],
-    activeNeed: {},
-    newNeed: {},
-    needsId: [],
-})
+	newNeed: {},
+
+	needsId: [],
+
+	activeNeed: null,
+});
 
 // getters
-export const getters = {
-
-}
+export const getters = {};
 
 // actions
 export const actions = {
-    async fetchNeeds({ commit, rootState }) {
-        const eventId = rootState.event.activeEvent._id
-        const eventObject = await api.getEventById(eventId)
-        const needsObjects = eventObject.needs
-        commit('SET_NEEDS', needsObjects)
-    },
-    async postNeedToEvent({ state, commit, rootState }, need) {
-        const newNeedObject = await api.createNeed(need)
-        commit('SET_NEW_NEED', newNeedObject)
-        commit('ADDING_NEW_NEED', newNeedObject)
-        state.needs.forEach(need => {
-            commit('PUSH_NEED_ID', need._id)
-        });
-        const eventId = rootState.event.activeEvent._id
-        const needsIds = state.needsId
-        const updatedEvent = await api.updateEvent(eventId, needsIds)
-        commit('CLEAN_NEED_ID_ARRAY')
-    },
-    async postNeed({ commit, dispatch }, need) {
-        const newNeedObject = await api.createNeed(need)
-        dispatch('task/createTaskFromNeed', newNeedObject, { root: true })
-        commit('SET_NEW_NEED', newNeedObject)
-        return 'ready'
-    },
+	async findNeed({ commit, rootState }, id) {
+		const need = rootState.events.activeEvent.needs.find(
+			(need) => need._id === id
+		);
+		commit('SET_ACTIVE_NEED', need);
+	},
 
-}
+	async fetchNewNeed({ commit, rootState }, id) {
+		const newNeed = await api.getNeedById(id);
+		commit('events/ADDING_NEW_NEED', newNeed, { root: true });
+	},
+
+	async postNeedToEvent({ dispatch, state, rootState }, need) {
+		await dispatch('postNeed', need);
+
+		const needsIds = rootState.events.activeEvent.needs.map((need) => need._id);
+		const eventId = rootState.events.activeEvent._id;
+
+		await api.updateEvent(eventId, [...needsIds, state.newNeed._id]);
+		dispatch('fetchNewNeed', state.newNeed._id);
+	},
+
+	async postNeed({ commit, dispatch }, need) {
+		const newNeedObject = await api.createNeed(need);
+
+		commit('SET_NEW_NEED', newNeedObject);
+		await dispatch('task/createTaskFromNeed', newNeedObject, { root: true });
+	},
+};
 
 // mutations
 export const mutations = {
-    SET_NEEDS(state, needs) {
-        state.needs = needs
-    },
-    SET_NEW_NEED(state, need) {
-        state.newNeed = need
-    },
-    ADDING_NEW_NEED(state, need) {
-        state.needs.push(need)
-    },
-    PUSH_NEED_ID(state, needId) {
-        state.needsId.push(needId)
-    },
-    CLEAN_NEED_ID_ARRAY(state) {
-        state.needsId = []
-    }
-}
+	SET_ACTIVE_NEED(state, need) {
+		state.activeNeed = need;
+	},
+
+	SET_NEW_NEED(state, need) {
+		state.newNeed = need;
+	},
+};

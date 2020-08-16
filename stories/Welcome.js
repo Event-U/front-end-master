@@ -1,55 +1,54 @@
 // eslint-disable-next-line no-console
-const log = () => console.log('Welcome to storybook!');
 
 export default {
-    name: 'welcome',
+	name: 'welcome',
 
-    props: {
-        showApp: {
-            type: Function,
-            default: log,
-        },
-    },
+	props: {
+		showApp: {
+			type: Function,
+			default: log,
+		},
+	},
 
-    data() {
-        return {
-            h1: {
-                padding: 15,
-                lineHeight: 1.4,
-                fontFamily: 'Futura!important',
-                backgroundColor: '#ffffff',
-            },
-            main: {
-                fontFamily: 'Bw Modelica',
-            },
-            logo: {
-                width: 50,
-            },
+	data() {
+		return {
+			h1: {
+				padding: 15,
+				lineHeight: 1.4,
+				fontFamily: 'Futura!important',
+				backgroundColor: '#ffffff',
+			},
+			main: {
+				fontFamily: 'Bw Modelica',
+			},
+			logo: {
+				width: 50,
+			},
 
-            link: {
-                color: '#1474f3',
-                textDecoration: 'none',
-                borderBottom: '1px solid #1474f3',
-                paddingBottom: 2,
-            },
+			link: {
+				color: '#1474f3',
+				textDecoration: 'none',
+				borderBottom: '1px solid #1474f3',
+				paddingBottom: 2,
+			},
 
-            code: {
-                fontSize: 15,
-                fontWeight: 600,
-                padding: '2px 5px',
-                border: '1px solid #eae9e9',
-                borderRadius: 4,
-                backgroundColor: '#f3f2f2',
-                color: '#3a3a3a',
-            },
+			code: {
+				fontSize: 15,
+				fontWeight: 600,
+				padding: '2px 5px',
+				border: '1px solid #eae9e9',
+				borderRadius: 4,
+				backgroundColor: '#f3f2f2',
+				color: '#3a3a3a',
+			},
 
-            note: {
-                opacity: 0.5,
-            },
-        };
-    },
+			note: {
+				opacity: 0.5,
+			},
+		};
+	},
 
-    template: `
+	template: `
     <div :style="main">
       <h1>Bienvenido a Event-U</h1>
       <p>
@@ -115,10 +114,10 @@ export default {
     </div>
   `,
 
-    methods: {
-        onClick(event) {
-            event.preventDefault();
-            this.showApp();
-        },
-    },
+	methods: {
+		onClick(event) {
+			event.preventDefault();
+			this.showApp();
+		},
+	},
 };

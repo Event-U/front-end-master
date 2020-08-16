@@ -1,52 +1,80 @@
-import api from '@/lib/api.js'
+import api from '@/lib/api.js';
+import axios from 'axios';
+const urlBase = 'https://api.event-u.site';
 
 export const state = () => ({
-    activeEvent: {},
-    activeNeed: {},
-    newEventObject: {},
-    events: [],
-    newEvent: {}
-})
+	activeEvent: null,
 
-// getters
-export const getters = {
+	activeNeed: null,
 
-}
+	events: null,
+
+	newEvent: {},
+});
 
 // actions
 export const actions = {
-    async fetchEvents({ commit }) {
-        const allEvents = await api.getEvent()
-        commit('SET_EVENTS', allEvents)
-    },
-    async postEvent({ commit, dispatch }, newEventObject) {
-        const newEvent = await api.createEvent(newEventObject)
-        dispatch('board/createBoard', newEvent, { root: true })
-        commit('SET_NEW_EVENT', newEvent)
-    }
-}
+	async fetchEvents({ commit }) {
+		const allEvents = await api.getEvent();
+		commit('SET_EVENTS', allEvents);
+	},
+
+	async findEvent({ commit }, eventId) {
+		const {
+			data: {
+				data: { event },
+			},
+		} = await axios.get(`${urlBase}/event/${eventId}`);
+
+		commit('SET_ACTIVE_EVENT', event);
+	},
+
+	async postEvent({ commit, dispatch }, newEventObject) {
+		const newEvent = await api.createEvent(newEventObject);
+
+		dispatch('board/createBoard', newEvent, { root: true });
+
+		commit('SET_NEW_EVENT', newEvent);
+	},
+
+	async addingNewQuotation({ commit, rootState }, { quotation }) {
+		const newQuotation = await api.getQuotationById(quotation._id);
+		commit('ADDING_NEW_QUOTATION', {
+			needId: rootState.needs.activeNeed._id,
+			quotation: newQuotation,
+		});
+	},
+};
 
 // mutations
 export const mutations = {
-    change: (state, name) => {
-        state.activeEvent = name
-    },
-    changeNeed: (state, payload) => {
-        state.activeNeed = payload
-    },
-    setNewBasics: (state, { name, description }) => {
-        state.newEventObject['name'] = name
-        state.newEventObject['description'] = description
-    },
-    setNewSpecific: (state, { date, addreses, image }) => {
-        state.newEventObject['date'] = date
-        state.newEventObject['addreses'] = addreses
-        state.newEventObject['image'] = image
-    },
-    SET_EVENTS(state, eventss) {
-        state.events = eventss
-    },
-    SET_NEW_EVENT(state, event) {
-        state.newEvent = event
-    }
-}
+	SET_ACTIVE_EVENT: (state, name) => {
+		state.activeEvent = name;
+	},
+
+	ADDING_NEW_QUOTATION(state, { needId, quotation }) {
+		const needs = state.activeEvent.needs.map((need) => {
+			if (need._id === needId) {
+				need['quotation'].push(quotation);
+				return need;
+			} else {
+				return need;
+			}
+		});
+		state.activeEvent.needs = needs;
+	},
+
+	ADDING_NEW_NEED(state, need) {
+		const needs = state.activeEvent.needs;
+		needs.push(need);
+		state.activeEvent.needs = needs;
+	},
+
+	SET_EVENTS(state, events) {
+		state.events = events;
+	},
+
+	SET_NEW_EVENT(state, event) {
+		state.newEvent = event;
+	},
+};

@@ -1,117 +1,168 @@
 <template>
-<div class="cta-proveedores">
-    <a  
-        class="complementary-label cta-pr"
-        v-if="quotation.length===0"
-        data-toggle="modal" 
-        :data-target="`#QuotationForm${_id}`"
-    > 
-        Enviar cotización
-    </a>
-    <div class="modal  fade" :id="`QuotationForm${_id}`" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="ariaHidden">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content p-3">
-                <new-quotation-form
-                    v-if="activeNeed"
-                />
-                <button 
-                    type="button" 
-                    class="btn btn-danger" 
-                    data-dismiss="modal"
-                >
-                    Cerrar formulario
-                </button>
-            </div>
+  <div class="cta-proveedores">
+    <a
+      class="complementary-label cta-pr"
+      v-if="quotation.length === 0 "
+      data-toggle="modals"
+      @click="handlingModalQuotation"
+      :data-target="`#QuotationForm-${_id}`"
+    >Enviar cotización</a>
+    <div
+      class="modals"
+      @click.self="openModal = false"
+      :id="`QuotationForm-${_id}`"
+      v-if="openModal && !openQuotation"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content p-3">
+          <new-quotation-form />
+          <button
+            type="button"
+            class="btn btn-danger"
+            @click="openModal = false"
+            data-dismiss="modal"
+          >Cerrar formulario</button>
         </div>
+      </div>
     </div>
-    <a  
-        class="green-label cta-pr"
-        v-if="quotation.length!==0"
-        data-toggle="modal" 
-        :data-target="`#QuotationDescription${_id}`"
-    > 
-        Abrir cotización
-    </a>
-    <div  v-if="quotation.length!==0" class="modal fade" :id="`QuotationDescription${_id}`" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="ariaHidden">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <need-quotation
-                    v-bind="quotation"
-                />
-                <button 
-                    type="button" 
-                    class="btn btn-danger" 
-                    data-dismiss="modal"
-                >
-                    Cerrar ventana
-                </button>
-            </div>
+
+    <a
+      class="green-label cta-pr"
+      v-if="quotation.length !== 0"
+      @click="openQuotation = true"
+      :data-target="`#QuotationDescription${_id}`"
+    >Abrir cotización</a>
+    <div
+      v-if="quotation.length !== 0 && openQuotation && !openModal"
+      class="modals modals-quotation fade"
+      :id="`QuotationDescription${_id}`"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content p-3">
+          <need-quotation v-bind="quotation" />
+          <button
+            type="button"
+            class="btn btn-danger"
+            @click="openQuotation = false"
+          >Cerrar cotizazión</button>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
-import NewQuotationForm from '@/components/sections/NewQuotationForm.vue';
-import NeedQuotation from '@/components/ui/NeedQuotation.vue';
+import { mapState } from 'vuex';
+import NewQuotationForm from '@/components/sections/forms/NewQuotationForm.vue';
 
 export default {
-    name:'CtaProvider',
-    components:{
-        NewQuotationForm,
-        NeedQuotation,
+  name: 'CtaProvider',
+
+  props: {
+    quotation: [Array, Object],
+    _id: String,
+    need: Object,
+  },
+
+  data() {
+    return {
+      openModal: false,
+      openQuotation: false,
+    };
+  },
+
+  methods: {
+    handlingModalQuotation() {
+      this.$store.commit('needs/SET_ACTIVE_NEED', this.need);
+      this.openModal = true;
     },
-    props:{
-        quotation:[Array,Object],
-        _id:String
-    },
-    computed: mapState({
-        activeNeed:state=> state.events.activeNeed
-    })
-}
+  },
+
+  components: {
+    NewQuotationForm,
+    NeedQuotation: () => import('@/components/ui/cards/NeedQuotation.vue'),
+  },
+
+  computed: mapState({
+    activeNeed: (state) => state.needs.activeNeed,
+  }),
+};
 </script>
 
-<style scoped lang='scss'>
-.cta-pr{
-    cursor:pointer;
+<style scoped lang="scss">
+.modals-quotation {
+  position: absolute;
+  min-width: 25em;
+  margin-left: auto;
+  top: 52px;
+  left: -18%;
+  @media screen and (min-width: 800px) {
+    top: 20px;
+    left: -100%;
+    min-width: 45em;
+  }
+  margin-right: auto;
 }
-.btn-danger{
-    background-color:$danger;
+.modals {
+  animation: fadeIn 0.8s ease-in-out forwards;
+  position: absolute;
 }
-.green-label{
-  color:green;  
+@keyframes fadeIn {
+  from {
+    opacity: 0.5;
+    transform: translateY(-3em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0em);
+  }
 }
-.complementary-label{
-    color:$complementary; 
+
+.cta-pr {
+  cursor: pointer;
 }
-.inactive{
-    color:$danger;
+.btn-danger {
+  background-color: $danger;
 }
-.inactive:hover::after{
-    content:':(';
-    transition:1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    color:$danger;
+.green-label {
+  color: green;
 }
-.cta-needs{
-    color:$complementary;
+.complementary-label {
+  color: $complementary;
 }
-.card{
-    flex-direction:inherit;
-    border:none;
+.inactive {
+  color: $danger;
 }
-.need-icon{
-    padding-right: 25px;
+.inactive:hover::after {
+  content: ':(';
+  transition: 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  color: $danger;
 }
-.modal-content{
-    border-radius: 8px;
-    box-shadow: 7px 7px 7px 0px #ffffff4d;
+.cta-needs {
+  color: $complementary;
 }
-.card-body{
-    padding:0;
+.card {
+  flex-direction: inherit;
+  border: none;
 }
-i{background-color: #ffff00;
-    padding: 40% 80%;
-    border-radius: 50%;
-    }
+.need-icon {
+  padding-right: 25px;
+}
+.modal-content {
+  border-radius: 8px;
+  box-shadow: 7px 7px 7px 0px #ffffff4d;
+}
+.card-body {
+  padding: 0;
+}
+i {
+  background-color: #ffff00;
+  padding: 40% 80%;
+  border-radius: 50%;
+}
 </style>

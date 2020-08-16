@@ -18,7 +18,13 @@
           :need="_id"
           @click="setActiveNeed"
         />
-        <cta-provider :_id="_id" :quotation="quotation" v-else @click="setActiveNeed" />
+        <cta-provider
+          :_id="_id"
+          :need="{_id, description, service, quotation}"
+          :quotation="quotation"
+          v-else
+          @click="setActiveNeed"
+        />
       </div>
     </div>
   </div>

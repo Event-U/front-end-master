@@ -1,5 +1,5 @@
 const axios = require('axios');
-const urlBase = 'http://localhost:9000';
+const urlBase = 'https://api.event-u.site';
 // const actualBoard = state.changeBoard ? changeBoard : defaultBoard
 
 export const state = () => ({

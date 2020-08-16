@@ -2,42 +2,54 @@
   <div class="cta-proveedores">
     <a
       class="complementary-label cta-pr"
-      v-if="quotation.length === 0"
-      data-toggle="modal"
-      :data-target="`#QuotationForm${_id}`"
+      v-if="quotation.length === 0 "
+      data-toggle="modals"
+      @click="handlingModalQuotation"
+      :data-target="`#QuotationForm-${_id}`"
     >Enviar cotización</a>
     <div
-      class="modal fade"
-      :id="`QuotationForm${_id}`"
+      class="modals"
+      @click.self="openModal = false"
+      :id="`QuotationForm-${_id}`"
+      v-if="openModal && !openQuotation"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalLabels"
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content p-3">
-          <new-quotation-form v-if="activeNeed" />
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar formulario</button>
+          <new-quotation-form />
+          <button
+            type="button"
+            class="btn btn-danger"
+            @click="openModal = false"
+            data-dismiss="modal"
+          >Cerrar formulario</button>
         </div>
       </div>
     </div>
+
     <a
       class="green-label cta-pr"
       v-if="quotation.length !== 0"
-      data-toggle="modal"
+      @click="openQuotation = true"
       :data-target="`#QuotationDescription${_id}`"
     >Abrir cotización</a>
     <div
-      v-if="quotation.length !== 0"
-      class="modal fade"
+      v-if="quotation.length !== 0 && openQuotation && !openModal"
+      class="modals modals-quotation fade"
       :id="`QuotationDescription${_id}`"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
     >
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content p-3">
           <need-quotation v-bind="quotation" />
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar ventana</button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            @click="openQuotation = false"
+          >Cerrar cotizazión</button>
         </div>
       </div>
     </div>
@@ -54,6 +66,21 @@ export default {
   props: {
     quotation: [Array, Object],
     _id: String,
+    need: Object,
+  },
+
+  data() {
+    return {
+      openModal: false,
+      openQuotation: false,
+    };
+  },
+
+  methods: {
+    handlingModalQuotation() {
+      this.$store.commit('needs/SET_ACTIVE_NEED', this.need);
+      this.openModal = true;
+    },
   },
 
   components: {
@@ -68,6 +95,34 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.modals-quotation {
+  position: absolute;
+  min-width: 25em;
+  margin-left: auto;
+  top: 52px;
+  left: -18%;
+  @media screen and (min-width: 800px) {
+    top: 20px;
+    left: -100%;
+    min-width: 45em;
+  }
+  margin-right: auto;
+}
+.modals {
+  animation: fadeIn 0.8s ease-in-out forwards;
+  position: absolute;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0.5;
+    transform: translateY(-3em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0em);
+  }
+}
+
 .cta-pr {
   cursor: pointer;
 }

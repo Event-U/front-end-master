@@ -1,11 +1,22 @@
-FROM node:latest
+FROM node:12-alpine3.12
 
-RUN npm install \
-    --prefer-offline\
-    --frozen-lockfile\
-    --non-interactive\
-    --production=false
+WORKDIR /app/frontend
 
-RUN npm run build
+COPY package*.json ./
 
-CMD ["nuxt", "start"]
+RUN npm i
+
+RUN npm audit fix
+
+COPY . .
+
+ENV NUXT_HOST=0.0.0.0
+
+ENV NUXT_PORT=3000
+
+RUN npm run build 
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+

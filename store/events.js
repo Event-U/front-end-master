@@ -1,6 +1,6 @@
 import api from '@/lib/api.js';
 import axios from 'axios';
-const urlBase = 'http://localhost:9000';
+const urlBase = 'https://api.event-u.site';
 
 export const state = () => ({
 	activeEvent: null,

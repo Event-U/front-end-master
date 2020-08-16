@@ -170,11 +170,6 @@ export default {
     },
   },
 
-  props: {
-    userid: String,
-    need: Object,
-  },
-
   mounted() {
     this.$store.dispatch('services/getNameService', this.service);
   },

@@ -15,7 +15,7 @@
           👪
         </h1>
         <button class="btn btn-eventu faster animated fadeInUp">
-          <nuxt-link to="/app/organizador/mis-eventos">Ir ahora</nuxt-link>
+          <nuxt-link to="/app/proveedor/mis-servicios">Ir ahora</nuxt-link>
         </button>
       </div>
       <div

@@ -235,7 +235,7 @@ label,
   background: #eeeeee;
   @extend .h4-font;
   font-weight: 400;
-  color: #333333;
+  color: #333333 !important;
   // boder: .2px solid #333333;
   border-radius: 8px;
 }

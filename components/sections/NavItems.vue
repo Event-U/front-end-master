@@ -207,6 +207,7 @@ export default {
 }
 
 .item-name {
+  cursor: pointer;
   animation: goLeft 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
@@ -232,6 +233,7 @@ export default {
 }
 
 .submenu-items {
+  cursor: pointer;
   padding: 1em;
   margin-block-end: 0 !important;
 }
@@ -245,6 +247,7 @@ export default {
 }
 
 i {
+  cursor: pointer;
   color: #333;
   font-size: 1.5em;
   transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s;
@@ -264,6 +267,7 @@ ul {
 }
 
 .icons-navbar {
+  cursor: pointer;
   text-align: right;
 }
 li {

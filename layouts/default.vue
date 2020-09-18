@@ -1,7 +1,7 @@
 <template>
   <div class="classic-layout">
     <menu-bar />
-    <nuxt class="main-content" />
+    <nuxt :key="$route.path" class="main-content" />
   </div>
 </template>
 <script>

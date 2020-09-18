@@ -80,7 +80,7 @@
               <img src="../assets/landing/icons/opinions.png" class="img-responsive" alt />
             </div>
             <div class="text-center">
-              <h2>Conoce opiniones</h2>
+              <h2>Opiniones</h2>
               <p>
                 Gracias a nuestro sistema de calificadores, puedes tomar las
                 mejores decisiones de mercado
@@ -111,11 +111,11 @@
           <div class="col-sm-6 card-four">
             <img src="../assets/landing/icons/icon-four.png" alt class="img-four" />
             <div style="margin-top: 40px;">
-              <h1 class="title">
+              <h2 class="title">
                 Con la
                 <span class="title futura-medium-bt">confianza</span>
                 <br />de las reseñas
-              </h1>
+              </h2>
               <p style="text-align: justify;">
                 Accede a la reseña de usuarios cúmo tú que ya contrataron
                 <br />los servicios o que ya pasaron con estos datos
@@ -157,23 +157,25 @@
       </div>
     </section>
 
-    <section class="section-six">
+    <section class="section-six" style="background-image: url('/cta.jpg')">
       <div class="bg-six">
         <div class="container text-center">
-          <h1 class="title fonts-white" style="padding-bottom: 20px;">
+          <h2 class="title fonts-white" style="padding-bottom: 20px;">
             Encuentra la
-            <span class="futura-medium-bt">inversión</span> perfecta para
-            <span class="futura-medium-bt">impulsar tu evento</span>
-          </h1>
-          <p class="fonts-white" style="padding-bottom: 40px;">
+            inversión perfecta para
+            impulsar tu evento
+          </h2>
+          <p class="fonts-white mb-4">
             Contamos con inversionistas que están dispuestos a invertir en
-            <br />eventos de alto rendimiento, por lo que necesitarás tener un
+            eventos de alto rendimiento, por lo que necesitarás tener un
             <br />buen historial para acceder a ellos
           </p>
-          <button class="btn bg-yellow btn-six">Comenzar ahora</button>
+          <nuxt-link to="/app/">
+            <button class="btn bg-yellow btn-six">Comenzar ahora</button>
+          </nuxt-link>
           <div class="start">
             <img src="../assets/landing/images/stars.png" alt />
-            <h4 class="fonts-white">Confianza de inversionistas certificados</h4>
+            <h5 class="fonts-white">Confianza de inversionistas certificados</h5>
             <p class="fonts-white">A tu alcance</p>
           </div>
         </div>
@@ -191,7 +193,9 @@
               <br />
               <span class="futura-medium-bt">GRATIS</span>
             </h1>
-            <button class="btn bg-yellow btn-footer">Comenzar ahora</button>
+            <nuxt-link to="/app/">
+              <button class="btn bg-yellow btn-footer">Comenzar ahora</button>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -208,19 +212,10 @@ export default {
       title: 'Event-u',
       meta: [
         {
-          'og:title':
-            'Organiza eventos, encuentra proveedores y consigue inversión para tu evento',
-        },
-        { 'og:type': 'page' },
-        {
-          'og:description':
-            'Comienza a generar ganancias en el mercado de eventos en México. No importa sí eres organizador, proveedor o inversionista.',
-        },
-        { 'og:image': '../assets/landing/images/dashboard.png' },
-        {
           hid: 'description',
           name: 'description',
-          content: 'La plataforma #1 para organizar eventos en México',
+          content:
+            'Sube tu evento, consigue proveedores y encuentra inversión. Todo el ecosistema de eventos en un sólo lugar',
         },
       ],
     };
@@ -228,7 +223,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.section-one > * {
+  transform: scale(0.9);
+  animation: slide-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+@keyframes slide-in {
+  to {
+    transform: scale(1);
+  }
+}
 img {
   max-width: none;
 }
@@ -338,10 +342,12 @@ img {
 }
 
 .nav-three .nav-item a {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   color: #808080;
 }
 
 .nav-three .nav-item:hover {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   border-bottom: 2px solid #ffff00;
   color: #000;
 }
@@ -350,11 +356,22 @@ img {
   margin-top: 80px;
 }
 
+.section-three .container .row > *:hover {
+  transform: translateY(-0.5em);
+  transition: all 0.5s ease-in-out;
+}
+
+.section-three .container .row > * {
+  border: none;
+  transition: all 0.5s ease-in-out;
+}
+
 .section-three .container .row .circle {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100px;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   height: 100px;
   border: 1px solid #000;
   border-radius: 50%;
@@ -371,6 +388,7 @@ img {
   background: #ffff00;
   box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.3);
   border-radius: 50px;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   border: none;
   box-shadow: 0 10px 10px -5px;
 }

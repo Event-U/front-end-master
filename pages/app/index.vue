@@ -153,6 +153,8 @@ export default {
   font-family: 'futura';
   src: url('~@/assets/fonts/futura-bold-03-webfont.woff2') format('woff2'),
     url('~@/assets/fonts/futura-bold-03-webfont.woff') format('woff');
+  font-display: swap;
+
   font-weight: normal;
 }
 @font-face {
@@ -161,6 +163,7 @@ export default {
     url('~@/assets/fonts/futura-medium-01-webfont.woff') format('woff');
   font-weight: normal;
   font-style: bold;
+  font-display: swap;
 }
 @font-face {
   font-family: 'lato';
@@ -168,6 +171,7 @@ export default {
     url('~@/assets/fonts/lato-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -175,6 +179,7 @@ export default {
   src: url('~@/assets/fonts/bwmodelica-bold-webfont.woff2') format('woff2'),
     url('~@/assets/fonts/bwmodelica-bold-webfont.woff') format('woff');
   font-weight: normal;
+  font-display: swap;
   font-style: bolder;
 }
 
@@ -185,6 +190,7 @@ export default {
     url('~@/assets/fonts/bwmodelica-bolditalic-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -193,6 +199,7 @@ export default {
     url('~@/assets/fonts/bwmodelica-extrabold-webfont.woff') format('woff');
   font-weight: normal;
   font-style: bold;
+  font-display: swap;
 }
 
 @font-face {
@@ -203,6 +210,7 @@ export default {
       format('woff');
   font-weight: normal;
   font-style: bold italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -210,6 +218,8 @@ export default {
   src: url('~@/assets/fonts/bwmodelica-medium-webfont.woff2') format('woff2'),
     url('~@/assets/fonts/bwmodelica-medium-webfont.woff') format('woff');
   font-weight: normal;
+  font-display: swap;
+
   font-style: normal;
 }
 
@@ -218,6 +228,7 @@ export default {
   src: url('~@/assets/fonts/bwmodelica-regular-webfont.woff2') format('woff2'),
     url('~@/assets/fonts/bwmodelica-regular-webfont.woff') format('woff');
   font-weight: normal;
+  font-display: swap;
   font-style: normal;
 }
 </style>

@@ -6,6 +6,9 @@
       :key="serviceIndex"
     >
       <div class="card">
+        <div class="card-header">
+          <h6>{{service.category.name}}</h6>
+        </div>
         <div class="card-body d-flex justify-content-between align-items-center">
           <h5>{{service.name}}</h5>
           <nuxt-link :to="`/app/planificador/tablero/servicio/${service._id}`">
@@ -43,5 +46,13 @@ export default {
 }
 i {
   color: $complementary;
+}
+.card {
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.07);
+  transition: all cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.7s;
+  &:hover {
+    transition: all ease-in-out 0.4s;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2), 0px 0px 25px #ffff0026;
+  }
 }
 </style>

@@ -41,12 +41,7 @@ export default {
   },
 
   async fetch({ store, params }) {
-    if (
-      !store.state.board.activeBoard ||
-      !store.state.board.activeBoard.event._id === params.id
-    ) {
-      await store.dispatch('board/getEventBoard', params.id);
-    }
+    await store.dispatch('board/getEventBoard', params.id);
   },
 
   data() {

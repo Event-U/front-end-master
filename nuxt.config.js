@@ -10,6 +10,20 @@ module.exports = {
 			{ hid: 'description', name: 'description', content: 'Event-u' },
 			{ name: 'theme-color', content: '#FFFF00' },
 			{ name: 'distribution”', content: 'global' },
+			{ property: 'og:type', content: 'website' },
+			{
+				property: 'og:title',
+				content: 'Event-U la plataforma #1 de eventos en México',
+			},
+			{
+				property: 'og:description',
+				content:
+					'Sube tu evento, consigue proveedores y encuentra inversión. Todo el ecosistema de eventos en un sólo lugar.',
+			},
+			{
+				property: 'og:image',
+				content: '/og-image-eventu.jpg',
+			},
 			{ lang: 'es' },
 		],
 		link: [

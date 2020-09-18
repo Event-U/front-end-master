@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="!openTask"
     class="col-lg-3 col-md-4 col-7 m-3 column animated fadeInUp d-flex flex-column"
     draggable
     @dragstart.self="pickColumn($event, columnIndex)"

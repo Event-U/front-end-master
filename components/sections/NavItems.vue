@@ -208,7 +208,7 @@ export default {
 
 .item-name {
   cursor: pointer;
-  animation: goLeft 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: goLeft 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 @keyframes goLeft {
@@ -264,6 +264,9 @@ ul {
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
   list-style-type: none;
   vertical-align: text-bottom;
+  a {
+    color: #333;
+  }
 }
 
 .icons-navbar {

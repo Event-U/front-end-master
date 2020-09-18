@@ -22,7 +22,7 @@ module.exports = {
 			},
 			{
 				property: 'og:image',
-				content: '/og-image-eventu.jpg',
+				content: 'https://event-u.site/og-image-eventu.jpg',
 			},
 			{ lang: 'es' },
 		],

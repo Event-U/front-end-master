@@ -39,6 +39,13 @@ export default {
       activeService: null,
     };
   },
+
+   
+  head() {
+    return {
+      title: `Planificador: Tableros`,
+    };
+  },
 };
 </script>
 

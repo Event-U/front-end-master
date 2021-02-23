@@ -1,604 +1,119 @@
 <template>
-  <div>
-    <section class="section-one">
-      <div class="container container-one">
-        <div class="row">
-          <div class="col-sm-3">
-            <img src="../assets/landing/images/logo.svg" alt="logo" />
-          </div>
-        </div>
-        <div class="row bg-one">
-          <div class="col-md-6 col-sm-12">
-            <h1 class="futura-medium-bt text-70">
-              La plataforma
-              <br />#1 de eventos
-              <br />en México
-            </h1>
-            <br />
-            <p>
-              Organizadores, proveedores o inversionistas; cualquiera puede
-              participar en los eventos
-            </p>
-            <div class="btn-media">
-              <nuxt-link to="/app/">
-                <button type="button" class="btn btn-outline-dark btn-one">Comenzar ahora</button>
-              </nuxt-link>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-12 view-one">
-            <img src="../assets/landing/images/AppleiPhone.png" class="img-iphone" alt />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-two">
-      <div class="text-center">
-        <div class="container text-center">
-          <div class="row" style="justify-content: center; margin-bottom: 40px">
-            <div class="img-square">
-              <img src="../assets/landing/icons/Box.png" class="img-responsive" alt />
-            </div>
-          </div>
-          <h1 class="title">
-            Organiza todo
-            <br />
-            <span class="futura-medium-bt">en un solo lugar</span>
-          </h1>
-          <p class="col-sm-12 center-block text-center">
-            Gestiona todo desde un dashboard único, en dónde tendrás toda la
-            información a la mano para poder gestionar todos tus eventos desde
-            un solo lugar. Fácil, rápido y organizado.
-          </p>
-        </div>
-        <img
-          src="../assets/landing/images/dashboard.png"
-          alt
-          class="img img-responsive img-dashboard"
-          style="width: 100%; justify-content: center;"
-        />
-      </div>
-    </section>
-
-    <section class="section-three">
-      <div class="container features">
-        <div class="row">
-          <div class="col-sm-4 card-features">
-            <div class="circle">
-              <img src="../assets/landing/icons/teamIcon.png" class="img-responsive" alt />
-            </div>
-            <div class="text-center">
-              <h2>Gestión única</h2>
-              <p>
-                Puedes desarrollar toda la gestión de tus eventos directamente
-                desde nuestro Dashboard inteligente
-              </p>
-            </div>
-          </div>
-          <div class="col-sm-4 card-features">
-            <div class="circle">
-              <img src="../assets/landing/icons/opinions.png" class="img-responsive" alt />
-            </div>
-            <div class="text-center">
-              <h2>Opiniones</h2>
-              <p>
-                Gracias a nuestro sistema de calificadores, puedes tomar las
-                mejores decisiones de mercado
-              </p>
-            </div>
-          </div>
-          <div class="col-sm-4 card-features">
-            <div class="circle">
-              <img src="../assets/landing/icons/statistics.png" class="img img-responsive" alt />
-            </div>
-            <div class="text-center">
-              <h2>Estadísticas</h2>
-              <p>Accede a datos en tiempo real de tu rendimiento</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-four">
-      <div class="container container-four">
-        <div class="row img-r" style="display: flex; align-items: center;">
-          <div class="col-sm-6 iphone-letf">
-            <div>
-              <img src="../assets/landing/images/iPhone Left.png" alt class="img-iphone-left" />
-            </div>
-          </div>
-          <div class="col-sm-6 card-four">
-            <img src="../assets/landing/icons/icon-four.png" alt class="img-four" />
-            <div style="margin-top: 40px;">
-              <h2 class="title">
-                Con la
-                <span class="title futura-medium-bt">confianza</span>
-                <br />de las reseñas
-              </h2>
-              <p style="text-align: justify;">
-                Accede a la reseña de usuarios cúmo tú que ya contrataron
-                <br />los servicios o que ya pasaron con estos datos
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-five">
-      <div class="container container-five">
-        <div class="row img-r">
-          <div class="col-sm-6 card-five align-content-center justify-content-center">
-            <img src="../assets/landing/icons/icon-five.png" alt class="img-fluid text-center" />
-            <div style="margin-top: 40px;">
-              <h1 class="title">
-                Decisiones inteligentes
-                <br />
-                <span class="futura-medium-bt card-five-span">al alcance de tu mano</span>
-              </h1>
-              <p class="text-secondary card-five-16" style="text-align: justify;">
-                Con la inteligencia de datos desarrollada
-                <br />en Event-u podrás tener datos a la mano
-                <br />facilita la
-                toma de decisiones
-              </p>
-            </div>
-          </div>
-          <div class="col-sm-6 iphone-right">
-            <img
-              src="../assets/landing/images/iPhone Right.png"
-              alt
-              class="img-iphone-right"
-              style="width: 100%;"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-six" style="background-image: url('/cta.jpg')">
-      <div class="bg-six">
-        <div class="container text-center">
-          <h2 class="title fonts-white" style="padding-bottom: 20px;">
-            Encuentra la
-            inversión perfecta para
-            impulsar tu evento
-          </h2>
-          <p class="fonts-white mb-4">
-            Contamos con inversionistas que están dispuestos a invertir en
-            eventos de alto rendimiento, por lo que necesitarás tener un
-            <br />buen historial para acceder a ellos
-          </p>
-          <nuxt-link to="/app/">
-            <button class="btn bg-yellow btn-six">Comenzar ahora</button>
-          </nuxt-link>
-          <div class="start">
-            <img src="../assets/landing/images/stars.png" alt />
-            <h5 class="fonts-white">Confianza de inversionistas certificados</h5>
-            <p class="fonts-white">A tu alcance</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <div class="row row-footer">
-          <div class="col-sm-12 footer">
-            <h1>
-              Crea tu cuenta
-              <br />en
-              <span class="futura-medium-bt">menos de dos minutos</span>
-              <br />
-              <span class="futura-medium-bt">GRATIS</span>
-            </h1>
-            <nuxt-link to="/app/">
-              <button class="btn bg-yellow btn-footer">Comenzar ahora</button>
-            </nuxt-link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
+	<client-only>
+		<svg
+			nossr
+			width="280"
+			height="140"
+			viewBox="0 0 280 140"
+			fill="black"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<g id="staytus-logo 1">
+				<path
+					id="Vector"
+					d="M80.19 63.07L76.83 65.07C76.4037 64.2181 75.7754 63.4834 75 62.93C74.1932 62.4953 73.2781 62.3028 72.3646 62.3755C71.451 62.4483 70.5779 62.7832 69.85 63.34C69.4857 63.6277 69.1932 63.996 68.9954 64.4159C68.7976 64.8358 68.6999 65.2959 68.71 65.76C68.71 67.0933 69.71 68.17 71.71 68.99L74.45 70.11C76.3321 70.7746 78.0124 71.9108 79.33 73.41C80.3855 74.7715 80.9335 76.4582 80.88 78.18C80.9166 79.3405 80.7105 80.4958 80.2748 81.5721C79.8392 82.6483 79.1836 83.6217 78.35 84.43C77.5222 85.2485 76.5373 85.8911 75.4546 86.319C74.3719 86.7469 73.2138 86.9513 72.05 86.92C69.8841 86.9971 67.7716 86.238 66.15 84.8C64.5289 83.1928 63.5178 81.0714 63.29 78.8L67.49 77.88C67.5402 79.0592 67.8839 80.2073 68.49 81.22C68.8988 81.7301 69.4088 82.1499 69.9879 82.453C70.5671 82.7561 71.2027 82.9359 71.8548 82.981C72.5069 83.0261 73.1613 82.9356 73.7766 82.7151C74.392 82.4946 74.955 82.149 75.43 81.7C75.8556 81.2672 76.1885 80.7523 76.4086 80.1867C76.6286 79.6211 76.7312 79.0166 76.71 78.41C76.7151 77.9319 76.6442 77.4559 76.5 77C76.3477 76.5541 76.1137 76.1404 75.81 75.78C75.4553 75.3879 75.0441 75.0509 74.59 74.78C74.029 74.4178 73.4366 74.1065 72.82 73.85L70.17 72.75C66.4234 71.1567 64.5467 68.8233 64.54 65.75C64.5242 64.7684 64.7279 63.7957 65.1363 62.903C65.5446 62.0102 66.1472 61.22 66.9 60.59C68.5247 59.1729 70.6252 58.4227 72.78 58.49C75.94 58.4767 78.41 60.0033 80.19 63.07Z"
+				/>
+				<path
+					id="Vector_2"
+					d="M104.88 62.89V86.42H100.74V62.89H94.4399V59H111.17V62.89H104.88Z"
+				/>
+				<path
+					id="Vector_3"
+					d="M140.39 79.76H128.65L125.59 86.42H121.14L134.7 57.28L147.79 86.42H143.26L140.39 79.76ZM138.7 75.88L134.63 66.55L130.37 75.88H138.7Z"
+				/>
+				<path
+					id="Vector_4"
+					d="M165.28 74.58L156.28 59H161.04L167.31 70L173.6 59H178.36L169.36 74.58V86.42H165.23L165.28 74.58Z"
+				/>
+				<path
+					id="Vector_5"
+					d="M201.81 62.89V86.42H197.68V62.89H191.37V59H208.1V62.89H201.81Z"
+				/>
+				<path
+					id="Vector_6"
+					d="M226.84 59V75.51C226.706 77.307 227.109 79.1034 228 80.67C228.577 81.406 229.314 82.0012 230.155 82.4104C230.997 82.8197 231.92 83.0324 232.855 83.0324C233.79 83.0324 234.714 82.8197 235.555 82.4104C236.396 82.0012 237.133 81.406 237.71 80.67C238.477 79.6167 238.863 77.8967 238.87 75.51V59H243V76.66C243.046 77.9688 242.832 79.2737 242.37 80.4993C241.908 81.7248 241.208 82.8467 240.31 83.8C239.336 84.7878 238.175 85.5721 236.896 86.1075C235.616 86.6429 234.242 86.9185 232.855 86.9185C231.468 86.9185 230.094 86.6429 228.815 86.1075C227.535 85.5721 226.374 84.7878 225.4 83.8C224.502 82.8467 223.802 81.7248 223.34 80.4993C222.879 79.2737 222.664 77.9688 222.71 76.66V59H226.84Z"
+				/>
+				<path
+					id="Vector_7"
+					d="M276 63.07L272.64 65.07C272.23 64.2221 271.615 63.49 270.85 62.94C270.157 62.534 269.362 62.3361 268.56 62.37C267.516 62.3397 266.498 62.6958 265.7 63.37C265.336 63.6577 265.043 64.026 264.845 64.4459C264.648 64.8658 264.55 65.3259 264.56 65.79C264.56 67.1233 265.56 68.2 267.56 69.02L270.29 70.14C272.176 70.8022 273.86 71.9387 275.18 73.44C276.233 74.8024 276.777 76.4893 276.72 78.21C276.756 79.3695 276.551 80.5239 276.117 81.5998C275.683 82.6757 275.03 83.6497 274.2 84.46C273.37 85.2783 272.383 85.9207 271.299 86.3485C270.215 86.7764 269.055 86.981 267.89 86.95C265.723 87.0173 263.614 86.2473 262 84.8C260.376 83.1952 259.364 81.0726 259.14 78.8L263.33 77.88C263.38 79.0593 263.724 80.2074 264.33 81.22C264.739 81.7301 265.249 82.1499 265.828 82.453C266.407 82.7561 267.043 82.9359 267.695 82.981C268.347 83.0261 269.001 82.9356 269.617 82.7151C270.232 82.4946 270.795 82.149 271.27 81.7C271.694 81.2659 272.025 80.7507 272.245 80.1854C272.465 79.6201 272.569 79.0163 272.55 78.41C272.552 77.9149 272.478 77.4224 272.33 76.95C272.178 76.5018 271.94 76.0874 271.63 75.73C271.279 75.338 270.871 75.0009 270.42 74.73C269.857 74.3658 269.261 74.0545 268.64 73.8L266 72.69C262.253 71.0967 260.377 68.7633 260.37 65.69C260.354 64.7074 260.559 63.7338 260.969 62.8407C261.379 61.9477 261.984 61.1581 262.74 60.53C264.363 59.1103 266.465 58.3597 268.62 58.43C271.76 58.4567 274.22 60.0033 276 63.07Z"
+				/>
+				<path
+					id="Vector_8"
+					d="M38.3601 31.56L38.7601 32.76C39.3201 32.69 39.5701 32.89 39.6901 33.57C39.7701 34.03 39.9001 34.47 39.9701 34.93C40.1301 35.93 39.8201 36.48 39.5001 36.66H39.4001C39.2901 36.83 39.4001 37.49 39.4001 37.72C39.4001 38.11 39.4901 38.51 39.4901 38.9C39.4849 38.9966 39.4849 39.0934 39.4901 39.19V39.19C39.5701 41.51 37.2101 43.87 36.4901 44.39C35.4901 45.08 36.0201 46.73 36.0201 46.73C40.8801 44.65 40.8701 41.36 40.8101 41.17C40.814 41.1435 40.814 41.1165 40.8101 41.09C41.0136 41.1835 41.2242 41.2604 41.4401 41.32C42.8001 41.68 44.1301 42.17 45.5101 42.47V24L3.32007 15V117.84L36.6201 125C36.0401 121.533 35.4634 118.067 34.8901 114.6C34.7701 113.87 34.8901 112.92 34.6701 111.33C34.4501 109.74 33.0101 103.33 33.0101 103.33C33.4401 101.27 32.0601 99.33 31.7601 97.27C31.4601 95.21 31.5101 93.44 31.4001 91.53C31.3907 90.9815 31.3506 90.434 31.2801 89.89C30.9942 87.86 30.9005 85.8076 31.0001 83.76C31.0001 83.59 30.6401 83.11 30.6401 82.94C30.6401 82.09 30.6401 81.23 30.6401 80.37C30.7101 78.51 30.9801 76.66 31.0801 74.79C31.0527 74.0702 30.9859 73.3525 30.8801 72.64C30.8001 71.24 30.7501 69.84 30.7101 68.44C30.6502 67.6778 30.6502 66.9122 30.7101 66.15C30.8901 64.53 30.0901 63.22 29.4801 61.84C29.2888 61.4952 29.0785 61.1614 28.8501 60.84C25.3194 67.2175 21.4574 73.406 17.2801 79.38H17.2301C16.9801 79.25 16.3201 78.9 15.6701 78.53C15.2601 78.3 14.8501 78.06 14.5501 77.87C14.2501 77.68 14.0601 77.55 14.0601 77.55C14.1991 77.701 14.346 77.8445 14.5001 77.98C14.8298 78.2998 15.1806 78.5971 15.5501 78.87C15.6401 78.94 15.7301 79.05 15.8201 79.11C15.7711 79.4051 15.6432 79.6816 15.4501 79.91C15.1101 80.3 14.3501 81.83 14.1401 81.99C13.9301 82.15 13.3701 82.73 13.1401 82.81C12.9101 82.89 12.3201 83.81 12.0001 84.07C11.6801 84.33 11.1301 84.87 10.8901 84.97C10.7955 85.0387 10.6837 85.0798 10.5672 85.0887C10.4506 85.0975 10.3339 85.0737 10.2301 85.02C10.0201 84.89 10.1001 84.73 10.1001 84.73C10.1001 84.73 9.96007 84.86 9.58007 85.29C9.46893 85.4451 9.31572 85.5653 9.13852 85.6361C8.96132 85.707 8.76755 85.7257 8.58007 85.69C8.5183 85.6711 8.46087 85.6401 8.4111 85.599C8.36133 85.5578 8.3202 85.5071 8.29007 85.45C8.20022 85.5296 8.09115 85.5844 7.97365 85.6089C7.85615 85.6335 7.73428 85.627 7.62007 85.59C7.54129 85.5595 7.47493 85.5036 7.43147 85.4312C7.38801 85.3587 7.36992 85.2739 7.38007 85.19C7.41418 84.9356 7.49921 84.6908 7.63007 84.47C7.53866 84.5414 7.42603 84.5801 7.31007 84.5801C7.19411 84.5801 7.08147 84.5414 6.99007 84.47C6.60007 84.15 7.74007 82.57 7.87007 82.28C8.00007 81.99 9.00007 80.66 9.00007 80.56C9.14147 80.3919 9.25615 80.203 9.34007 80C9.48744 79.6356 9.69351 79.2978 9.95007 79C9.66624 79.0232 9.40014 79.1474 9.20007 79.35C9.05007 79.58 8.74007 79.72 7.97007 79.79C7.20007 79.86 7.09007 79.43 7.13007 79.24C7.17007 79.05 7.61007 78.87 7.93007 78.76C8.32354 78.5716 8.70435 78.3578 9.07007 78.12C9.53822 77.7369 9.96701 77.3081 10.3501 76.84C10.5301 76.61 10.7501 76.6 11.0601 76.56L11.5001 76.5C11.8389 76.4193 12.1728 76.3191 12.5001 76.2C12.6033 76.1606 12.7035 76.1138 12.8001 76.06L12.9901 75.93L13.2801 75.25C13.2801 75.25 13.5101 74.84 13.6901 74.48C13.7093 74.4314 13.7328 74.3846 13.7601 74.34V74.34C14.3001 73.34 15.0101 72.34 15.5601 71.25C15.8701 70.67 15.9601 70.25 16.3501 70.15C16.3167 70.085 16.2993 70.013 16.2993 69.94C16.2993 69.867 16.3167 69.795 16.3501 69.73L19.7501 64.81C19.85 64.6351 19.9401 64.4549 20.0201 64.27C20.1001 64.08 20.1201 63.79 20.2601 63.72C21.2601 63.17 21.3401 62.14 21.6601 61.18C22.2601 59.34 23.0901 57.58 23.8201 55.78C23.8701 55.66 24.0101 55.51 23.9701 55.44C23.5901 54.64 24.1801 53.9 24.1301 53.18C24.172 51.5523 24.5109 49.9459 25.1301 48.44C25.3977 47.847 25.8456 47.3535 26.4101 47.03C27.3501 46.43 28.4101 46.03 29.4101 45.45C30.4253 44.9242 31.4071 44.3364 32.3501 43.69V43.69C32.3501 44.29 32.3501 44.98 32.3501 45.06C32.3501 45.14 33.0401 46.59 35.3501 46.99C35.3501 46.99 35.5701 45.27 34.7501 44.93C33.9301 44.59 32.6501 44.02 32.4001 43.04C32.4049 42.9601 32.4049 42.8799 32.4001 42.8C32.381 42.7177 32.3542 42.6373 32.3201 42.56C31.8701 41.67 31.3201 40.83 30.7501 39.91L30.5501 39.97C30.2001 40.05 29.5501 39.5 29.1801 38.92C28.9203 38.5307 28.7024 38.1151 28.5301 37.68C28.2901 37.11 28.2501 36.78 28.7301 36.47L28.3101 35C31.9009 34.7402 35.3632 33.5551 38.3601 31.56V31.56ZM38.1501 30.96C34.9403 32.441 31.5902 33.5968 28.1501 34.41L27.9801 33.88C31.4157 33.0163 34.7687 31.8518 38.0001 30.4L38.1501 30.96ZM35.7101 25.46C35.8507 25.4264 35.9986 25.443 36.1282 25.5069C36.2578 25.5709 36.3611 25.678 36.4201 25.81L37.8601 30.08C34.6374 31.5391 31.2908 32.7071 27.8601 33.57L26.4801 29.44C26.4573 29.2902 26.4749 29.1371 26.5312 28.9964C26.5875 28.8558 26.6803 28.7327 26.8001 28.64C26.8001 28.64 29.8201 26 35.7101 25.46V25.46Z"
+				/>
+				<path
+					id="Vector_9"
+					d="M39.0001 72C38.8715 72 38.7459 72.0381 38.639 72.1095C38.5321 72.181 38.4488 72.2825 38.3996 72.4013C38.3504 72.52 38.3375 72.6507 38.3626 72.7768C38.3877 72.9029 38.4496 73.0187 38.5405 73.1096C38.6314 73.2005 38.7472 73.2624 38.8733 73.2875C38.9994 73.3126 39.1301 73.2997 39.2488 73.2505C39.3676 73.2013 39.4691 73.118 39.5406 73.0111C39.612 72.9042 39.6501 72.7786 39.6501 72.65C39.6501 72.4776 39.5816 72.3123 39.4597 72.1904C39.3378 72.0685 39.1725 72 39.0001 72V72Z"
+				/>
+				<path
+					id="Vector_10"
+					d="M36.7199 49.43C36.7199 49.301 36.6815 49.175 36.6096 49.0679C36.5378 48.9608 36.4357 48.8775 36.3163 48.8286C36.1969 48.7797 36.0657 48.7674 35.9394 48.7933C35.813 48.8192 35.6972 48.8821 35.6068 48.974C35.5163 49.066 35.4552 49.1827 35.4312 49.3094C35.4073 49.4362 35.4216 49.5672 35.4723 49.6858C35.5231 49.8043 35.6079 49.9052 35.7161 49.9754C35.8243 50.0456 35.951 50.082 36.0799 50.08C36.2506 50.0774 36.4133 50.0077 36.5331 49.8861C36.6528 49.7645 36.7199 49.6007 36.7199 49.43V49.43Z"
+				/>
+				<path
+					id="Vector_11"
+					d="M37.54 55.15C37.54 55.0214 37.5019 54.8958 37.4304 54.7889C37.359 54.682 37.2575 54.5987 37.1387 54.5495C37.02 54.5003 36.8893 54.4874 36.7632 54.5125C36.6371 54.5376 36.5213 54.5995 36.4304 54.6904C36.3395 54.7813 36.2776 54.8971 36.2525 55.0232C36.2274 55.1493 36.2403 55.28 36.2895 55.3987C36.3387 55.5175 36.422 55.619 36.5289 55.6905C36.6358 55.7619 36.7614 55.8 36.89 55.8C37.0624 55.8 37.2277 55.7315 37.3496 55.6096C37.4715 55.4877 37.54 55.3224 37.54 55.15V55.15Z"
+				/>
+				<path
+					id="Vector_12"
+					d="M37.7401 61.92C38.0991 61.92 38.3901 61.629 38.3901 61.27C38.3901 60.911 38.0991 60.62 37.7401 60.62C37.3811 60.62 37.0901 60.911 37.0901 61.27C37.0901 61.629 37.3811 61.92 37.7401 61.92Z"
+				/>
+				<path
+					id="Vector_13"
+					d="M39.0001 67C39.0021 66.8706 38.9654 66.7436 38.8948 66.6352C38.8241 66.5268 38.7227 66.4419 38.6035 66.3915C38.4843 66.3411 38.3528 66.3273 38.2258 66.3521C38.0988 66.3769 37.9821 66.439 37.8906 66.5305C37.7991 66.622 37.737 66.7387 37.7122 66.8657C37.6874 66.9927 37.7012 67.1242 37.7516 67.2434C37.802 67.3626 37.8869 67.464 37.9953 67.5346C38.1037 67.6053 38.2307 67.642 38.3601 67.64C38.5291 67.6374 38.6903 67.5692 38.8098 67.4497C38.9293 67.3302 38.9975 67.1689 39.0001 67V67Z"
+				/>
+				<path id="rectangle-init" d="M3 15L6 24V127L3 117.763V15Z" />
+				<path id="rectangle-close" d="M3 15L46 24V127L3 117.763V15Z" />
+			</g>
+		</svg>
+	</client-only>
 </template>
 
 <script>
+import { gsap, TweenLite } from 'gsap';
+import MorphSVGPlugin from '../lib/morphsvg';
+gsap.registerPlugin(MorphSVGPlugin);
+
 export default {
-  name: 'Landing',
-  layout: 'landing',
-  head() {
-    return {
-      title: 'Event-u',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content:
-            'Sube tu evento, consigue proveedores y encuentra inversión. Todo el ecosistema de eventos en un sólo lugar',
-        },
-      ],
-    };
-  },
+	name: StaytusLogo,
+
+	mounted() {
+		this.startAnimation();
+	},
+
+	methods: {
+		startAnimation() {
+			let tl = gsap.timeline();
+			tl.to('#rectangle-init', {
+				morphSVG: 'rectangle-close',
+				ease: 'power.2',
+				duration: 0.5,
+				yoyo: true,
+				yoyoEase: 'ease-in-out',
+			});
+		},
+	},
 };
 </script>
 
 <style lang="scss" scoped>
-.section-one > * {
-  transform: scale(0.9);
-  animation: slide-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+#rectangle-init {
+	visibility: hidden;
 }
-@keyframes slide-in {
-  to {
-    transform: scale(1);
-  }
+#logo-text {
+	animation: fadeOut 0.5s 1s ease-in forwards;
+	@media screen and (min-width: 540px) {
+		animation: none;
+	}
 }
-img {
-  max-width: none;
+@keyframes fadeInRight {
+	from {
+		opacity: 0;
+	}
 }
-* {
-  font-family: Futura;
-}
-.futura-medium-bt {
-  font-weight: bolder;
-}
-.btn-yellow {
-  background: #ffff00;
-  border-radius: 10px;
-}
-.bg-yellow {
-  background: #ffff00;
-}
-.title {
-  font-size: 50px;
-}
-
-.subtitle {
-  font-size: 40px;
-}
-
-.text-70 {
-  font-size: 70px;
-}
-
-.text-50 {
-  font-size: 50px;
-}
-.fonts-yellow {
-  color: #ffff00;
-}
-
-.fonts-white {
-  color: #fff;
-}
-.section-one {
-  width: 100%;
-  height: 700px;
-  background: linear-gradient(211.92deg, #ffffae 0%, #ffff00 100%);
-  background-size: cover;
-}
-
-.container-one {
-  padding-top: 10px;
-}
-
-.bg-one {
-  margin-top: 50px;
-}
-
-.view-one {
-  position: relative;
-}
-
-.img-bg {
-  position: absolute;
-  top: 15px;
-  right: 50px;
-}
-
-.img-iphone {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: -50px;
-}
-
-.btn-one {
-  margin-top: 30px;
-  width: 300px;
-  border: 3px solid #000;
-}
-
-.icon-one {
-  width: 129px;
-  height: 129px;
-  /* background-image: url(../images/Icon.png); */
-}
-.section-two {
-  width: 100%;
-  margin-top: 150px;
-}
-
-.img-square {
-  width: 129px;
-  height: 129px;
-  /* background-image: url(../images/Icon.png); */
-  background-color: #ffff00;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.section-three {
-  width: 100%;
-}
-
-.nav-three {
-  border-bottom: 2px solid #e5e5e5;
-}
-
-.nav-three .nav-item {
-  border-bottom: 2px solid transparent;
-}
-
-.nav-three .nav-item a {
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  color: #808080;
-}
-
-.nav-three .nav-item:hover {
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  border-bottom: 2px solid #ffff00;
-  color: #000;
-}
-
-.features {
-  margin-top: 80px;
-}
-
-.section-three .container .row > *:hover {
-  transform: translateY(-0.5em);
-  transition: all 0.5s ease-in-out;
-}
-
-.section-three .container .row > * {
-  border: none;
-  transition: all 0.5s ease-in-out;
-}
-
-.section-three .container .row .circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  height: 100px;
-  border: 1px solid #000;
-  border-radius: 50%;
-  margin: auto;
-}
-
-.section-three .container .row .circle:hover {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: #ffff00;
-  box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.3);
-  border-radius: 50px;
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  border: none;
-  box-shadow: 0 10px 10px -5px;
-}
-
-.text-center {
-  margin-top: 20px;
-}
-.section-four {
-  width: 100%;
-  max-width: 100%;
-  height: 900px;
-  background: linear-gradient(211.92deg, #ffffae 0%, #ffff00 100%);
-  background-size: cover;
-  margin-top: 300px;
-}
-
-.container-four {
-  position: relative;
-}
-
-.img-r {
-  width: 100%;
-  align-items: center;
-  position: absolute;
-  top: -160px;
-}
-.section-five {
-  width: 100%;
-  max-width: 100%;
-}
-
-.container-five {
-  position: relative;
-}
-
-.row-five {
-  align-items: center;
-  position: absolute;
-  top: -170px;
-}
-
-.card-five-span {
-  font-size: 45px;
-}
-.section-six {
-  width: 100%;
-  height: 900px;
-  /* background-image: url(../images/Action-ori.jpg); */
-  background-size: cover;
-  margin-top: 700px;
-}
-
-.bg-six {
-  height: 900px;
-  background: linear-gradient(
-    208.63deg,
-    rgba(255, 255, 0, 0.35) 0%,
-    #000000 100%
-  );
-  box-shadow: 0px 40px 80px rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  box-shadow: 0px 40px 80px rgba(0, 0, 0, 0.2);
-  border-radius: 40px 15px 0px;
-}
-
-.btn-six {
-  padding: 10px 60px;
-  border-radius: 10px;
-  margin-bottom: 60px;
-  font-weight: bold;
-}
-footer {
-  padding: 20px;
-}
-
-.footer {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.btn-footer {
-  padding: 15px 60px;
-  border-radius: 10px;
-  font-weight: bold;
-}
-@media (max-width: 425px) {
-  .section-one {
-    height: 900px;
-  }
-  .container-one {
-    display: block;
-  }
-  .text-70 {
-    font-size: 40px;
-  }
-  .btn-media {
-    text-align: center;
-  }
-  .view-one {
-    margin-top: 50px;
-  }
-  .img-iphone {
-    /* width: 100%;
-        position: absolute;
-        top: -50px; */
-    width: 87%;
-    position: absolute;
-    left: 9%;
-    top: -50px;
-  }
-  .img-dashboard {
-    width: 300px;
-    height: auto;
-  }
-  .title {
-    font-size: 30px;
-  }
-  .section-two {
-    margin-top: 13% !important;
-  }
-  .section-four {
-    height: 700px;
-    margin-top: 150px;
-  }
-  .card-four {
-    position: absolute;
-    top: 550px;
-  }
-  .img-iphone-left {
-    width: 90%;
-    position: absolute;
-    left: 0;
-    top: 45px;
-  }
-  .img-four {
-    display: none;
-  }
-  .section-five {
-    height: 350px;
-  }
-  .card-five {
-    position: absolute;
-    top: 500px;
-  }
-  .img-iphone-right {
-    width: 90%;
-    position: absolute;
-    left: 0;
-    top: 40px;
-  }
-  .section-six {
-    margin-top: 550px;
-    height: 700px;
-  }
-  .bg-six {
-    height: 700px;
-  }
-  .footer {
-    font-size: 16px;
-    display: block;
-  }
-  .row-footer {
-    text-align: center;
-  }
-  .footer h1 {
-    font-size: 20px;
-  }
-  .footer button {
-    padding: 8px 10px;
-  }
-}
-@media (max-width: 768px) {
-  .img-iphone {
-    width: 70%;
-    position: absolute;
-    left: 15%;
-    top: -50px;
-  }
-  .container {
-    max-width: 100%;
-  }
-  .btn-media {
-    text-align: center;
-    margin-bottom: 2em;
-  }
-  p {
-    text-align: center;
-  }
-  .title {
-    font-size: 40px;
-    text-align: center;
-  }
-  .text-70 {
-    font-size: 50px;
-    text-align: center;
-  }
-  .card-five-span {
-    font-size: 35px;
-  }
-  .section-two {
-    margin-top: 44%;
-  }
-  .footer h1 {
-    font-size: 30px;
-  }
-  .footer button {
-    padding: 8px 10px;
-  }
+@keyframes fadeOut {
+	to {
+		opacity: 0;
+		transform: translateX(-0.3em);
+	}
 }
 </style>

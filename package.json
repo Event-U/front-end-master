@@ -28,6 +28,7 @@
 		"axios": "^0.19.2",
 		"bootstrap-datepicker": "^1.9.0",
 		"css-loader": "^3.5.2",
+		"gsap": "^3.6.0",
 		"moment": "^2.27.0",
 		"nuxt": "^2.12.1",
 		"vue-add-to-calendar": "^1.0.4",
